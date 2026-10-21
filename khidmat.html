@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Portfolio Perkhidmatan Kelanasiswa | Nur Fikriyah</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Lucide Icons & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Chart.js untuk visualisasi data analitik -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            scout: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            },
+            gold: {
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      body { background: white !important; color: black !important; font-size: 11pt; }
+      .page-break { page-break-before: always; }
+      .shadow-xl, .shadow-md, .shadow-sm { box-shadow: none !important; }
+      .border { border-color: #cbd5e1 !important; }
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(241, 245, 249, 0.6);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-700 via-indigo-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-indigo-200">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="font-extrabold text-slate-900 tracking-tight text-base sm:text-lg flex items-center gap-2">
+            Kelanasiswa PTSS Hub
+            <span class="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-200/60 rounded-full">E-Portfolio</span>
+          </div>
+          <p class="text-xs text-slate-500 hidden sm:block">Persekutuan Pengakap Malaysia • KSM PTSS</p>
+        </div>
+      </div>
+
+      <!-- Tindakan Header -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <a href="#ringkasan" class="text-xs sm:text-sm font-medium text-slate-600 hover:text-indigo-600 px-3 py-2 rounded-lg hover:bg-slate-100 transition hidden md:inline-block">Statistik</a>
+        <a href="#senarai-program" class="text-xs sm:text-sm font-medium text-slate-600 hover:text-indigo-600 px-3 py-2 rounded-lg hover:bg-slate-100 transition hidden md:inline-block">Rekod Log (24)</a>
+        <a href="#buku-log-flip" onclick="switchMainTab('buku-log')" class="text-xs sm:text-sm font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200/80 px-3 py-2 rounded-lg hover:bg-indigo-100 transition flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span>Buku Log (Flip)</span>
+        </a>
+
+        <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 shadow-sm transition hover:border-slate-400 active:scale-95">
+          <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <span class="hidden sm:inline">Cetak</span> Laporan
+        </button>
+
+        <button onclick="exportSummaryJSON()" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition active:scale-95">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span class="hidden sm:inline">Eksport</span> Data
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
+    
+    <!-- Profil Banner Card -->
+    <div class="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border border-indigo-800/40">
+      <!-- Corak Hiasan Latar -->
+      <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute right-1/4 -bottom-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        
+        <!-- Info Biodata -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div class="relative">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-tr from-amber-400 to-indigo-500 p-1 shadow-xl">
+              <div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-3xl font-black text-white">
+                NF
+              </div>
+            </div>
+            <div class="absolute -bottom-2 -right-2 bg-emerald-500 text-white p-1.5 rounded-full border-4 border-slate-900 shadow" title="Status Aktif & Disahkan">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <div class="flex flex-wrap items-center gap-2">
+              <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">Nur Fikriyah binti Zulkifli</h1>
+              <span class="px-3 py-0.5 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">Kelanasiswa KSM</span>
+            </div>
+            <p class="text-slate-300 text-sm font-medium flex items-center gap-2">
+              <span>No. Matrik: <strong class="text-white font-mono">18DCS24F1025</strong></span>
+              <span class="text-slate-500">•</span>
+              <span>No. K/P: <strong class="text-white font-mono">060428-09-0014</strong></span>
+            </p>
+            <p class="text-slate-300 text-xs sm:text-sm flex items-center gap-2">
+              <svg class="w-4 h-4 text-indigo-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              Politeknik Tuanku Syed Sirajuddin (PTSS), Arau, Perlis
+            </p>
+            <div class="pt-2 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 bg-white/10 rounded-lg text-slate-200">Kelanasiswa Malaysia</span>
+              <span class="px-2.5 py-1 bg-white/10 rounded-lg text-slate-200">Tempoh: Okt 2024 - Okt 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highlight Statistik Jam Rasmi -->
+        <div class="w-full lg:w-auto bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 flex items-center justify-between sm:justify-around lg:justify-start gap-6 lg:gap-8 shadow-inner">
+          <div class="text-center sm:text-left">
+            <span class="block text-xs uppercase tracking-wider text-slate-300 font-semibold">Terkumpul</span>
+            <div class="flex items-baseline gap-1 mt-0.5">
+              <span class="text-4xl sm:text-5xl font-black text-amber-400 font-mono tracking-tight" id="stat-total-jam">323</span>
+              <span class="text-xs text-amber-200 font-semibold uppercase">Jam</span>
+            </div>
+            <span class="text-[11px] text-slate-300">Daripada 24 Program</span>
+          </div>
+
+          <div class="h-12 w-px bg-white/20"></div>
+
+          <div class="text-center sm:text-left">
+            <span class="block text-xs uppercase tracking-wider text-slate-300 font-semibold">Status Pengakap</span>
+            <div class="mt-1 flex items-center gap-1.5 text-emerald-300 font-bold text-base sm:text-lg">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>BERKHIDMAT</span>
+            </div>
+            <span class="text-[11px] text-slate-300">Lengkap Pengesahan</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bg-white p-2 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3 no-print">
+      <div class="flex items-center gap-2">
+        <button id="tab-btn-rekod" onclick="switchMainTab('rekod')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-indigo-600 text-white shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          <span>Rekod Log (Jadual & Kad)</span>
+        </button>
+        <button id="tab-btn-buku" onclick="switchMainTab('buku-log')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-100">
+          <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span>Buku Log Perkhidmatan (Flip Book)</span>
+          <span class="px-2 py-0.5 text-[10px] uppercase font-extrabold rounded-full bg-amber-100 text-amber-800">Interaktif</span>
+        </button>
+      </div>
+
+      <div class="text-xs text-slate-500 hidden md:flex items-center gap-2 pr-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+        <span>Format Buku Log Rasmi KSM Kelanasiswa</span>
+      </div>
+    </div>
+
+    <div id="section-analytics-group" class="space-y-8">
+      <section id="ringkasan" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Kad Metrik 1: Domain Khidmat -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between text-slate-500 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Khidmat Komuniti & Bencana</span>
+            <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+          </div>
+          <div class="text-2xl font-black text-slate-900 font-mono">35 Jam</div>
+          <p class="text-xs text-slate-500 mt-1">Banjir Kangar, Bantuan Persekolahan IPD, Bubur Lambuk PKPIM & SK Jejawi.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-2 rounded-full mt-4 overflow-hidden">
+          <div class="bg-rose-500 h-2 rounded-full" style="width: 11%"></div>
+        </div>
+      </div>
+
+      <!-- Kad Metrik 2: Acara & Kursus Kepimpinan -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between text-slate-500 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Jambori, Acara & Kursus 3K</span>
+            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+          </div>
+          <div class="text-2xl font-black text-slate-900 font-mono">185 Jam</div>
+          <p class="text-xs text-slate-500 mt-1">Jambori Kebangsaan (70j), Kursus 3K (68j), BPA UUM (12j), MalPRO, iProPEx.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-2 rounded-full mt-4 overflow-hidden">
+          <div class="bg-indigo-600 h-2 rounded-full" style="width: 57%"></div>
+        </div>
+      </div>
+
+      <!-- Kad Metrik 3: Fasilitasi Sekolah & Media -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between text-slate-500 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Fasilitator & Dokumentasi Video</span>
+            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="text-2xl font-black text-slate-900 font-mono">90 Jam</div>
+          <p class="text-xs text-slate-500 mt-1">MRSM Beseri, MRSM Lenggong, Kolej Tunku Kurshiah (TKC), Sarjana & JOTA-JOTI.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-2 rounded-full mt-4 overflow-hidden">
+          <div class="bg-amber-500 h-2 rounded-full" style="width: 28%"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Carta Taburan Masa -->
+      <div class="lg:col-span-2 bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <h2 class="text-base font-bold text-slate-900 tracking-tight">Analitik Taburan Jam Mengikut Kategori Aktiviti</h2>
+            <p class="text-xs text-slate-500">Jumlah sumbangan masa fizikal, teknikal dan kepimpinan</p>
+          </div>
+          <span class="text-xs px-2.5 py-1 bg-slate-100 text-slate-600 font-medium rounded-lg">24 Program Disahkan</span>
+        </div>
+        <div class="mt-4 h-64 sm:h-72">
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Falsafah & Nilai Perkhidmatan Kelana -->
+      <div class="bg-gradient-to-b from-indigo-50/70 to-white rounded-2xl p-6 border border-indigo-100 shadow-sm flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 text-indigo-900 font-bold text-sm">
+            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Falsafah Moto Kelana: "Berkhidmat"
+          </div>
+          <p class="text-xs leading-relaxed text-slate-600">
+            Portfolio ini merupakan kompilasi sahih sumbangan khidmat saudara <strong>Nur Fikriyah binti Zulkifli</strong> yang mencerminkan etos pengakap tertinggi. 
+            Mencakupi tugas kawalan keselamatan berisiko tinggi di Jambori Kebangsaan, bantuan pemulihan bencana banjir lumpur, hingga kepakaran multimedia video di sekolah berprestasi tinggi negara.
+          </p>
+          <div class="space-y-2 pt-2 text-xs">
+            <div class="flex items-center gap-2 text-slate-700">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span><strong>Ketahanan Fizikal:</strong> Operasi 24 jam syif & denai lasak</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-700">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              <span><strong>Kepimpinan Komuniti:</strong> Khidmat empati golongan rentan</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-700">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <span><strong>Kemahiran Insaniah:</strong> Pedagogi murid & dokumentasi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-indigo-100/80 flex items-center justify-between text-[11px] text-slate-500">
+          <span>Unit: Kelanasiswa Politeknik</span>
+          <span class="font-semibold text-indigo-600">323 Jam Disahkan</span>
+        </div>
+      </div>
+
+    </div>
+
+    <section id="senarai-program" class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8 space-y-6">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            <span>Buku Log Perkhidmatan Rasmi</span>
+            <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded-md" id="record-count">24 Rekod</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">Senarai penuh aktiviti, rekod tarikh, lokasi, dan bilangan jam khidmat</p>
+        </div>
+
+        <!-- Carian Kata Kunci & Filter Kategori -->
+        <div class="flex flex-wrap items-center gap-2.5">
+          <div class="relative min-w-[220px]">
+            <input 
+              type="text" 
+              id="search-input" 
+              oninput="filterPrograms()" 
+              placeholder="Cari program, tempat..." 
+              class="w-full text-xs pl-8 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition"
+            >
+            <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+
+          <select 
+            id="category-filter" 
+            onchange="filterPrograms()" 
+            class="text-xs py-2.5 px-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-700 font-medium cursor-pointer"
+          >
+            <option value="ALL">Semua Kategori (24)</option>
+            <option value="KOMUNITI">Komuniti & Kebajikan B40</option>
+            <option value="ALAM">Alam Sekitar & Geotapak</option>
+            <option value="ACARA">Jambori, Acara & Kursus 3K</option>
+            <option value="MEDIA">Fasilitator & Videografi Media</option>
+          </select>
+
+          <!-- Butang Susunan Jam -->
+          <button 
+            id="sort-btn" 
+            onclick="toggleSortHours()" 
+            class="text-xs px-3 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl flex items-center gap-1.5 transition active:scale-95"
+            title="Susun mengikut jam"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>
+            <span id="sort-label">Susun Jam</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Jadual Desktop Responsif -->
+      <div class="overflow-x-auto rounded-2xl border border-slate-200/80 custom-scrollbar">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-50/80 border-b border-slate-200 text-slate-600 font-bold uppercase text-[11px] tracking-wider">
+              <th class="py-3.5 px-4 w-12 text-center">Bil</th>
+              <th class="py-3.5 px-4">Nama Program & Peranan</th>
+              <th class="py-3.5 px-4">Kategori Domain</th>
+              <th class="py-3.5 px-4">Tarikh Pelaksanaan</th>
+              <th class="py-3.5 px-4">Lokasi & Tempat</th>
+              <th class="py-3.5 px-4 text-center">Jam</th>
+              <th class="py-3.5 px-4 text-center no-print">Tindakan</th>
+            </tr>
+          </thead>
+          <tbody id="program-table-body" class="divide-y divide-slate-100 bg-white">
+            <!-- Disuntik secara dinamik oleh JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Ringkasan Jam Bawah Jadual -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 text-xs text-slate-500 font-medium">
+        <div>Menunjukkan <span id="showing-count" class="font-bold text-slate-800">24</span> program yang dipilih</div>
+        <div class="flex items-center gap-2">
+          <span>Jumlah Jam Terpilih:</span>
+          <span id="subtotal-jam" class="text-base font-black text-indigo-700 font-mono bg-indigo-50 px-2.5 py-0.5 rounded-lg border border-indigo-100">323 Jam</span>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="buku-log-flip" class="bg-gradient-to-b from-slate-900 to-indigo-950 rounded-3xl border border-indigo-900/60 shadow-2xl p-5 sm:p-8 text-white space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-indigo-800/60 pb-5">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase bg-amber-400 text-slate-950">Viewer Flip 3D</span>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
+              Buku Log Perkhidmatan Kelanasiswa
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1">Helaian salinan digital interaktif rekod khidmat (selak helaian kiri/kanan seperti buku fizikal)</p>
+        </div>
+
+        <!-- Kawalan Navigasi Halaman Flipbook -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="prevFlipPage()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs flex items-center gap-1.5 transition active:scale-95 border border-white/10">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <span>Sebelumnya</span>
+          </button>
+
+          <div class="px-3 py-2 bg-white/10 border border-white/10 rounded-xl text-xs font-mono font-bold flex items-center gap-2">
+            <span class="text-slate-400">M/S:</span>
+            <span id="flip-page-indicator" class="text-amber-300 font-black">1</span>
+            <span class="text-slate-400">/</span>
+            <span id="flip-total-pages" class="text-slate-300">26</span>
+          </div>
+
+          <button onclick="nextFlipPage()" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center gap-1.5 transition active:scale-95 shadow-md shadow-indigo-900/40">
+            <span>Seterusnya</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bar Lompatan Pantas Topik Buku Log -->
+      <div class="flex flex-wrap items-center gap-2 text-xs overflow-x-auto pb-1 custom-scrollbar">
+        <span class="text-slate-400 font-semibold text-[11px] uppercase mr-1">Lompat Ke:</span>
+        <button onclick="goToFlipPage(0)" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 rounded-lg text-slate-200 font-medium transition">Kulit Depan</button>
+        <button onclick="goToFlipPage(1)" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 rounded-lg text-slate-200 font-medium transition">Isi Kandungan</button>
+        <button onclick="goToFlipPage(2)" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 rounded-lg text-slate-200 font-medium transition">Program 1 (PSA)</button>
+        <button onclick="goToFlipPage(3)" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 rounded-lg text-slate-200 font-medium transition">Jambori Kebangsaan (70j)</button>
+        <button onclick="goToFlipPage(16)" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 rounded-lg text-slate-200 font-medium transition">Banjir Kangar</button>
+        <button onclick="goToFlipPage(17)" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 rounded-lg text-slate-200 font-medium transition">Mountain Day</button>
+        <button onclick="goToFlipPage(25)" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 rounded-lg text-slate-200 font-medium transition">Penutup / Rumusan</button>
+      </div>
+
+      <!-- Bekas Visual Flipbook (Realistic Page Presentation) -->
+      <div class="relative bg-slate-950/80 rounded-2xl p-3 sm:p-6 border border-white/10 shadow-inner flex flex-col items-center justify-center min-h-[580px]">
+        
+        <!-- Tulang Buku Log (Spine Graphic) -->
+        <div class="w-full max-w-4xl relative">
+          
+          <div id="flipbook-stage" class="w-full transition-all duration-300 ease-out transform">
+            <!-- Helaian akan dijana oleh renderFlipbookPage() -->
+          </div>
+
+          <!-- Petunjuk Papan Kekunci -->
+          <div class="mt-4 flex items-center justify-between text-[11px] text-slate-400 px-2">
+            <span>Tip: Anda boleh gunakan kekunci anak panah <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-200">←</kbd> dan <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-200">→</kbd> pada papan kekunci untuk menyelak helaian.</span>
+            <span class="text-amber-400 font-medium" id="flip-view-mode">Mod Paparan Tunggal Interaktif</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Kompilasi Gambar & Eviden Khidmat</h2>
+          <p class="text-xs sm:text-sm text-slate-500">Sorotan aktiviti terpilih yang direkodkan dalam laporan aktiviti</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Galeri Kad 1: Jambori Kebangsaan -->
+        <div class="group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="h-44 bg-gradient-to-tr from-slate-800 to-indigo-950 relative overflow-hidden flex items-center justify-center p-4">
+            <!-- Ilustrasi Ikon Taktikal Kawalan Jambori -->
+            <div class="text-center text-white/90">
+              <div class="w-12 h-12 mx-auto rounded-full bg-indigo-500/30 flex items-center justify-center mb-2">
+                <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+              </div>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-300">Kem Bina Semangat, KKB</span>
+            </div>
+            <span class="absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 bg-amber-500 text-slate-950 rounded-full">70 Jam</span>
+          </div>
+          <div class="p-4 space-y-1.5">
+            <h3 class="font-bold text-sm text-slate-900 group-hover:text-indigo-600 transition">Jambori Pengakap Kebangsaan 2024</h3>
+            <p class="text-xs text-slate-500 line-clamp-2">Kawalan keselamatan syif 24 jam dan pengurusan trafik bas kontinjen domestik & luar negara.</p>
+          </div>
+        </div>
+
+        <!-- Galeri Kad 2: Sukarelawan Bencana Banjir -->
+        <div class="group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="h-44 bg-gradient-to-tr from-cyan-900 to-slate-900 relative overflow-hidden flex items-center justify-center p-4">
+            <div class="text-center text-white/90">
+              <div class="w-12 h-12 mx-auto rounded-full bg-cyan-500/30 flex items-center justify-center mb-2">
+                <svg class="w-6 h-6 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+              </div>
+              <span class="text-xs font-bold uppercase tracking-wider text-cyan-300">Bandar Kangar, Perlis</span>
+            </div>
+            <span class="absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 bg-cyan-500 text-slate-950 rounded-full">8 Jam</span>
+          </div>
+          <div class="p-4 space-y-1.5">
+            <h3 class="font-bold text-sm text-slate-900 group-hover:text-indigo-600 transition">Sukarelawan Bencana Pasca Banjir</h3>
+            <p class="text-xs text-slate-500 line-clamp-2">Pembersihan mendapan lumpur di rumah kakitangan PTSS bersama gabungan pelajar UMAM & SMK.</p>
+          </div>
+        </div>
+
+        <!-- Galeri Kad 3: Perlis Mountain Day -->
+        <div class="group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="h-44 bg-gradient-to-tr from-emerald-900 to-teal-950 relative overflow-hidden flex items-center justify-center p-4">
+            <div class="text-center text-white/90">
+              <div class="w-12 h-12 mx-auto rounded-full bg-emerald-500/30 flex items-center justify-center mb-2">
+                <svg class="w-6 h-6 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+              </div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-300">Wang Gunung, Kaki Bukit</span>
+            </div>
+            <span class="absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 bg-emerald-500 text-slate-950 rounded-full">Sijil Exco Negeri</span>
+          </div>
+          <div class="p-4 space-y-1.5">
+            <h3 class="font-bold text-sm text-slate-900 group-hover:text-indigo-600 transition">Perlis Mountain Day Wang Gunung</h3>
+            <p class="text-xs text-slate-500 line-clamp-2">Pembersihan denai trekking lasak dan pemulihan halangan laluan bersempena Hari Gunung Perlis.</p>
+          </div>
+        </div>
+
+        <!-- Galeri Kad 4: Fasilitator & Video MRSM/TKC -->
+        <div class="group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="h-44 bg-gradient-to-tr from-purple-900 to-indigo-950 relative overflow-hidden flex items-center justify-center p-4">
+            <div class="text-center text-white/90">
+              <div class="w-12 h-12 mx-auto rounded-full bg-purple-500/30 flex items-center justify-center mb-2">
+                <svg class="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              </div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-300">MRSM Lenggong & TKC</span>
+            </div>
+            <span class="absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 bg-purple-500 text-white rounded-full">Videografi</span>
+          </div>
+          <div class="p-4 space-y-1.5">
+            <h3 class="font-bold text-sm text-slate-900 group-hover:text-indigo-600 transition">Dokumentasi Media Sekolah Tinggi</h3>
+            <p class="text-xs text-slate-500 line-clamp-2">Rakaman sinematik modul motivasi, suntingan montaj dan penyelarasan program sarjana.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="detail-modal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden flex items-center justify-center p-4 no-print">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 custom-scrollbar transform transition-all">
+      <div class="sticky top-0 bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-100 flex items-center justify-between z-10">
+        <div class="flex items-center gap-2">
+          <span id="modal-category-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase"></span>
+          <span id="modal-hours-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800"></span>
+        </div>
+        <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        <div>
+          <h3 id="modal-title" class="text-xl font-black text-slate-900 leading-snug"></h3>
+          <div class="mt-2 flex flex-wrap gap-4 text-xs text-slate-500">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <strong id="modal-date" class="text-slate-700"></strong>
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+              <strong id="modal-location" class="text-slate-700"></strong>
+            </span>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Objektif & Ringkasan Tugasan</h4>
+          <p id="modal-description" class="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100"></p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Refleksi Diri & Nilai Insaniah</h4>
+          <p id="modal-reflection" class="text-xs sm:text-sm text-indigo-950 leading-relaxed bg-indigo-50/50 p-4 rounded-xl border border-indigo-100 italic"></p>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+          <span>Pengesahan: Disahkan Kelanasiswa PTSS</span>
+          <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 text-white font-medium rounded-xl hover:bg-slate-900 transition">Tutup Paparan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-center text-xs text-slate-500 no-print">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p class="text-xs text-slate-500">© 2026 Nur Fikriyah binti Zulkifli - KSM PTSS</p>
+    </div>
+  </footer>
+
+  <script>
+    // Data Lengkap 24 Program daripada Laporan Perkhidmatan
+    const programData = [
+      {
+        id: 1,
+        title: "Gotong-Royong Kuarters Pendidikan PSA",
+        role: "Sukarelawan Pembersihan",
+        category: "ALAM",
+        categoryName: "Alam Sekitar",
+        date: "13 Okt 2024",
+        location: "Kuarters PSA Shah Alam, Selangor",
+        hours: 3,
+        description: "Program pembersihan tahunan melibatkan 45 ahli Kelanasiswa daripada 8 buah Politeknik (MaIPRO 2024). Membersihkan kawasan semak dan kediaman kuarters institusi.",
+        reflection: "Dapat bekerjasama merentas kontinjen politeknik seluruh Malaysia serta memupuk semangat kesukarelawanan peringkat kebangsaan."
+      },
+      {
+        id: 2,
+        title: "Jambori Pengakap Peringkat Kebangsaan 2024",
+        role: "AJK Keselamatan & Kawalan Trafik",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "21–27 Dis 2024",
+        location: "Kem Bina Semangat, Kuala Kubu Bharu, Selangor",
+        hours: 70,
+        description: "Bertugas mengawal lalu lintas bas kontinjen dari seluruh negeri dan delegasi antarabangsa mengikut syif 24 jam. Menggunakan radio amatur komunikasi bagi memantau keselamatan ribuan peserta.",
+        reflection: "Membina disiplin, ketahanan diri di bawah beban masa yang panjang, dan kemahiran komunikasi berkesan dalam menangani situasi kecemasan."
+      },
+      {
+        id: 3,
+        title: "Urusetia Kursus 3K Sesi 2: 2024/2025",
+        role: "JK Makan & Minum Peserta",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "11–13 Apr 2025",
+        location: "Pusat Islam PTSS, Perlis",
+        hours: 20,
+        description: "Menguruskan jadual penyediaan makanan, mengadun masakan secara kawah, mengagihkan hidangan kepada para peserta kursus serta menjaga kebersihan zon dapur.",
+        reflection: "Memahami peri pentingnya perancangan logistik sokongan dalam menentukan kesejahteraan peserta dan kelancaran sesuatu kursus kepimpinan."
+      },
+      {
+        id: 4,
+        title: "Gotong-Royong Sungai Bukit Jernih (Geotapak)",
+        role: "Sukarelawan Alam Sekitar",
+        category: "ALAM",
+        categoryName: "Alam Sekitar",
+        date: "19 Apr 2025",
+        location: "Geotapak Sg. Bukit Jernih, Perlis",
+        hours: 3,
+        description: "Mengutip sisa pepejal dan sampah tidak terbiodegradasi di aliran sungai kawasan Geotapak semulajadi bagi memelihara ekosistem dan keindahan alam sekitar.",
+        reflection: "Meningkatkan kesedaran geoconservation (pemuliharaan warisan geologi) untuk generasi masa depan."
+      },
+      {
+        id: 5,
+        title: "Gotong-Royong Masjid Al-Imran, Pauh Putra",
+        role: "Sukarelawan Khidmat Rumah Ibadah",
+        category: "KOMUNITI",
+        categoryName: "Komuniti & Kebajikan",
+        date: "19 Apr 2025",
+        location: "Masjid Al-Imran, Pauh Putra, Perlis",
+        hours: 3,
+        description: "Membersihkan dewan solat, beranda, bilik wuduk, tingkap dan kawasan parkir bagi memastikan keselesaan jemaah masjid komuniti setempat.",
+        reflection: "Menyedari menjaga rumah ibadah adalah amanah bersama yang mengeratkan silaturahim dengan kariah kampung."
+      },
+      {
+        id: 6,
+        title: "Penyambut Tetamu Program iProPEx 2025",
+        role: "Juruiring & Penyambut Tetamu",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "30 Apr 2025",
+        location: "Kompleks PTSS, Arau, Perlis",
+        hours: 2,
+        description: "Menyambut tetamu kehormat serta delegasi pameran inovasi antarabangsa (Malaysia, Thailand, Indonesia) dalam acara Innovation, Project and Exhibition.",
+        reflection: "Meningkatkan tahap kemahiran interpersonal, etika diplomasi dan keyakinan berhadapan pelawat antarabangsa."
+      },
+      {
+        id: 7,
+        title: "Membantu Persiapan MaIPRO 2025",
+        role: "JK Prop, Diorama & Logistik",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "20 Mei 2025",
+        location: "Bilik Mesyuarat JTMK, PTSS",
+        hours: 7,
+        description: "Menyediakan peralatan tapak, membina serta mereka bentuk hiasan diorama perkhemahan, dan membantu logistik bahan mentah dapur perkhemahan.",
+        reflection: "Belajar bahawa kejayaan sesuatu majlis bermula daripada persiapan terperinci di belakang tabir sebelum hari perasmian."
+      },
+      {
+        id: 8,
+        title: "Membersih Persekitaran Pantai Teluk Kemang",
+        role: "Sukarelawan Kebersihan Marin",
+        category: "ALAM",
+        categoryName: "Alam Sekitar",
+        date: "5 Jun 2025",
+        location: "Pantai Teluk Kemang, Port Dickson, N. Sembilan",
+        hours: 2,
+        description: "Mengutip dan mengasingkan sisa plastik, botol kaca dan puntung rokok di persisiran pantai bagi melindungi hidupan marin daripada ancaman sisa buangan.",
+        reflection: "Membuka mata terhadap ancaman pencemaran mikroplastik dan peri pentingnya teladan sivik di destinasi pelancongan awam."
+      },
+      {
+        id: 9,
+        title: "Membantu Kenduri Majlis Apresiasi KSM PTSS",
+        role: "Urusetia Jamuan & Pengemasan",
+        category: "KOMUNITI",
+        categoryName: "Komuniti & Kebajikan",
+        date: "5 Jul 2025",
+        location: "Pauh Inn, Arau, Perlis",
+        hours: 2,
+        description: "Menyediakan susun atur meja banquet, menghidangkan makanan tetamu apresiasi, dan membersihkan dewan majlis secara bergotong-royong selepas tamat acara.",
+        reflection: "Mengukuhkan ukhuwah bersama rakan Kelanasiswa dan memupuk nilai kerendahan hati dalam melayani tetamu."
+      },
+      {
+        id: 10,
+        title: "Khidmat Masyarakat di SK Jejawi",
+        role: "Fasilitator & Jurulatih Ikatan/Simpulan",
+        category: "KOMUNITI",
+        categoryName: "Komuniti & Kebajikan",
+        date: "15–16 Ogos 2025",
+        location: "Sekolah Kebangsaan Jejawi, Kangar, Perlis",
+        hours: 9,
+        description: "Membimbing murid sekolah rendah menguasai asas ikatan kepengakapan, membimbing persembahan malam kebudayaan, serta mengawasi keselamatan pertandingan memasak rimba.",
+        reflection: "Mengasah kemahiran pedagogi mengikut daya serap kanak-kanak serta melatih kesabaran seorang pemimpin muda."
+      },
+      {
+        id: 11,
+        title: "Creative Xperience Festival (CXF 2025)",
+        role: "JK Makanan & Pengagihan Hidangan",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "11–13 Sept 2025",
+        location: "Dewan Harumanis, PTSS",
+        hours: 6,
+        description: "Menguruskan logistik agihan minuman dan hidangan makanan berkala kepada para peserta festival kreativiti bagi menjamin kebajikan sepanjang aktiviti berlangsung.",
+        reflection: "Memupuk ketepatan masa, kebersihan katering acara serta keupayaan menyelesaikan masalah kekurangan bekalan di lapangan."
+      },
+      {
+        id: 12,
+        title: "JOTA-JOTI Kebangsaan 2025",
+        role: "JK Dokumentasi & Pereka Grafik Buku Program",
+        category: "MEDIA",
+        categoryName: "Media & Fasilitator",
+        date: "15 Sept 2025",
+        location: "Stesen Kerja Digital / Komputer Peribadi",
+        hours: 5,
+        description: "Mereka bentuk susun atur e-buku program rasmi JOTA-JOTI Kebangsaan secara digital yang merangkumi jadual aktiviti stesen radio amatur dan senarai pengurusan program.",
+        reflection: "Meningkatkan kemahiran perisian reka bentuk grafik digital dan memastikan ketepatan data rasmi organisasi."
+      },
+      {
+        id: 13,
+        title: "Teambuilding KSM 2025",
+        role: "JK Aktiviti & Pengurusan Brisk Walk",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "11 Okt 2025",
+        location: "Sekitar Kampus PTSS",
+        hours: 3,
+        description: "Menyelaras laluan brisk walk cergas serta mengendalikan stesen sukaneka berpasukan untuk memperkukuh ukhuwah dan komunikasi antara ahli kelanasiswa.",
+        reflection: "Meningkatkan keupayaan memimpin aktiviti dinamika kumpulan dan menjaga keselamatan laluan peserta."
+      },
+      {
+        id: 14,
+        title: "Urusetia Majlis Penganugerahan & BPA KSM 2025",
+        role: "JK Pengurusan Pentas & Protokol",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "1–2 Nov 2025",
+        location: "Universiti Utara Malaysia (UUM), Sintok, Kedah",
+        hours: 12,
+        description: "Menyediakan susunan tempat duduk VVIP, menyelaraskan giliran dan laluan penerima pingat dan anugerah di atas pentas utama mengikut protokol rasmi istiadat.",
+        reflection: "Memahami ketelitian protokol istiadat universiti di mana koordinasi masa tanpa ralat adalah amat penting."
+      },
+      {
+        id: 15,
+        title: "Sukarelawan Bencana Banjir Kangar 2025",
+        role: "Sukarelawan Pasca Bencana Banjir",
+        category: "KOMUNITI",
+        categoryName: "Komuniti & Kebajikan",
+        date: "29 Nov 2025",
+        location: "Kediaman Kakitangan PTSS & Sekitar Kangar",
+        hours: 8,
+        description: "Membersihkan mendapan lumpur pekat di dalam dan luar rumah kakitangan yang terjejas, mencuci perkakas rumah dan menyelamatkan barang keperluan asas bersama delegasi UMAM.",
+        reflection: "Membina empati tinggi terhadap kesusahan mangsa bencana alam dan melatih ketabahan fizikal membersihkan lumpur tebal."
+      },
+      {
+        id: 16,
+        title: "Sukarelawan Perlis Mountain Day (Wang Gunung)",
+        role: "Sukarelawan Pembersihan Denai Trekking",
+        category: "ALAM",
+        categoryName: "Alam Sekitar",
+        date: "13 Dis 2025",
+        location: "Wang Gunung, Kaki Bukit, Sg Batu Pahat, Perlis",
+        hours: 8,
+        description: "Mendaki denai lasak Wang Gunung untuk mengutip sampah pelancong, mengalihkan dahan tumbang dan memastikan keselamatan laluan sempena sambutan Hari Gunung Negeri Perlis.",
+        reflection: "Mendapat Sijil Penghargaan Rasmi Kerajaan Negeri Perlis serta memperkukuh stamina dan cinta terhadap biodiversiti negara."
+      },
+      {
+        id: 17,
+        title: "Urusetia Sumbangan Bantuan Persekolahan",
+        role: "JK Logistik & Agihan Beg/Pakaian B40",
+        category: "KOMUNITI",
+        categoryName: "Komuniti & Kebajikan",
+        date: "9 Jan 2026",
+        location: "Ibu Pejabat Polis Daerah (IPD) Kangar, Perlis",
+        hours: 4,
+        description: "Mengasingkan dan menyusun kelengkapan baju sekolah, beg serta alat tulis untuk anak anggota polis kategori B40 serta menguruskan kaunter penyerahan bantuan.",
+        reflection: "Merasa kepuasan dapat meringankan beban kewangan keluarga berpendapatan rendah demi kelangsungan pendidikan anak-anak mereka."
+      },
+      {
+        id: 18,
+        title: "Urusetia & Edaran Bubur Lambuk PKPIM",
+        role: "Urusetia Penyediaan & Agihan Komuniti",
+        category: "KOMUNITI",
+        categoryName: "Komuniti & Kebajikan",
+        date: "28 Feb 2026",
+        location: "Sekitar Bandar Kangar, Perlis",
+        hours: 14,
+        description: "Terlibat dalam kitaran penuh gotong-royong bermula daripada pemotongan bahan rempah, memasak di kawah besar, pembungkusan higienik, hingga edaran di laluan awam.",
+        reflection: "Menghayati nilai keberkatan sedekah Ramadan dan bekerja secara efisien dalam tempoh masa operasi 14 jam berturut-turut."
+      },
+      {
+        id: 19,
+        title: "Urusetia Kursus 3K Sesi 1: 2025/2026",
+        role: "JK Pendaftaran & Kebajikan Peserta",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "3–5 Apr 2026",
+        location: "Pusat Islam PTSS, Perlis",
+        hours: 24,
+        description: "Menyelaras kaunter semakan pendaftaran rekod kemasukan peserta, menyediakan tag nama, memantau kemudahan tempat tidur dan kebajikan kesihatan peserta.",
+        reflection: "Meningkatkan kemahiran sistem rekod kehadiran data dan kepekaan menjaga keselamatan rakan-rakan sepanjang kursus."
+      },
+      {
+        id: 20,
+        title: "Perkhemahan Pengakap UUM",
+        role: "Urusetia Aktiviti Burung Hantu (Night Trail)",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "11 Jun 2026",
+        location: "Dewan Felda Chuping, Perlis",
+        hours: 4,
+        description: "Merancang trek aktiviti Burung Hantu malam bagi menguji ketahanan mental dan keberanian peserta, memberi taklimat kawalan keselamatan di stesen gelap.",
+        reflection: "Meningkatkan pengurusan risiko dalam mengendalikan aktiviti luar berimpak tinggi di waktu malam."
+      },
+      {
+        id: 21,
+        title: "Urusetia Seminar MRSM Beseri",
+        role: "Fasilitator Modul & Dokumentasi Video",
+        category: "MEDIA",
+        categoryName: "Media & Fasilitator",
+        date: "6–8 Ogos 2026",
+        location: "Kem PLKN Sintok, Kedah",
+        hours: 30,
+        description: "Membimbing aktiviti ice breaking dan dinamika kumpulan pelajar Tingkatan 1, merakam foto/video aktiviti dan menyunting laporan dokumentasi akhir.",
+        reflection: "Gabungan peranan mentoring murid sekolah dan kerja dokumentasi media kreatif mempertajam fokus kepimpinan serba boleh."
+      },
+      {
+        id: 22,
+        title: "Kursus Kemahiran Kelana Sesi 2: 2025/2026",
+        role: "JK Fotografi, Juri Projek Perintis & First Aid",
+        category: "ACARA",
+        categoryName: "Jambori & Acara",
+        date: "18–20 Sept 2026",
+        location: "Pusat Islam PTSS, Perlis",
+        hours: 24,
+        description: "Menjadi juri penilai model projek perintis menara/pioneering peserta, mengajar demonstrasi pertolongan cemas asas serta bertindak sebagai jurugambar rasmi program.",
+        reflection: "Peningkatan peranan daripada pembantu operasi kepada juri teknikal menandakan evolusi kemahiran kepengakapan yang mantap."
+      },
+      {
+        id: 23,
+        title: "Urusetia Program Belajar Sarjana (Tingkatan 3)",
+        role: "Fasilitator Akademik & Motivasi",
+        category: "MEDIA",
+        categoryName: "Media & Fasilitator",
+        date: "22–24 Sept 2026",
+        location: "Kem PLKN Sintok, Kedah",
+        hours: 20,
+        description: "Membina motivasi dan keyakinan pelajar Tingkatan 3 menghadapi peperiksaan, mengendalikan slot bimbingan serta memantau disiplin aktiviti pelajar.",
+        reflection: "Membantu pelajar membina matlamat akademik yang jelas di samping menyemai nilai sahsiah dan daya saing positif."
+      },
+      {
+        id: 24,
+        title: "Urusetia & Videografi Program MRSM Lenggong",
+        role: "Videografer Rasmi & Pengurusan Program",
+        category: "MEDIA",
+        categoryName: "Media & Fasilitator",
+        date: "8–10 Sept 2026",
+        location: "MRSM Lenggong, Perak",
+        hours: 20,
+        description: "Merakam detik penting modul pelajar, menghasilkan video montaj sinematik penutup majlis dan bekerjasama dengan pihak pentadbiran maktab.",
+        reflection: "Kemahiran videografi bukan sekadar merakam visual tetapi menterjemahkan impak perubahan nilai peserta ke dalam bentuk audio visual yang menyentuh hati."
+      },
+      {
+        id: 25,
+        title: "Urusetia Motivasi Kolej Tunku Kurshiah (TKC)",
+        role: "Videografer Rasmi & Pemantau Aktiviti",
+        category: "MEDIA",
+        categoryName: "Media & Fasilitator",
+        date: "20–22 Okt 2026",
+        location: "Kolej Tunku Kurshiah, Bandar Enstek, Negeri Sembilan",
+        hours: 20,
+        description: "Mendokumentasikan aktiviti kepimpinan pelajar sekolah berprestasi tinggi negara (TKC) dalam bentuk video berkualiti tinggi sebagai bahan rekod rasmi.",
+        reflection: "Pendedahan mengendalikan liputan media di institusi perdana meningkatkan standard profesionalisme kerja lapangan dan ketelitian etika bertugas."
+      }
+    ];
+
+    // Data Penyesuaian Penggabungan Kursus & Sesi:
+    // (Dalam rekod PDF, terdapat 24 baris entri utama dengan jumlah rasmi tepat 323 Jam)
+    // Paparan data disusun secara automatik berdasarkan dataset di atas.
+
+    let currentPrograms = [...programData];
+    let sortAsc = false;
+
+    // Kategori Badge Colors
+    const categoryBadges = {
+      KOMUNITI: "bg-rose-50 text-rose-700 border-rose-200",
+      ALAM: "bg-emerald-50 text-emerald-700 border-emerald-200",
+      ACARA: "bg-indigo-50 text-indigo-700 border-indigo-200",
+      MEDIA: "bg-amber-50 text-amber-700 border-amber-200"
+    };
+
+    // Render Jadual
+    function renderTable(data) {
+      const tbody = document.getElementById('program-table-body');
+      tbody.innerHTML = '';
+
+      let totalFilteredHours = 0;
+
+      data.forEach((item, index) => {
+        totalFilteredHours += item.hours;
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50/80 transition-colors border-b border-slate-100";
+        tr.innerHTML = `
+          <td class="py-3 px-4 text-center font-mono text-slate-400 font-semibold">${index + 1}</td>
+          <td class="py-3 px-4">
+            <div class="font-bold text-slate-900">${item.title}</div>
+            <div class="text-xs text-indigo-600 font-medium">${item.role}</div>
+          </td>
+          <td class="py-3 px-4">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${categoryBadges[item.category] || 'bg-slate-100 text-slate-700'}">
+              ${item.categoryName}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-slate-600 text-xs">${item.date}</td>
+          <td class="py-3 px-4 text-slate-600 text-xs">${item.location}</td>
+          <td class="py-3 px-4 text-center font-mono font-bold text-slate-900">
+            <span class="bg-slate-100 px-2 py-0.5 rounded-md">${item.hours}j</span>
+          </td>
+          <td class="py-3 px-4 text-center no-print">
+            <button onclick="openModal(${item.id})" class="px-2.5 py-1 text-xs font-semibold text-indigo-600 hover:text-white bg-indigo-50 hover:bg-indigo-600 rounded-lg transition active:scale-95">
+              Butiran
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('showing-count').innerText = data.length;
+      document.getElementById('subtotal-jam').innerText = totalFilteredHours + ' Jam';
+    }
+
+    // Penapis Carian & Kategori
+    function filterPrograms() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const cat = document.getElementById('category-filter').value;
+
+      currentPrograms = programData.filter(item => {
+        const matchQuery = item.title.toLowerCase().includes(query) || 
+                             item.location.toLowerCase().includes(query) || 
+                             item.role.toLowerCase().includes(query);
+        const matchCat = (cat === 'ALL' || item.category === cat);
+        return matchQuery && matchCat;
+      });
+
+      renderTable(currentPrograms);
+    }
+
+    // Susunan Jam
+    function toggleSortHours() {
+      sortAsc = !sortAsc;
+      currentPrograms.sort((a, b) => sortAsc ? a.hours - b.hours : b.hours - a.hours);
+      document.getElementById('sort-label').innerText = sortAsc ? "Jam Rendah ↑" : "Jam Tinggi ↓";
+      renderTable(currentPrograms);
+    }
+
+    // Modal Paparan Butiran
+    function openModal(id) {
+      const prog = programData.find(p => p.id === id);
+      if (!prog) return;
+
+      document.getElementById('modal-title').innerText = prog.title + ' (' + prog.role + ')';
+      document.getElementById('modal-date').innerText = prog.date;
+      document.getElementById('modal-location').innerText = prog.location;
+      document.getElementById('modal-hours-badge').innerText = prog.hours + ' Jam Khidmat';
+      document.getElementById('modal-category-badge').innerText = prog.categoryName;
+      document.getElementById('modal-category-badge').className = `px-2.5 py-0.5 rounded-full text-xs font-bold uppercase border ${categoryBadges[prog.category]}`;
+      document.getElementById('modal-description').innerText = prog.description;
+      document.getElementById('modal-reflection').innerText = `"${prog.reflection}"`;
+
+      document.getElementById('detail-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('detail-modal').classList.add('hidden');
+    }
+
+    // Menutup modal jika klik di luar
+    window.onclick = function(event) {
+      const modal = document.getElementById('detail-modal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    // Eksport Data Ringkasan ke Fail JSON
+    function exportSummaryJSON() {
+      const exportData = {
+        pemilik: "Nur Fikriyah binti Zulkifli",
+        noMatrik: "18DCS24F1025",
+        institusi: "Politeknik Tuanku Syed Sirajuddin",
+        jumlahJam: 323,
+        jumlahProgram: programData.length,
+        tarikhJana: new Date().toLocaleDateString('ms-MY'),
+        program: programData
+      };
+
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "Portfolio_Perkhidmatan_Nur_Fikriyah.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    let currentFlipIndex = 0;
+    const totalFlipPages = programData.length + 2; // +1 Cover, +1 Table of Content
+
+    // Fungsi Tukar Tab Utama
+    function switchMainTab(tab) {
+      const tabRekodBtn = document.getElementById('tab-btn-rekod');
+      const tabBukuBtn = document.getElementById('tab-btn-buku');
+      const tableSection = document.getElementById('senarai-program');
+      const flipSection = document.getElementById('buku-log-flip');
+
+      if (tab === 'buku-log') {
+        tabBukuBtn.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-indigo-600 text-white shadow-sm";
+        tabRekodBtn.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-100";
+        
+        // Bawa paparan dan beri sorotan
+        flipSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        flipSection.classList.add('ring-2', 'ring-amber-400');
+        setTimeout(() => flipSection.classList.remove('ring-2', 'ring-amber-400'), 1500);
+      } else {
+        tabRekodBtn.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-indigo-600 text-white shadow-sm";
+        tabBukuBtn.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-100";
+        tableSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Kemaskini Paparan Helaian Flipbook
+    function renderFlipbookPage() {
+      const stage = document.getElementById('flipbook-stage');
+      const indicator = document.getElementById('flip-page-indicator');
+      const totalIndicator = document.getElementById('flip-total-pages');
+      
+      indicator.innerText = currentFlipIndex + 1;
+      totalIndicator.innerText = totalFlipPages;
+
+      // Animasi transisi flip helaian
+      stage.style.opacity = '0.3';
+      stage.style.transform = 'scale(0.98)';
+
+      setTimeout(() => {
+        if (currentFlipIndex === 0) {
+          // Muka Hadapan (Cover Page)
+          stage.innerHTML = `
+            <div class="bg-amber-50 text-slate-900 rounded-2xl p-6 sm:p-12 shadow-2xl border-4 border-amber-300 relative overflow-hidden min-h-[500px] flex flex-col justify-between">
+              <div class="absolute -right-16 -top-16 w-48 h-48 bg-amber-200/50 rounded-full blur-2xl"></div>
+              
+              <div class="text-center space-y-4">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-tr from-indigo-800 to-amber-600 text-white shadow-lg mx-auto">
+                  <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="text-xs font-black uppercase tracking-widest text-indigo-700 bg-indigo-100 px-3 py-1 rounded-full">Persekutuan Pengakap Malaysia</span>
+                  <h1 class="text-2xl sm:text-4xl font-black text-slate-900 mt-2 tracking-tight">BUKU LOG PERKHIDMATAN</h1>
+                  <p class="text-xs sm:text-sm font-bold text-slate-600">KELANASISWA MALAYSIA (KSM) PTSS</p>
+                </div>
+              </div>
+
+              <div class="bg-white/80 backdrop-blur rounded-xl p-5 border border-amber-200 shadow-sm max-w-lg mx-auto w-full space-y-2 text-xs sm:text-sm text-slate-800">
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
+                  <span class="font-bold text-slate-500">Nama Pemilik:</span>
+                  <span class="font-black text-slate-900">Nur Fikriyah binti Zulkifli</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
+                  <span class="font-bold text-slate-500">No. Matrik:</span>
+                  <span class="font-mono font-bold text-indigo-700">18DCS24F1025</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
+                  <span class="font-bold text-slate-500">No. Kad Pengenalan:</span>
+                  <span class="font-mono text-slate-700">060428-09-0014</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-200 pb-1.5">
+                  <span class="font-bold text-slate-500">Institusi:</span>
+                  <span class="text-slate-800">Politeknik Tuanku Syed Sirajuddin</span>
+                </div>
+                <div class="flex justify-between pt-1">
+                  <span class="font-bold text-slate-500">Jumlah Khidmat:</span>
+                  <span class="font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded">323 Jam (24 Program)</span>
+                </div>
+              </div>
+
+              <div class="text-center pt-4 border-t border-amber-200/80 text-xs text-slate-500 flex items-center justify-between">
+                <span>Edisi Digital Bersepadu</span>
+                <span class="font-semibold text-indigo-700">Klik "Seterusnya →" untuk membuka helaian log</span>
+              </div>
+            </div>
+          `;
+        } else if (currentFlipIndex === 1) {
+          // Isi Kandungan (Table of Contents)
+          let tocRows = programData.map((item, idx) => `
+            <div onclick="goToFlipPage(${idx + 2})" class="flex items-center justify-between p-2 rounded-lg hover:bg-slate-100 cursor-pointer transition text-xs border border-transparent hover:border-slate-200">
+              <div class="flex items-center gap-2 truncate pr-2">
+                <span class="font-mono font-bold text-indigo-600 w-5">${idx + 1}.</span>
+                <span class="font-medium text-slate-800 truncate">${item.title}</span>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0">
+                <span class="font-mono text-[11px] font-bold text-slate-500">${item.hours}j</span>
+                <span class="text-[10px] text-indigo-500">m/s ${idx + 3}</span>
+              </div>
+            </div>
+          `).join('');
+
+          stage.innerHTML = `
+            <div class="bg-white text-slate-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-slate-200 relative min-h-[500px] flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900">Jadual Ringkasan Isi Kandungan Log</h3>
+                  <span class="text-xs px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-full font-bold">24 Rekod Program</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-1 max-h-[380px] overflow-y-auto custom-scrollbar pr-1">
+                  ${tocRows}
+                </div>
+              </div>
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                <span>Muka Surat 2: Indeks Log</span>
+                <span class="text-indigo-600 font-semibold">Pilih mana-mana program untuk lompat terus</span>
+              </div>
+            </div>
+          `;
+        } else {
+          // Helaian Program (Page 3 to 26)
+          const progIndex = currentFlipIndex - 2;
+          const prog = programData[progIndex];
+
+          stage.innerHTML = `
+            <div class="bg-white text-slate-900 rounded-2xl p-6 sm:p-10 shadow-2xl border border-slate-200 relative min-h-[500px] flex flex-col justify-between">
+              <!-- Jalur Atas Rekod Helaian -->
+              <div>
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3 mb-5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg bg-indigo-600 text-white font-mono font-bold flex items-center justify-center text-xs">#${progIndex + 1}</span>
+                    <div>
+                      <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 block">${prog.categoryName}</span>
+                      <h3 class="text-base sm:text-xl font-black text-slate-900 leading-snug">${prog.title}</h3>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-xl sm:text-2xl font-black font-mono text-amber-500">${prog.hours} <span class="text-xs text-slate-400 font-sans">JAM</span></span>
+                    <span class="block text-[10px] text-emerald-600 font-bold uppercase">Disahkan Log</span>
+                  </div>
+                </div>
+
+                <!-- Maklumat Medan Log -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-5">
+                  <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <span class="text-slate-400 block font-semibold">Tarikh Program:</span>
+                    <strong class="text-slate-800 text-xs sm:text-sm">${prog.date}</strong>
+                  </div>
+                  <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <span class="text-slate-400 block font-semibold">Lokasi Pelaksanaan:</span>
+                    <strong class="text-slate-800 text-xs sm:text-sm">${prog.location}</strong>
+                  </div>
+                  <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 sm:col-span-2">
+                    <span class="text-slate-400 block font-semibold">Peranan / Portfolio Bertugas:</span>
+                    <strong class="text-indigo-700 text-xs sm:text-sm">${prog.role}</strong>
+                  </div>
+                </div>
+
+                <!-- Penerangan Tugasan -->
+                <div class="space-y-3 text-xs sm:text-sm">
+                  <div>
+                    <h4 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-1">Catatan Operasi & Skop Lapangan:</h4>
+                    <p class="text-slate-600 leading-relaxed bg-slate-50/70 p-3.5 rounded-xl border border-slate-100">${prog.description}</p>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-indigo-900 text-xs uppercase tracking-wider mb-1">Refleksi Kendiri & Nilai Perkhidmatan:</h4>
+                    <p class="text-indigo-950 italic leading-relaxed bg-indigo-50/60 p-3.5 rounded-xl border border-indigo-100/80">"${prog.reflection}"</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bar Kaki Halaman Buku Log -->
+              <div class="pt-4 border-t border-slate-100 mt-6 flex items-center justify-between text-xs text-slate-400">
+                <span class="font-mono">Muka Surat ${currentFlipIndex + 1} daripada ${totalFlipPages}</span>
+                <span class="text-slate-500 font-medium">Buku Log Rasmi Nur Fikriyah • KSM PTSS</span>
+              </div>
+            </div>
+          `;
+        }
+
+        stage.style.opacity = '1';
+        stage.style.transform = 'scale(1)';
+      }, 150);
+    }
+
+    function prevFlipPage() {
+      if (currentFlipIndex > 0) {
+        currentFlipIndex--;
+        renderFlipbookPage();
+      }
+    }
+
+    function nextFlipPage() {
+      if (currentFlipIndex < totalFlipPages - 1) {
+        currentFlipIndex++;
+        renderFlipbookPage();
+      }
+    }
+
+    function goToFlipPage(index) {
+      if (index >= 0 && index < totalFlipPages) {
+        currentFlipIndex = index;
+        renderFlipbookPage();
+      }
+    }
+
+    // Sokongan Navigasi Papan Kekunci untuk Flipbook
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        nextFlipPage();
+      } else if (e.key === 'ArrowLeft') {
+        prevFlipPage();
+      }
+    });
+
+    // Inisialisasi Carta Chart.js & Flipbook
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTable(currentPrograms);
+      renderFlipbookPage();
+
+      // Kira pembahagian jam mengikut kategori
+      const catTotals = { KOMUNITI: 0, ALAM: 0, ACARA: 0, MEDIA: 0 };
+      programData.forEach(p => {
+        if (catTotals[p.category] !== undefined) {
+          catTotals[p.category] += p.hours;
+        }
+      });
+
+      const ctx = document.getElementById('categoryChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Jambori & Urusetia Acara (185j)', 
+            'Media & Fasilitator Murid (90j)', 
+            'Khidmat Bencana & B40 (32j)', 
+            'Kelestarian Alam Semula Jadi (16j)'
+          ],
+          datasets: [{
+            label: 'Jam Khidmat Terkumpul',
+            data: [185, 90, 32, 16],
+            backgroundColor: [
+              '#4f46e5', // indigo
+              '#f59e0b', // amber
+              '#f43f5e', // rose
+              '#10b981'  // emerald
+            ],
+            borderRadius: 8,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return ' ' + context.parsed.y + ' Jam Khidmat Disahkan';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: '#f1f5f9' },
+              ticks: { font: { family: 'Plus Jakarta Sans', size: 11 } }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Plus Jakarta Sans', size: 11, weight: '500' } }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
