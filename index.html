@@ -91,24 +91,19 @@
     <div class="max-w-6xl mx-auto relative z-10">
       <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
         
-        <!-- Ruangan Foto Profil Interaktif -->
-        <div class="relative group flex-shrink-0">
-          <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl p-1 bg-gradient-to-tr from-amber-400 via-sky-200 to-cyan-300 shadow-2xl">
-            <div class="w-full h-full rounded-[22px] bg-slate-900 overflow-hidden relative flex items-center justify-center">
-              <img id="profilePreview" 
-                   src="https://placehold.co/400x400/0284c7/ffffff?text=FOTO+PROFIL" 
-                   alt="Foto Nur Fikriyah" 
-                   class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300">
-              
-              <!-- Pemicu Muat Naik Foto -->
-              <label for="profileUpload" class="absolute inset-0 bg-blue-950/75 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center text-white cursor-pointer transition-opacity duration-200 no-print text-center px-3 backdrop-blur-sm">
-                <i data-lucide="camera" class="w-7 h-7 mb-1 text-amber-300 animate-bounce"></i>
-                <span class="text-xs font-bold text-sky-100">Tukar Foto Profil</span>
-                <span class="text-[10px] text-sky-200 mt-0.5">Klik untuk pilih fail</span>
-              </label>
-              <input type="file" id="profileUpload" accept="image/*" class="hidden" onchange="previewImage(this, 'profilePreview')">
-            </div>
-          </div>
+       <!-- Ruangan Foto Profil -->
+<div class="relative flex-shrink-0">
+  <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl p-1 bg-gradient-to-tr from-amber-400 via-sky-200 to-cyan-300 shadow-2xl">
+    <div class="w-full h-full rounded-[22px] bg-slate-900 overflow-hidden relative flex items-center justify-center">
+
+      <img id="profilePreview"
+           src="profil.jpg"
+           alt="Foto Nur Fikriyah"
+           class="w-full h-full object-cover object-center">
+
+    </div>
+  </div>
+</div>
           
           <!-- Badge Ikon Kemahiran di Sudut Profil -->
           <div class="absolute -bottom-2 -right-2 bg-gradient-to-r from-amber-500 to-amber-400 text-slate-900 p-2 rounded-xl shadow-lg border-2 border-white flex items-center justify-center font-bold text-xs" title="Kelanasiswa Mahir">
