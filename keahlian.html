@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Pelaporan Lencana Keahlian Pengakap Kelana | Nur Fikriyah</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            scout: {
+              red: '#8b0000',
+              gold: '#d4af37',
+              dark: '#1e293b',
+              green: '#1b4332',
+              cream: '#fdfbf7'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      .print-page-break { page-break-after: always; }
+      body { background-color: #ffffff; color: #000000; font-size: 11pt; }
+      .shadow-xl, .shadow-md, .shadow-sm { box-shadow: none !important; }
+    }
+    .badge-tab.active {
+      border-bottom: 3px solid #8b0000;
+      color: #8b0000;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-stone-100 text-stone-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-scout-red text-white py-1.5 px-4 text-xs font-medium tracking-wide flex justify-between items-center no-print">
+    <div class="container mx-auto flex justify-between items-center">
+      <span><i class="fa-solid fa-award mr-1 text-scout-gold"></i> SKIM LATIHAN PENGAKAP KELANA (ROVER SCOUT)</span>
+      <span class="hidden md:inline"><i class="fa-solid fa-university mr-1"></i> Politeknik Tuanku Syed Sirajuddin, Perlis</span>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="bg-white border-b border-stone-200 sticky top-0 z-40 shadow-sm no-print">
+    <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-12 h-12 rounded-full bg-red-900 text-amber-400 flex items-center justify-center font-bold text-xl shadow-inner border-2 border-amber-300">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <h1 class="text-lg md:text-xl font-black text-scout-red tracking-tight leading-snug">
+            E-PELAPORAN LENCANA KEAHLIAN
+          </h1>
+          <p class="text-xs text-stone-500 font-semibold tracking-wide">
+            KUMPULAN KELANASISWA PTSS &bull; PASUKAN KELANA TERBUKA
+          </p>
+        </div>
+      </div>
+      
+      <!-- Quick Action Buttons -->
+      <div class="flex items-center space-x-2">
+        <button onclick="window.print()" class="px-3 py-2 bg-stone-800 hover:bg-stone-900 text-white text-xs font-semibold rounded-md shadow flex items-center transition">
+          <i class="fa-solid fa-print mr-1.5"></i> Cetak Dokumen
+        </button>
+        <button onclick="toggleModal('modalInfo')" class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold rounded-md shadow flex items-center transition">
+          <i class="fa-solid fa-circle-info mr-1.5"></i> Maklumat Calon
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-stone-50 border-t border-stone-200 overflow-x-auto">
+      <div class="container mx-auto px-4 flex space-x-6 text-sm font-medium whitespace-nowrap">
+        <button onclick="switchTab('tab-ringkasan')" id="btn-tab-ringkasan" class="badge-tab active py-3 px-2 flex items-center">
+          <i class="fa-solid fa-id-card mr-2 text-stone-500"></i>Profil &amp; Status
+        </button>
+        <button onclick="switchTab('tab-vigil')" id="btn-tab-vigil" class="badge-tab py-3 px-2 flex items-center">
+          <i class="fa-solid fa-hands-praying mr-2 text-stone-500"></i>Proses Vigil (Mengenal Diri)
+        </button>
+        <button onclick="switchTab('tab-persetiaan')" id="btn-tab-persetiaan" class="badge-tab py-3 px-2 flex items-center">
+          <i class="fa-solid fa-scroll mr-2 text-stone-500"></i>Persetiaan &amp; Undang-Undang
+        </button>
+        <button onclick="switchTab('tab-kerja-amal')" id="btn-tab-kerja-amal" class="badge-tab py-3 px-2 flex items-center">
+          <i class="fa-solid fa-hand-holding-heart mr-2 text-stone-500"></i>Laporan Kerja Amal (6 Jam)
+        </button>
+        <button onclick="switchTab('tab-agama')" id="btn-tab-agama" class="badge-tab py-3 px-2 flex items-center">
+          <i class="fa-solid fa-mosque mr-2 text-stone-500"></i>Pendidikan Agama (Islam)
+        </button>
+        <button onclick="switchTab('tab-ikatan')" id="btn-tab-ikatan" class="badge-tab py-3 px-2 flex items-center">
+          <i class="fa-solid fa-ring mr-2 text-stone-500"></i>Simpulan &amp; Ikatan
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container mx-auto px-4 py-8 max-w-5xl flex-grow">
+
+    <!-- TAB 1: PROFIL & RINGKASAN SKIM KEAHLIAN -->
+    <section id="tab-ringkasan" class="tab-content block space-y-6">
+      
+      <!-- Calon Card -->
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 overflow-hidden">
+        <div class="bg-gradient-to-r from-red-900 to-amber-900 p-6 text-white flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center space-x-5">
+            <div class="w-20 h-20 rounded-full border-4 border-amber-300 overflow-hidden bg-stone-200 flex items-center justify-center text-3xl font-bold text-stone-700">
+              <i class="fa-solid fa-user-astronaut"></i>
+            </div>
+            <div>
+              <span class="bg-amber-400 text-stone-900 text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                Pengakap Kelana (Rover Scout)
+              </span>
+              <h2 class="text-2xl font-black mt-1 uppercase tracking-wide">NUR FIKRIYAH BINTI ZULKIFLI</h2>
+              <p class="text-stone-200 text-sm">Politeknik Tuanku Syed Sirajuddin, Perlis (PTSS)</p>
+            </div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md px-5 py-3 rounded-lg border border-white/20 text-center md:text-right w-full md:w-auto">
+            <div class="text-xs text-amber-200 font-medium">Status Penilaian</div>
+            <div class="text-lg font-bold text-white flex items-center justify-center md:justify-end gap-2">
+              <i class="fa-solid fa-circle-check text-emerald-400"></i> TELAH DIUJI &amp; DISAHKAN
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6 bg-stone-50/50">
+          <div class="bg-white p-4 rounded-lg border border-stone-200 shadow-sm">
+            <div class="text-xs text-stone-500 font-medium uppercase">No. Kad Pengenalan</div>
+            <div class="text-base font-bold text-stone-800 mt-1 tracking-wider">060428-09-0014</div>
+          </div>
+          <div class="bg-white p-4 rounded-lg border border-stone-200 shadow-sm">
+            <div class="text-xs text-stone-500 font-medium uppercase">No. Pendaftaran Pelajar</div>
+            <div class="text-base font-bold text-stone-800 mt-1 tracking-wider">18DCS24F1025</div>
+          </div>
+          <div class="bg-white p-4 rounded-lg border border-stone-200 shadow-sm">
+            <div class="text-xs text-stone-500 font-medium uppercase">Panel Penguji / Penilai</div>
+            <div class="text-base font-bold text-stone-800 mt-1">Pn. Laila binti Musa</div>
+            <div class="text-xs text-stone-500">Pensyarah Utama, Jabatan Perdagangan PTSS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overview of Requirements Checklist -->
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6">
+        <h3 class="text-lg font-bold text-stone-900 mb-4 flex items-center">
+          <i class="fa-solid fa-list-check text-scout-red mr-2"></i> Senarai Semak Komponen Lencana Keahlian Kelana
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-start p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle text-emerald-600 text-lg mr-3 mt-0.5"></i>
+            <div>
+              <h4 class="font-bold text-sm text-stone-900">1.0 Proses Mengenal Diri (Vigil)</h4>
+              <p class="text-xs text-stone-600">Refleksi kerohanian 8 soalan Vigil diri &amp; 12 soalan cogan kata "BERKHIDMAT".</p>
+            </div>
+          </div>
+          <div class="flex items-start p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle text-emerald-600 text-lg mr-3 mt-0.5"></i>
+            <div>
+              <h4 class="font-bold text-sm text-stone-900">2.0 Persetiaan &amp; Undang-Undang Pengakap</h4>
+              <p class="text-xs text-stone-600">3 ikrar Persetiaan dan penghayatan 10 Undang-Undang Pengakap dewasa.</p>
+            </div>
+          </div>
+          <div class="flex items-start p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle text-emerald-600 text-lg mr-3 mt-0.5"></i>
+            <div>
+              <h4 class="font-bold text-sm text-stone-900">3.0 Kerja Amal Masyarakat Setempat (Min. 6 Jam)</h4>
+              <p class="text-xs text-stone-600">Lokasi Kg. Gajah Mati, Kota Bharu, Kelantan (Disahkan oleh Zulhilme b. Makhtar).</p>
+            </div>
+          </div>
+          <div class="flex items-start p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle text-emerald-600 text-lg mr-3 mt-0.5"></i>
+            <div>
+              <h4 class="font-bold text-sm text-stone-900">4.0 Amalan Ajaran Agama (Islam)</h4>
+              <p class="text-xs text-stone-600">Pemahaman mendalam tentang Rukun Iman (6 perkara) dan Rukun Islam (5 perkara).</p>
+            </div>
+          </div>
+          <div class="flex items-start p-3 bg-emerald-50 rounded-lg border border-emerald-200 md:col-span-2">
+            <i class="fa-solid fa-check-circle text-emerald-600 text-lg mr-3 mt-0.5"></i>
+            <div>
+              <h4 class="font-bold text-sm text-stone-900">5.0 Kemahiran Simpulan &amp; Ikatan</h4>
+              <p class="text-xs text-stone-600">Praktikal Buku Sila, Bunga Geti, Simpul Manuk, Lilit Dua Simpul dan Ikatan Seraya.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Jump Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+        <button onclick="switchTab('tab-vigil')" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-scout-red hover:shadow-md transition text-center group">
+          <i class="fa-solid fa-fire text-amber-600 text-2xl group-hover:scale-110 transition-transform mb-2"></i>
+          <span class="block text-xs font-bold text-stone-800">Proses Vigil</span>
+        </button>
+        <button onclick="switchTab('tab-kerja-amal')" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-scout-red hover:shadow-md transition text-center group">
+          <i class="fa-solid fa-hands-holding text-emerald-600 text-2xl group-hover:scale-110 transition-transform mb-2"></i>
+          <span class="block text-xs font-bold text-stone-800">Laporan Amal</span>
+        </button>
+        <button onclick="switchTab('tab-agama')" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-scout-red hover:shadow-md transition text-center group">
+          <i class="fa-solid fa-star-and-crescent text-blue-600 text-2xl group-hover:scale-110 transition-transform mb-2"></i>
+          <span class="block text-xs font-bold text-stone-800">Rukun Islam/Iman</span>
+        </button>
+        <button onclick="switchTab('tab-ikatan')" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-scout-red hover:shadow-md transition text-center group">
+          <i class="fa-solid fa-knot text-purple-600 text-2xl group-hover:scale-110 transition-transform mb-2"></i>
+          <span class="block text-xs font-bold text-stone-800">Simpulan &amp; Tali</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- TAB 2: PROSES MENGENAL DIRI (VIGIL) -->
+    <section id="tab-vigil" class="tab-content hidden space-y-6">
+      <div class="bg-amber-900 text-amber-50 p-6 rounded-xl shadow-md relative overflow-hidden">
+        <div class="absolute -right-8 -bottom-8 opacity-10 text-9xl">
+          <i class="fa-solid fa-dove"></i>
+        </div>
+        <div class="relative z-10">
+          <span class="text-xs uppercase font-extrabold tracking-widest text-amber-300">BAHAGIAN 1.0</span>
+          <h2 class="text-2xl font-black mt-1">PROSES MENGENAL DIRI (VIGIL)</h2>
+          <p class="text-sm text-amber-100/90 mt-2 max-w-2xl leading-relaxed">
+            "Bersedialah kamu untuk menghadapi PROSES MENGENAL DIRI. Inilah masanya untuk kamu menguji diri sendiri. Fikirkan dengan secukupnya dan jawablah dengan bersungguh-sungguh dan tulus ikhlas agar menyedari kebolehan dan keupayaan untuk melengkapkan diri menjadi manusia yang lebih baik dan berguna."
+          </p>
+        </div>
+      </div>
+
+      <!-- Refleksi Bahagian 1: Soalan Mengenal Diri -->
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6">
+        <div class="flex items-center space-x-2 border-b border-stone-200 pb-3 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-red-100 text-scout-red flex items-center justify-center font-bold text-sm">A</span>
+          <h3 class="font-bold text-lg text-stone-800">Soal-Selidik Refleksi Diri (Vigil Diri)</h3>
+        </div>
+
+        <div class="space-y-4">
+          <div class="p-4 bg-stone-50 rounded-lg border-l-4 border-amber-600">
+            <p class="text-sm font-semibold text-stone-800">1. Adakah saya telah menggunakan dengan baik kehidupan ini yang direstui oleh Tuhan?</p>
+            <p class="text-xs text-stone-600 mt-1 italic pl-2 border-l-2 border-stone-300">Menghargai setiap detik peluang kehidupan dengan berbuat kebajikan dan sentiasa bersyukur atas nikmat kurniaan ilahi.</p>
+          </div>
+
+          <div class="p-4 bg-stone-50 rounded-lg border-l-4 border-amber-600">
+            <p class="text-sm font-semibold text-stone-800">2. Adakah saya menggunakan masa saya dengan berfaedah?</p>
+            <p class="text-xs text-stone-600 mt-1 italic pl-2 border-l-2 border-stone-300">Memanfaatkan waktu muda dengan menimba ilmu di politeknik, berorganisasi dan membantu ahli komuniti.</p>
+          </div>
+
+          <div class="p-4 bg-stone-50 rounded-lg border-l-4 border-amber-600">
+            <p class="text-sm font-semibold text-stone-800">3. Adakah saya pernah membuat apa jua pun yang tidak berguna kepada orang ramai?</p>
+            <p class="text-xs text-stone-600 mt-1 italic pl-2 border-l-2 border-stone-300">Menyemak kembali kesilapan lampau untuk diperbaiki agar setiap perbuatan memberi faedah bersama.</p>
+          </div>
+
+          <div class="p-4 bg-stone-50 rounded-lg border-l-4 border-amber-600">
+            <p class="text-sm font-semibold text-stone-800">4. Adakah saya dapat menolong orang lain ataupun saya tidak menghiraukan akan hal mereka ataupun saya asyik mencari kebahagiaan diri sendiri sahaja?</p>
+            <p class="text-xs text-stone-600 mt-1 italic pl-2 border-l-2 border-stone-300">Mempraktikkan sifat empati dan tidak bersikap mementingkan diri sendiri dalam masyarakat.</p>
+          </div>
+
+          <div class="p-4 bg-stone-50 rounded-lg border-l-4 border-amber-600">
+            <p class="text-sm font-semibold text-stone-800">5. Siapakah yang telah saya lukai dalam hidup saya? Bolehkah saya membetulkannya?</p>
+            <p class="text-xs text-stone-600 mt-1 italic pl-2 border-l-2 border-stone-300">Mengakui kekhilafan, memohon kemaafan dengan rendah diri dan memperbaiki silaturahim yang terjejas.</p>
+          </div>
+
+          <div class="p-4 bg-stone-50 rounded-lg border-l-4 border-amber-600">
+            <p class="text-sm font-semibold text-stone-800">6. Siapakah yang telah menolong saya dalam hidup saya? Adakah saya telah menghargainya?</p>
+            <p class="text-xs text-stone-600 mt-1 italic pl-2 border-l-2 border-stone-300">Ibu bapa, para pensyarah, keluarga serta sahabat handai - sentiasa dihargai melalui doa, bakti dan rasa terima kasih.</p>
+          </div>
+
+          <div class="p-4 bg-stone-50 rounded-lg border-l-4 border-amber-600">
+            <p class="text-sm font-semibold text-stone-800">7. Adakah terdapatnya orang lain yang boleh saya beri pertolongan atau bantuan?</p>
+            <p class="text-xs text-stone-600 mt-1 italic pl-2 border-l-2 border-stone-300">Sentiasa peka dengan kesusahan jiran tetangga, rakan seperjuangan dan golongan asnaf di sekeliling.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Refleksi Bahagian 2: Cogan Kata "BERKHIDMAT" -->
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6">
+        <div class="flex items-center space-x-2 border-b border-stone-200 pb-3 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">B</span>
+          <div>
+            <h3 class="font-bold text-lg text-stone-800">Refleksi Cogan Kata Pengakap Kelana: "BERKHIDMAT"</h3>
+            <p class="text-xs text-stone-500">Kefahaman tanggungjawab seorang pengakap dewasa dalam komuniti</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">1. Kenapa saya memilih untuk menjadi seorang Pengakap Kelana?</span>
+            <p class="mt-1 text-stone-600">Untuk membina sahsiah kepimpinan diri, berdisiplin serta berbakti kepada nusa dan bangsa.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">2. Adakah saya memilihnya kerana hendak bersuka ria sahaja?</span>
+            <p class="mt-1 text-stone-600">Tidak semata-mata, keseronokan berkumpulan disulami amanah khidmat sukarela yang ikhlas.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">3. Apakah makna 'BERKHIDMAT' itu?</span>
+            <p class="mt-1 text-stone-600">Menyumbang tenaga, masa dan kepakaran demi kebajikan insan lain tanpa mengharapkan ganjaran wang ringgit.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">4. Apakah perkhidmatan yang boleh saya laksanakan?</span>
+            <p class="mt-1 text-stone-600">Membantu urusan keluarga di rumah, penganjuran majlis kemasyarakatan di kampung dan aktiviti kelab di politeknik.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">5. Menghentikan perbuatan buruk dan kasar?</span>
+            <p class="mt-1 text-stone-600">Bertekad mengawal pertuturan, emosi dan mempamerkan akhlak murni serta lemah-lembut pada setiap masa.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">6. Apakah kelemahan saya?</span>
+            <p class="mt-1 text-stone-600">Kadangkala cepat rasa bimbang apabila memikul tugasan besar, namun sentiasa belajar mengatasinya melalui latihan berpasukan.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">7. Kesetiaan kepada Tuhan, Raja &amp; Keluarga:</span>
+            <p class="mt-1 text-stone-600">Mentaati tuntutan ibadah, setia kepada negara yang berdaulat dan memelihara maruah ibu bapa serta keturunan.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">8. Perangai baik, berbudi dan peramah?</span>
+            <p class="mt-1 text-stone-600">Sentiasa memulakan salam, senyuman dan sedia mendengar pandangan orang lain dengan hati yang terbuka.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">9. Kesabaran menghadapi dugaan:</span>
+            <p class="mt-1 text-stone-600">Menjadikan sabar dan solat sebagai benteng kekuatan ketika berhadapan sebarang kesulitan hidup.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">10. Pendirian sendiri &amp; arahan orang lain:</span>
+            <p class="mt-1 text-stone-600">Mempunyai jati diri dan prinsip teguh berlandaskan kebenaran, serta bijak menimbang nasihat yang bernas.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">11. Ketahanan daripada anasir maksiat:</span>
+            <p class="mt-1 text-stone-600">Menjaga batasan syariat, kehormatan diri sebagai wanita Muslimah dan menjauhi judi atau minuman keras.</p>
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
+            <span class="font-bold text-scout-red">12. Mengatasi kelemahan dengan bantuan:</span>
+            <p class="mt-1 text-stone-600">Tidak malu bertanya serta meminta bimbingan rakan sebaya dan pensyarah jika menghadapi jalan buntu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: PERSETIAAN & UNDANG-UNDANG PENGAKAP -->
+    <section id="tab-persetiaan" class="tab-content hidden space-y-6">
+      
+      <!-- Persetiaan Card -->
+      <div class="bg-gradient-to-br from-amber-50 to-stone-100 rounded-xl border-2 border-scout-gold p-6 shadow-md text-center">
+        <span class="text-xs uppercase font-bold tracking-widest text-scout-red">IKRAR KELANA</span>
+        <h2 class="text-2xl font-black text-stone-900 mt-1 uppercase tracking-wide">PERSETIAAN PENGAKAP</h2>
+        <p class="text-stone-600 text-sm mt-1 max-w-xl mx-auto italic">
+          "Bahawa dengan sesungguhnya, saya berjanji dan bersetia, yang saya, dengan seberapa daya upaya saya, akan:"
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-left">
+          <div class="p-4 bg-white rounded-lg shadow-sm border border-stone-200 flex items-center space-x-3">
+            <span class="w-10 h-10 rounded-full bg-scout-red text-white flex items-center justify-center font-bold text-lg">1</span>
+            <div>
+              <h4 class="font-bold text-sm text-stone-900">Taat Kepada Tuhan, Raja Dan Negara</h4>
+            </div>
+          </div>
+          <div class="p-4 bg-white rounded-lg shadow-sm border border-stone-200 flex items-center space-x-3">
+            <span class="w-10 h-10 rounded-full bg-scout-red text-white flex items-center justify-center font-bold text-lg">2</span>
+            <div>
+              <h4 class="font-bold text-sm text-stone-900">Menolong Orang Pada Setiap Masa</h4>
+            </div>
+          </div>
+          <div class="p-4 bg-white rounded-lg shadow-sm border border-stone-200 flex items-center space-x-3">
+            <span class="w-10 h-10 rounded-full bg-scout-red text-white flex items-center justify-center font-bold text-lg">3</span>
+            <div>
+              <h4 class="font-bold text-sm text-stone-900">Menurut Undang-Undang Pengakap</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 Undang-Undang Pengakap -->
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6">
+        <div class="border-b border-stone-200 pb-3 mb-6">
+          <h3 class="text-lg font-black text-stone-900 uppercase tracking-wide">10 UNDANG-UNDANG PENGAKAP</h3>
+          <p class="text-xs text-stone-500">Prinsip amalan harian seorang ahli Pengakap Kelana dalam komuniti</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- 1 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">01</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">DIPERCAYAI</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah seorang yang sentiasa dipercayai maruah dan kehormatan dirinya.</p>
+            </div>
+          </div>
+          <!-- 2 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">02</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">TAAT</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah taat kepada Yang Di-Pertuan Agong, Raja-raja, pemimpin, ibu bapa, majikan dan orang bawahannya.</p>
+            </div>
+          </div>
+          <!-- 3 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">03</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">BERGUNA</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah wajib menjadikan dirinya berguna, dan menolong orang pada setiap masa.</p>
+            </div>
+          </div>
+          <!-- 4 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">04</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">BERSAHABAT / BERSAUDARA</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah bersahabat kepada sekalian orang dan bersaudara kepada lain-lain pengakap walau apa negeri, bangsa dan agamanya sekalipun.</p>
+            </div>
+          </div>
+          <!-- 5 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">05</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">BERBUDI</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah seorang yang baik dan sempurna budi pekertinya dan sentiasa berbudi.</p>
+            </div>
+          </div>
+          <!-- 6 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">06</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">KASIHKAN BINATANG</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah baik dan kasih akan segala binatang serta makhluk hidupan.</p>
+            </div>
+          </div>
+          <!-- 7 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">07</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">MENURUT PERINTAH</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah sentiasa menurut perintah dan suruhan ibu bapanya, ketua dan pemimpin pengakapnya dengan tiada apa-apa soalan.</p>
+            </div>
+          </div>
+          <!-- 8 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">08</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">TABAH HATI</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah sentiasa sabar dan manis mukanya dalam keadaan kesusahan dan kesempitan.</p>
+            </div>
+          </div>
+          <!-- 9 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">09</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">BERJIMAT</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah seorang yang sentiasa berjimat, cermat dan bijak menguruskan sumber.</p>
+            </div>
+          </div>
+          <!-- 10 -->
+          <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex space-x-3">
+            <span class="text-xl font-black text-scout-red">10</span>
+            <div>
+              <h4 class="font-bold text-stone-900 text-sm">SUCI FIKIRAN, PERKATAAN &amp; PERBUATAN</h4>
+              <p class="text-xs text-stone-600 mt-0.5">Pengakap adalah bersih dan suci fikiran, pertuturan kata serta perbuatannya.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-stone-100 rounded-lg border border-stone-300 text-xs italic text-stone-700">
+          "Dengan ini saya, bersedia berkhidmat sebagai seorang ahli Pengakap Kelana pada setiap masa dengan penuh rasa tanggungjawab kepada semua pihak berdasarkan Persetiaan Pengakap dan Undang-undang Pengakap."
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: LAPORAN KERJA AMAL MASYARAKAT SETEMPAT -->
+    <section id="tab-kerja-amal" class="tab-content hidden space-y-6">
+      
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 mb-4 gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded">
+              UJIAN LENCANA KEAHLIAN (MINIMA 6 JAM)
+            </span>
+            <h2 class="text-xl font-black text-stone-900 mt-2">LAPORAN KERJA AMAL MASYARAKAT SETEMPAT</h2>
+          </div>
+          <span class="text-xs text-stone-500 bg-stone-100 px-3 py-1.5 rounded-full font-mono">
+            TARIKH AKTIVITI: 29/09/2024
+          </span>
+        </div>
+
+        <!-- Butiran Aktiviti & Lokasi -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="bg-stone-50 p-4 rounded-lg border border-stone-200">
+            <h4 class="text-xs uppercase font-bold text-stone-500 mb-1">Lokasi Aktiviti</h4>
+            <p class="text-stone-800 font-semibold text-base flex items-center">
+              <i class="fa-solid fa-location-dot text-red-600 mr-2"></i>
+              Kampung Gajah Mati, Kota Bharu, Kelantan
+            </p>
+          </div>
+          <div class="bg-stone-50 p-4 rounded-lg border border-stone-200">
+            <h4 class="text-xs uppercase font-bold text-stone-500 mb-1">Pengesahan Pegawai / Pemilik Lokasi</h4>
+            <p class="text-stone-800 font-semibold text-base flex items-center">
+              <i class="fa-solid fa-user-check text-emerald-600 mr-2"></i>
+              Zulhilme b. Makhtar <span class="text-xs text-stone-500 font-normal ml-2">(Disahkan: 29/09/2024)</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Soalan Maklumbalas Pegawai Lokasi -->
+        <div class="p-4 bg-emerald-50 rounded-lg border border-emerald-200 mb-6">
+          <h4 class="font-bold text-xs uppercase tracking-wide text-emerald-900 mb-3">Maklum Balas Pegawai / Pemilik Di Lokasi:</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-medium">
+            <div class="flex items-center justify-between bg-white p-2.5 rounded border border-emerald-100">
+              <span>1. Adakah aktiviti yang dijalankan ini memuaskan secara keseluruhannya?</span>
+              <span class="bg-emerald-600 text-white px-2 py-0.5 rounded font-bold ml-2">YA [✓]</span>
+            </div>
+            <div class="flex items-center justify-between bg-white p-2.5 rounded border border-emerald-100">
+              <span>2. Adakah anda memerlukan aktiviti ini pada sesi yang akan datang?</span>
+              <span class="bg-emerald-600 text-white px-2 py-0.5 rounded font-bold ml-2">YA [✓]</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Impak Positif & Kesimpulan -->
+        <div class="mb-6">
+          <h3 class="font-bold text-base text-stone-800 mb-3 flex items-center">
+            <i class="fa-solid fa-bullseye text-scout-red mr-2"></i> Lima (5) Impak Positif Pelaksanaan Aktiviti:
+          </h3>
+          <div class="space-y-2.5">
+            <div class="flex items-start p-3 bg-stone-50 rounded border border-stone-200 text-sm">
+              <span class="bg-stone-800 text-white font-bold rounded-full w-5 h-5 flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">1</span>
+              <span>Saya dapat mewujudkan kerjasama erat antara saudara-mara dan komuniti dalam menguruskan sesebuah majlis.</span>
+            </div>
+            <div class="flex items-start p-3 bg-stone-50 rounded border border-stone-200 text-sm">
+              <span class="bg-stone-800 text-white font-bold rounded-full w-5 h-5 flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">2</span>
+              <span>Melahirkan sifat tanggungjawab yang mendalam dalam diri untuk membantu meringankan beban golongan yang memerlukan.</span>
+            </div>
+            <div class="flex items-start p-3 bg-stone-50 rounded border border-stone-200 text-sm">
+              <span class="bg-stone-800 text-white font-bold rounded-full w-5 h-5 flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">3</span>
+              <span>Meraih pengalaman baru dalam pengurusan logistik dan protokol pengendalian majlis berkala besar.</span>
+            </div>
+            <div class="flex items-start p-3 bg-stone-50 rounded border border-stone-200 text-sm">
+              <span class="bg-stone-800 text-white font-bold rounded-full w-5 h-5 flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">4</span>
+              <span>Meraih dan memupuk keharmonian serta merapatkan ukhuwah dalam sesebuah ikatan kekeluargaan dan kejiranan.</span>
+            </div>
+            <div class="flex items-start p-3 bg-stone-50 rounded border border-stone-200 text-sm">
+              <span class="bg-stone-800 text-white font-bold rounded-full w-5 h-5 flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">5</span>
+              <span>Melatih kecekapan mental dan fizikal dalam menjalankan tugasan secara teratur di bawah pengawasan terhad.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kesimpulan Keseluruhan -->
+        <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-scout-gold mb-6">
+          <h4 class="text-xs uppercase font-extrabold text-amber-900 tracking-wide">Kesimpulan Hasil Keseluruhan:</h4>
+          <p class="text-sm text-stone-800 mt-1 leading-relaxed">
+            "Aktiviti ini berjaya memupuk nilai murni, meringankan beban golongan memerlukan, dan mengukuhkan perpaduan. Ia memberi impak positif yang sangat bermakna kepada kedua-dua pihak penerima dan juga penyumbang."
+          </p>
+        </div>
+
+        <!-- Galeri Dokumentasi Foto -->
+        <div>
+          <h3 class="font-bold text-base text-stone-800 mb-2 flex items-center">
+            <i class="fa-solid fa-camera text-scout-red mr-2"></i> Dokumentasi Foto Kerja Amal (4 Keping Foto Lokasi)
+          </h3>
+          <p class="text-xs text-stone-500 mb-4">Penglibatan calon bersama ahli keluarga dan komuniti setempat di Kampung Gajah Mati:</p>
+          
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-stone-100 rounded-lg border border-stone-200 p-2 text-center group">
+              <div class="aspect-square bg-stone-200 rounded flex flex-col items-center justify-center overflow-hidden border border-stone-300">
+                <i class="fa-solid fa-basket-shopping text-4xl text-amber-700/60 group-hover:scale-110 transition"></i>
+                <span class="text-[10px] text-stone-500 mt-2">Penyediaan Bakul Sumbangan</span>
+              </div>
+              <p class="text-[11px] font-medium text-stone-700 mt-2">Foto 1: Agihan Bingkisan / Bakul</p>
+            </div>
+
+            <div class="bg-stone-100 rounded-lg border border-stone-200 p-2 text-center group">
+              <div class="aspect-square bg-stone-200 rounded flex flex-col items-center justify-center overflow-hidden border border-stone-300">
+                <i class="fa-solid fa-people-carry-box text-4xl text-blue-700/60 group-hover:scale-110 transition"></i>
+                <span class="text-[10px] text-stone-500 mt-2">Perarakan / Khidmat Majlis</span>
+              </div>
+              <p class="text-[11px] font-medium text-stone-700 mt-2">Foto 2: Kerjasama Barisan Pembantu</p>
+            </div>
+
+            <div class="bg-stone-100 rounded-lg border border-stone-200 p-2 text-center group">
+              <div class="aspect-square bg-stone-200 rounded flex flex-col items-center justify-center overflow-hidden border border-stone-300">
+                <i class="fa-solid fa-handshake-angle text-4xl text-emerald-700/60 group-hover:scale-110 transition"></i>
+                <span class="text-[10px] text-stone-500 mt-2">Layanan Tetamu Komuniti</span>
+              </div>
+              <p class="text-[11px] font-medium text-stone-700 mt-2">Foto 3: Santunan Saudara &amp; Tetamu</p>
+            </div>
+
+            <div class="bg-stone-100 rounded-lg border border-stone-200 p-2 text-center group">
+              <div class="aspect-square bg-stone-200 rounded flex flex-col items-center justify-center overflow-hidden border border-stone-300">
+                <i class="fa-solid fa-gift text-4xl text-rose-700/60 group-hover:scale-110 transition"></i>
+                <span class="text-[10px] text-stone-500 mt-2">Penyerahan Cenderamata</span>
+              </div>
+              <p class="text-[11px] font-medium text-stone-700 mt-2">Foto 4: Pengurusan Hantaran / Hadiah</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 5: AMALAN AJARAN AGAMA (ISLAM) -->
+    <section id="tab-agama" class="tab-content hidden space-y-6">
+      
+      <!-- Pengenalan Keagamaan -->
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6">
+        <div class="flex items-center space-x-3 border-b border-stone-200 pb-4 mb-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-moon"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-black text-stone-900">AMALAN AJARAN AGAMA ISLAM</h2>
+            <p class="text-xs text-stone-500">Teras Kepercayaan &amp; Amalan Fardhu Calon Pengakap Muslim</p>
+          </div>
+        </div>
+
+        <p class="text-sm text-stone-700 leading-relaxed bg-stone-50 p-4 rounded-lg border border-stone-200 mb-6">
+          Agama yang saya anuti ialah <strong>agama Islam</strong> dan penganutnya dikenali sebagai <strong>Muslim</strong>. Sebagai seorang Muslim, saya percaya bahawa tiada Tuhan yang disembah melainkan Allah dan Nabi Muhammad SAW ialah utusan Allah. Asas amalan Islam bersandarkan dua tonggak utama: <strong>Rukun Iman</strong> (akidah/kepercayaan) dan <strong>Rukun Islam</strong> (ibadah/tindakan).
+        </p>
+
+        <!-- Bahagian 1: Rukun Iman -->
+        <div class="mb-8">
+          <div class="flex items-center space-x-2 mb-4">
+            <span class="px-2.5 py-0.5 rounded bg-emerald-800 text-white font-bold text-xs uppercase">BAHAGIAN 1</span>
+            <h3 class="text-base font-extrabold text-stone-900">6 Perkara Rukun Iman</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <!-- 1 -->
+            <div class="p-3.5 bg-stone-50 rounded-lg border border-stone-200">
+              <span class="font-bold text-stone-900 text-sm block mb-1">1. Beriman kepada Allah</span>
+              <p class="text-stone-600">Percaya bahawa Allah ialah Tuhan Yang Maha Esa, pencipta seluruh alam semesta dan tiada sekutu atau tandingan bagi-Nya. Wajib menyembah Allah serta mematuhi suruhan dan larangan-Nya.</p>
+            </div>
+            <!-- 2 -->
+            <div class="p-3.5 bg-stone-50 rounded-lg border border-stone-200">
+              <span class="font-bold text-stone-900 text-sm block mb-1">2. Beriman kepada Malaikat</span>
+              <p class="text-stone-600">Malaikat diciptakan daripada cahaya, sentiasa taat menjalankan tugas Allah seperti menyampaikan wahyu (Jibril), mencatat amalan (Raqib &amp; Atid), dan mengambil nyawa (Izrail).</p>
+            </div>
+            <!-- 3 -->
+            <div class="p-3.5 bg-stone-50 rounded-lg border border-stone-200">
+              <span class="font-bold text-stone-900 text-sm block mb-1">3. Beriman kepada Kitab Allah</span>
+              <p class="text-stone-600">Kitab diturunkan sebagai hidayah: <em>Taurat</em> (Nabi Musa), <em>Zabur</em> (Nabi Daud), <em>Injil</em> (Nabi Isa), dan <em>Al-Quran</em> (kitab terakhir diturunkan kepada Nabi Muhammad SAW).</p>
+            </div>
+            <!-- 4 -->
+            <div class="p-3.5 bg-stone-50 rounded-lg border border-stone-200">
+              <span class="font-bold text-stone-900 text-sm block mb-1">4. Beriman kepada Nabi dan Rasul</span>
+              <p class="text-stone-600">Manusia pilihan Allah bagi membimbing umat. Nabi Muhammad SAW merupakan penutup sekalian nabi dan rasul yang membawa contoh akhlak terunggul (Sunnah).</p>
+            </div>
+            <!-- 5 -->
+            <div class="p-3.5 bg-stone-50 rounded-lg border border-stone-200">
+              <span class="font-bold text-stone-900 text-sm block mb-1">5. Beriman kepada Hari Kiamat</span>
+              <p class="text-stone-600">Hari berakhirnya seluruh alam dunia, di mana manusia akan dibangkitkan semula di Padang Mahsyar untuk menerima penghakiman yang adil atas segala perbuatan di dunia.</p>
+            </div>
+            <!-- 6 -->
+            <div class="p-3.5 bg-stone-50 rounded-lg border border-stone-200">
+              <span class="font-bold text-stone-900 text-sm block mb-1">6. Beriman kepada Qada' dan Qadar</span>
+              <p class="text-stone-600">Percaya bahawa segala sesuatu telah ditentukan dengan ilmu dan izin Allah. Manusia wajib berusaha dan bertawakal, serta reda atas segala ketetapan takdir.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bahagian 2: Rukun Islam & 8 Golongan Asnaf -->
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <span class="px-2.5 py-0.5 rounded bg-blue-800 text-white font-bold text-xs uppercase">BAHAGIAN 2</span>
+            <h3 class="text-base font-extrabold text-stone-900">5 Perkara Rukun Islam</h3>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div class="p-3 bg-stone-50 rounded border border-stone-200">
+              <strong class="text-stone-900 text-sm">1. Mengucap Dua Kalimah Syahadah:</strong>
+              <p class="text-stone-600 mt-1 italic font-serif text-sm">"Asyhadu alla ilaha illallah, wa asyhadu anna Muhammadar Rasulullah"</p>
+              <p class="text-stone-600 mt-0.5">Pengakuan keesaan Allah dan penerimaan kerasulan junjungan mulia Nabi Muhammad SAW.</p>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded border border-stone-200">
+              <strong class="text-stone-900 text-sm">2. Menunaikan Solat Fardhu Lima Waktu:</strong>
+              <p class="text-stone-600 mt-1">Tiang agama yang membina disiplin masa, ketenangan jiwa, dan mencegah daripada perkara keji dan mungkar.</p>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded border border-stone-200">
+              <strong class="text-stone-900 text-sm">3. Berpuasa di Bulan Ramadan:</strong>
+              <p class="text-stone-600 mt-1">Menahan lapar, dahaga serta hawa nafsu dari fajar subuh hingga terbenam matahari, mendidik kesabaran dan sifat ihsan kepada yang susah.</p>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded border border-stone-200">
+              <strong class="text-stone-900 text-sm">4. Menunaikan Zakat:</strong>
+              <p class="text-stone-600 mt-1">Kewajipan menyucikan harta untuk membantu golongan asnaf yang layak. Terdapat 8 Asnaf Penerima Zakat:</p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+                <span class="p-1.5 bg-white border rounded text-[11px]"><strong>1. Fakir:</strong> Tiada pendapatan cukup</span>
+                <span class="p-1.5 bg-white border rounded text-[11px]"><strong>2. Miskin:</strong> Ada pendapatan tapi tak cukup</span>
+                <span class="p-1.5 bg-white border rounded text-[11px]"><strong>3. Amil:</strong> Pengurus kutipan/agihan</span>
+                <span class="p-1.5 bg-white border rounded text-[11px]"><strong>4. Muallaf:</strong> Baru memeluk Islam</span>
+                <span class="p-1.5 bg-white border rounded text-[11px]"><strong>5. Riqab:</strong> Membebaskan perhambaan</span>
+                <span class="p-1.5 bg-white border rounded text-[11px]"><strong>6. Al-Gharimin:</strong> Terbeban hutang</span>
+                <span class="p-1.5 bg-white border rounded text-[11px]"><strong>7. Fisabilillah:</strong> Pejuang jalan Allah</span>
+                <span class="p-1.5 bg-white border rounded text-[11px]"><strong>8. Ibnu Sabil:</strong> Musafir kehabisan belanja</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded border border-stone-200">
+              <strong class="text-stone-900 text-sm">5. Menunaikan Ibadah Haji ke Baitullah:</strong>
+              <p class="text-stone-600 mt-1">Kewajipan sekali seumur hidup bagi mereka yang berkemampuan fizikal, mental dan kewangan, melambangkan penyatuan ummah global di Tanah Suci.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 6: SIMPULAN & IKATAN ASAS -->
+    <section id="tab-ikatan" class="tab-content hidden space-y-6">
+      
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6">
+        <div class="border-b border-stone-200 pb-3 mb-6">
+          <span class="text-xs uppercase font-extrabold tracking-wider text-scout-red">KECEKAPAN ILMU PENGAKAP</span>
+          <h2 class="text-xl font-black text-stone-900 mt-1">SIMPULAN DAN IKATAN ASAS</h2>
+          <p class="text-xs text-stone-500">Kemahiran asas tali-temali yang diuji dan disahkan dalam silibus Keahlian Kelana</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Knot 1: Buku Sila -->
+          <div class="border border-stone-200 rounded-lg p-4 bg-stone-50/70 hover:shadow transition">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-bold text-stone-900 text-sm">BUKU SILA (Reef Knot)</h3>
+              <span class="text-[10px] bg-stone-200 text-stone-700 px-2 py-0.5 rounded font-mono">Penyambung Sama Saiz</span>
+            </div>
+            <div class="w-full h-24 bg-stone-200 rounded flex items-center justify-center text-stone-400 mb-3 border border-stone-300">
+              <i class="fa-solid fa-infinity text-4xl text-amber-800"></i>
+            </div>
+            <ul class="text-xs text-stone-600 space-y-1 list-disc list-inside">
+              <li>Menyambungkan dua utas tali yang <strong>sama saiz</strong> dan jenis.</li>
+              <li>Digunakan untuk mengikat kain pembalut / kain anduh dalam pertolongan cemas.</li>
+              <li>Mudah dan cepat untuk dilucutkan kembali.</li>
+            </ul>
+          </div>
+
+          <!-- Knot 2: Bunga Geti -->
+          <div class="border border-stone-200 rounded-lg p-4 bg-stone-50/70 hover:shadow transition">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-bold text-stone-900 text-sm">BUNGA GETI (Sheet Bend)</h3>
+              <span class="text-[10px] bg-stone-200 text-stone-700 px-2 py-0.5 rounded font-mono">Penyambung Berlainan Saiz</span>
+            </div>
+            <div class="w-full h-24 bg-stone-200 rounded flex items-center justify-center text-stone-400 mb-3 border border-stone-300">
+              <i class="fa-solid fa-code-merge text-4xl text-amber-800"></i>
+            </div>
+            <ul class="text-xs text-stone-600 space-y-1 list-disc list-inside">
+              <li>Menyambung hujung dua tali yang <strong>berlainan saiz atau berlainan jenis</strong>.</li>
+              <li>Menyambung tali kecil kepada tali besar tanpa menggelongsor.</li>
+              <li>Kukuh di bawah bebanan tarikan.</li>
+            </ul>
+          </div>
+
+          <!-- Knot 3: Simpul Manuk -->
+          <div class="border border-stone-200 rounded-lg p-4 bg-stone-50/70 hover:shadow transition">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-bold text-stone-900 text-sm">SIMPUL MANUK (Clove Hitch)</h3>
+              <span class="text-[10px] bg-stone-200 text-stone-700 px-2 py-0.5 rounded font-mono">Ikatan Permulaan</span>
+            </div>
+            <div class="w-full h-24 bg-stone-200 rounded flex items-center justify-center text-stone-400 mb-3 border border-stone-300">
+              <i class="fa-solid fa-grip-lines text-4xl text-amber-800"></i>
+            </div>
+            <ul class="text-xs text-stone-600 space-y-1 list-disc list-inside">
+              <li>Digunakan untuk mengikat tali pada tiang, kayu atau batang bulat.</li>
+              <li>Bertindak sebagai <strong>ikatan permulaan dan penamat</strong> bagi kebanyakan ikatan pioneering.</li>
+              <li>Mudah dibuat dan kukuh mencekam permukaan licin.</li>
+            </ul>
+          </div>
+
+          <!-- Knot 4: Lilit Dua Simpul -->
+          <div class="border border-stone-200 rounded-lg p-4 bg-stone-50/70 hover:shadow transition">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-bold text-stone-900 text-sm">LILIT DUA SIMPUL (Round Turn &amp; Two Half Hitches)</h3>
+              <span class="text-[10px] bg-stone-200 text-stone-700 px-2 py-0.5 rounded font-mono">Tambatan Beban</span>
+            </div>
+            <div class="w-full h-24 bg-stone-200 rounded flex items-center justify-center text-stone-400 mb-3 border border-stone-300">
+              <i class="fa-solid fa-anchor text-4xl text-amber-800"></i>
+            </div>
+            <ul class="text-xs text-stone-600 space-y-1 list-disc list-inside">
+              <li>Mengikat hujung tali pada tiang, pokok atau gelung supaya tidak terlucut.</li>
+              <li>Digunakan untuk mengikat tali khemah, sauh bot atau tali flying fox.</li>
+              <li>Mudah dilaraskan ketegangannya dan tidak mudah kendur sendiri.</li>
+            </ul>
+          </div>
+
+          <!-- Knot 5: Ikatan Seraya -->
+          <div class="border border-stone-200 rounded-lg p-4 bg-stone-50/70 hover:shadow transition md:col-span-2">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-bold text-stone-900 text-sm">IKATAN SERAYA (Square Lashing)</h3>
+              <span class="text-[10px] bg-stone-200 text-stone-700 px-2 py-0.5 rounded font-mono">Pioneering Bersudut Tepat</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
+              <div class="h-24 bg-stone-200 rounded flex items-center justify-center border border-stone-300 sm:col-span-1">
+                <i class="fa-solid fa-plus text-5xl text-amber-800"></i>
+              </div>
+              <div class="sm:col-span-2">
+                <ul class="text-xs text-stone-600 space-y-1.5 list-disc list-inside">
+                  <li>Digunakan untuk mengikat <strong>dua batang kayu yang bersilang pada sudut 90 darjah (tepat)</strong>.</li>
+                  <li>Sangat penting dalam membina projek perintis seperti jambatan, menara peninjau dan tiang bendera.</li>
+                  <li>Dimulakan dengan <em>Simpul Manuk</em>, dililit kemas bersilang, diikat pengetat (frapping), dan dimatikan semula dengan Simpul Manuk.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION: PENGESAHAN & TANDATANGAN (Print & Web View) -->
+    <section class="mt-8 bg-white rounded-xl shadow-md border border-stone-200 p-6">
+      <h3 class="font-bold text-base text-stone-800 border-b border-stone-200 pb-3 mb-6 flex items-center">
+        <i class="fa-solid fa-file-signature text-scout-red mr-2"></i> Pengesahan Pelaporan &amp; Kelulusan Panel Penilai
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs">
+        
+        <!-- Disediakan Oleh Pelajar -->
+        <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex flex-col justify-between h-52">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-stone-500 tracking-wider">Perakuan Calon:</span>
+            <p class="text-stone-700 mt-2 italic leading-relaxed">
+              "Saya, <strong>Nur Fikriyah binti Zulkifli</strong> memperakui bahawa segala laporan, refleksi dan amalan yang terkandung dalam e-pelaporan ini adalah hasil usaha sendiri mengikut silibus rasmi Kelanasiswa."
+            </p>
+          </div>
+          <div class="border-t border-stone-300 pt-3">
+            <div class="font-serif italic text-base text-stone-900 font-bold">Nur Fikriyah binti Zulkifli</div>
+            <div class="font-mono text-stone-600">No. Pend: 18DCS24F1025</div>
+            <div class="text-[11px] text-stone-500">Tarikh: 29 September 2024</div>
+          </div>
+        </div>
+
+        <!-- Disahkan Oleh Panel Penilai -->
+        <div class="p-4 rounded-lg bg-stone-50 border border-stone-200 flex flex-col justify-between h-52">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-emerald-700 tracking-wider">Perakuan Panel Penilai:</span>
+            <p class="text-stone-700 mt-2 italic leading-relaxed">
+              "Dengan ini disahkan bahawa calon telah menyempurnakan kesemua syarat ujian Lencana Keahlian Pengakap Kelana dengan jayanya."
+            </p>
+          </div>
+          <div class="border-t border-stone-300 pt-3 flex items-end justify-between">
+            <div>
+              <div class="font-bold text-stone-900 text-sm">Pn. Laila binti Musa</div>
+              <div class="text-stone-600">Pensyarah Utama, Jabatan Perdagangan</div>
+              <div class="text-stone-500 text-[11px]">Politeknik Tuanku Syed Sirajuddin, Perlis</div>
+            </div>
+            <div class="text-right">
+              <span class="inline-block px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded font-bold text-[10px]">
+                <i class="fa-solid fa-stamp mr-1"></i> LULUS
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-stone-200 py-6 mt-12 text-center text-xs text-stone-500 no-print">
+    <div class="container mx-auto px-4 space-y-2">
+      <p>Sistem E-Pelaporan Pengakap Kelana &copy; 2024 / 2026. Hak Cipta Terpelihara.</p>
+      <p class="text-[11px] text-stone-400">Politeknik Tuanku Syed Sirajuddin (PTSS) &bull; Persekutuan Pengakap Malaysia</p>
+    </div>
+  </footer>
+
+  <!-- Modal Maklumat Calon -->
+  <div id="modalInfo" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 border border-stone-200 relative">
+      <button onclick="toggleModal('modalInfo')" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-red-100 text-scout-red flex items-center justify-center text-lg">
+          <i class="fa-solid fa-id-badge"></i>
+        </div>
+        <h3 class="font-bold text-stone-900 text-base">Profil Lengkap Calon</h3>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div class="flex justify-between border-b pb-1.5">
+          <span class="text-stone-500">Nama Calon</span>
+          <span class="font-bold text-stone-800">Nur Fikriyah binti Zulkifli</span>
+        </div>
+        <div class="flex justify-between border-b pb-1.5">
+          <span class="text-stone-500">No. Kad Pengenalan</span>
+          <span class="font-mono text-stone-800">060428-09-0014</span>
+        </div>
+        <div class="flex justify-between border-b pb-1.5">
+          <span class="text-stone-500">No. Pendaftaran Pelajar</span>
+          <span class="font-mono text-stone-800">18DCS24F1025</span>
+        </div>
+        <div class="flex justify-between border-b pb-1.5">
+          <span class="text-stone-500">Institusi</span>
+          <span class="text-stone-800">Politeknik Tuanku Syed Sirajuddin</span>
+        </div>
+        <div class="flex justify-between border-b pb-1.5">
+          <span class="text-stone-500">Skim / Lencana</span>
+          <span class="text-stone-800 font-bold text-scout-red">Lencana Keahlian Kelana</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-stone-500">Penilai Penguji</span>
+          <span class="text-stone-800">Pn. Laila binti Musa</span>
+        </div>
+      </div>
+      <div class="mt-6 text-right">
+        <button onclick="toggleModal('modalInfo')" class="px-4 py-2 bg-stone-800 hover:bg-stone-900 text-white rounded text-xs font-semibold">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Logik Interaktif -->
+  <script>
+    function switchTab(targetTabId) {
+      // Sembunyikan semua tab
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('block');
+      });
+
+      // Tunjukkan tab sasaran
+      const targetContent = document.getElementById(targetTabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+        targetContent.classList.add('block');
+      }
+
+      // Kemas kini status tab aktif pada butang navigasi
+      const buttons = document.querySelectorAll('.badge-tab');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      const activeBtn = document.getElementById('btn-' + targetTabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+
+      // Skrol perlahan ke atas kandungan
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function toggleModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.toggle('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
