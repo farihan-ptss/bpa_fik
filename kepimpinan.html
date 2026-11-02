@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Portfolio Lencana Kepimpinan Pengakap Kelana | Nur Fikriyah</title>
+  <title>E-Portfolio Lencana Kepimpinan Pengakap Kelana | Nur Fikriyah Binti Zulkifli</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -11,10 +11,10 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts Inter & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -22,18 +22,24 @@
       theme: {
         extend: {
           colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
             scout: {
-              purple: '#5B2C6F',
-              darkPurple: '#4A235A',
-              gold: '#D4AC0D',
-              lightGold: '#F9E79F',
-              emerald: '#117A65',
-              dark: '#17202A'
+              purple: '#4c1d95',
+              gold: '#d97706',
+              maroon: '#831843',
+              navy: '#1e3a8a'
             }
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Cinzel"', 'serif'],
+            serif: ['"Playfair Display"', 'serif'],
           }
         }
       }
@@ -41,876 +47,1303 @@
   </script>
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    .badge-glow {
-      box-shadow: 0 0 25px rgba(212, 172, 13, 0.45);
+    @media print {
+      .no-print { display: none !important; }
+      .print-shadow-none { box-shadow: none !important; }
+      body { background: white !important; color: black !important; }
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
+      height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f1f1f1;
+      background: rgba(0, 0, 0, 0.05);
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #888;
-      border-radius: 4px;
+      background: rgba(22, 163, 74, 0.3);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(22, 163, 74, 0.6);
+    }
+    .cert-border {
+      border: 8px double #b45309;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-purple-800 selection:text-white">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- TOP NAV BAR -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <!-- Logo & Title -->
-        <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-900 to-indigo-800 flex items-center justify-center text-amber-400 shadow-md">
-            <i class="fa-solid fa-compass text-2xl"></i>
-          </div>
-          <div>
-            <span class="font-display font-bold text-lg sm:text-xl tracking-wider text-purple-950 block leading-tight">LENCANA KEPIMPINAN</span>
-            <span class="text-xs font-semibold text-slate-500 uppercase tracking-widest">Pengakap Kelana • PTSS Perlis</span>
-          </div>
+  <!-- NOTIFICATION TOAST -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-msg" class="text-sm font-medium">Tindakan berjaya</span>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-brand-700/20">
+          <i class="fa-solid fa-award text-lg"></i>
         </div>
-
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium text-slate-700">
-          <a href="#profil" class="px-3 py-2 rounded-lg hover:text-purple-900 hover:bg-purple-50 transition">Profil Calon</a>
-          <a href="#ringkasan" class="px-3 py-2 rounded-lg hover:text-purple-900 hover:bg-purple-50 transition">Senarai Aktiviti</a>
-          <a href="#kertas-kerja" class="px-3 py-2 rounded-lg hover:text-purple-900 hover:bg-purple-50 transition">Kertas Kerja</a>
-          <a href="#pencapaian" class="px-3 py-2 rounded-lg hover:text-purple-900 hover:bg-purple-50 transition">Sijil & Anugerah</a>
-          <a href="#logbook" class="px-4 py-2 rounded-lg bg-purple-900 text-white hover:bg-purple-800 shadow transition flex items-center space-x-1.5">
-            <i class="fa-solid fa-stamp text-amber-400"></i>
-            <span>Semakan Log</span>
-          </a>
-        </div>
-
-        <!-- Mobile Menu Toggle Button -->
-        <div class="flex md:hidden">
-          <button id="mobile-menu-btn" class="p-2 text-slate-600 hover:text-purple-900 focus:outline-none">
-            <i class="fa-solid fa-bars-staggered text-2xl"></i>
-          </button>
+        <div>
+          <span class="text-xs font-bold tracking-wider uppercase text-brand-700 block">E-Laporan Pengakap Kelana</span>
+          <h1 class="text-base font-bold text-slate-900 leading-tight">Lencana Kepimpinan</h1>
         </div>
       </div>
-    </div>
 
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 text-sm font-medium">
-      <a href="#profil" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-slate-700">Profil Calon</a>
-      <a href="#ringkasan" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-slate-700">Senarai Aktiviti</a>
-      <a href="#kertas-kerja" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-slate-700">Kertas Kerja & Jawatankuasa</a>
-      <a href="#pencapaian" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-slate-700">Sijil & Anugerah Rakan Muda</a>
-      <a href="#logbook" class="block px-3 py-2 rounded-lg bg-purple-900 text-white font-semibold text-center">Status Kelayakan</a>
-    </div>
-  </nav>
+      <nav class="hidden md:flex items-center space-x-1">
+        <a href="#ringkasan" class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-700 hover:bg-slate-100 rounded-lg transition-colors">Ringkasan</a>
+        <a href="#pencapaian" class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-700 hover:bg-slate-100 rounded-lg transition-colors">Sijil & Watikah</a>
+        <a href="#projek" class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-700 hover:bg-slate-100 rounded-lg transition-colors">Kertas Kerja & Program</a>
+        <a href="#peserta" class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-700 hover:bg-slate-100 rounded-lg transition-colors">Direktori Peserta</a>
+      </nav>
 
-  <!-- HERO SECTION -->
-  <header class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-purple-950 via-indigo-950 to-slate-900 text-white">
-    <!-- Background Motif / Glow -->
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px]"></div>
-    <div class="absolute -top-32 -right-32 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Left Content -->
-        <div class="lg:col-span-8 text-center lg:text-left space-y-6">
-          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs sm:text-sm font-medium tracking-wide">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>SKIM LATIHAN PENGAKAP KELANA MALAYSIA</span>
-          </div>
-
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display text-white leading-tight">
-            E-DOKUMENTASI <br class="hidden sm:inline">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400">
-              LENCANA KEPIMPINAN
-            </span>
-          </h1>
-
-          <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
-            Rekod komprehensif penglibatan, pengurusan acara dan sumbangan kepimpinan dalam Kelanasiswa Malaysia (KSM), Politeknik Tuanku Syed Sirajuddin ke arah pencapaian <strong>Anugerah Baden Powell (B-P Guild / BP Award)</strong>.
-          </p>
-
-          <!-- Quick Action Buttons -->
-          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-            <a href="#ringkasan" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-purple-950 font-bold shadow-lg shadow-amber-500/25 transition transform hover:-translate-y-0.5 flex items-center space-x-2">
-              <i class="fa-solid fa-list-check"></i>
-              <span>Semak 9 Kriteria Lengkap</span>
-            </a>
-            <a href="#pencapaian" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold backdrop-blur-sm transition flex items-center space-x-2">
-              <i class="fa-solid fa-award text-amber-400"></i>
-              <span>Anugerah Rakan Muda</span>
-            </a>
-          </div>
-
-          <!-- Metadata Pill Badges -->
-          <div class="pt-6 border-t border-white/10 flex flex-wrap justify-center lg:justify-start gap-6 text-xs text-slate-300">
-            <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-university text-amber-400 text-base"></i>
-              <span>Politeknik Tuanku Syed Sirajuddin</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-map-pin text-amber-400 text-base"></i>
-              <span>Arau, Perlis</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-shield-halved text-amber-400 text-base"></i>
-              <span>Status: Lengkap Berdokumen</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Badge Card Display -->
-        <div class="lg:col-span-4 flex justify-center">
-          <div class="relative w-72 sm:w-80 p-8 rounded-3xl bg-gradient-to-b from-white/15 to-white/5 backdrop-blur-xl border border-white/20 shadow-2xl text-center group">
-            <div class="absolute -top-4 -right-4 w-12 h-12 bg-amber-400 rounded-full flex items-center justify-center text-purple-950 font-black shadow-lg">
-              <i class="fa-solid fa-check text-xl"></i>
-            </div>
-            
-            <div class="w-32 h-32 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-800 to-indigo-900 p-3 shadow-inner flex items-center justify-center border-2 border-amber-400/80 badge-glow group-hover:scale-105 transition duration-300">
-              <i class="fa-solid fa-crown text-5xl text-amber-300"></i>
-            </div>
-
-            <h3 class="font-display font-bold text-xl text-white tracking-wider mb-1">CALON KELANA</h3>
-            <p class="text-amber-300 font-bold text-lg mb-3">Nur Fikriyah binti Zulkifli</p>
-            
-            <div class="space-y-1.5 text-xs text-slate-300 bg-black/30 p-4 rounded-xl text-left border border-white/10">
-              <p><span class="text-slate-400">No. Matrik:</span> <strong class="text-white">18DCS24F1025</strong></p>
-              <p><span class="text-slate-400">Jabatan:</span> <strong class="text-white">JRKV (Reka Bentuk & Komunikasi)</strong></p>
-              <p><span class="text-slate-400">Jawatan:</span> <strong class="text-amber-300">Exco SPKD PTSS 2024/2025</strong></p>
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-white/10 text-xs text-emerald-300 flex items-center justify-center space-x-1 font-semibold">
-              <i class="fa-solid fa-circle-check"></i>
-              <span>9/9 Syarat Telah Dipenuhi</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
   </header>
 
-  <!-- QUICK STATS BAR -->
-  <section class="bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+  <!-- HERO SECTION / PROFIL CALON -->
+  <section class="relative bg-gradient-to-b from-emerald-900 via-slate-900 to-slate-900 text-white pt-12 pb-20 overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#22c55e_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8">
         
-        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-          <p class="text-3xl font-extrabold text-purple-950">9</p>
-          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Aktiviti Selesai</p>
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+          <!-- Profile Badge Avatar -->
+          <div class="relative">
+            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-br from-amber-400 to-emerald-600 p-1 shadow-2xl">
+              <div class="w-full h-full bg-slate-800 rounded-xl overflow-hidden flex items-center justify-center relative">
+                <!-- Gambar Profil Pengakap Kelana -->
+                <img 
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
+                  alt="Profil Pengakap Kelana Nur Fikriyah" 
+                  class="w-full h-full object-cover object-top"
+                  onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full bg-slate-800 flex flex-col items-center justify-center text-amber-400\'><i class=\'fa-solid fa-user-shield text-4xl\'></i><span class=\'text-[10px] mt-1 font-bold text-slate-300\'>KELANA PTSS</span></div>';"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none"></div>
+              </div>
+            </div>
+            <span class="absolute -bottom-2 -right-2 bg-amber-500 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded-full border-2 border-slate-900 shadow">
+              6 Aktiviti
+            </span>
+          </div>
+
+          <!-- Info Details -->
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-medium mb-3">
+              <i class="fa-solid fa-shield-halved"></i>
+              Skim Latihan Pengakap Kelana Malaysia
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-2 font-serif">
+              NUR FIKRIYAH BINTI ZULKIFLI
+            </h1>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mb-4 font-light leading-relaxed">
+              Dokumentasi & Bukti Penglibatan Lengkap bagi Pensijilan 
+              <span class="font-semibold text-amber-400">Lencana Kepimpinan</span>. 
+              Politeknik Tuanku Syed Sirajuddin (PTSS), Arau, Perlis.
+            </p>
+
+            <!-- Metadata badges -->
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs text-slate-300">
+              <div class="bg-slate-800/80 border border-slate-700/80 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                <i class="fa-solid fa-id-card text-emerald-400"></i>
+                <span>No. IC: <span class="font-mono text-white">060428-09-0014</span></span>
+              </div>
+              <div class="bg-slate-800/80 border border-slate-700/80 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
+                <span>No. Pendaftaran: <span class="font-mono text-white">18DCS24F1025</span> (JRKV)</span>
+              </div>
+              <div class="bg-slate-800/80 border border-slate-700/80 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                <i class="fa-solid fa-sitemap text-emerald-400"></i>
+                <span>Exco Pentadbiran SPKD PTSS</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-          <p class="text-3xl font-extrabold text-amber-600">3x</p>
-          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">JK Kursus Kemahiran</p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-          <p class="text-3xl font-extrabold text-emerald-600">2</p>
-          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Anugerah Rakan Muda</p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-          <p class="text-3xl font-extrabold text-indigo-700">Kebangsaan</p>
-          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Taraf Penglibatan Tertinggi</p>
+        <!-- Quick Summary Metrics -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 w-full lg:w-auto">
+          <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
+            <span class="block text-2xl font-black text-amber-400">2024-2026</span>
+            <span class="text-xs text-slate-400">Tempoh Khidmat</span>
+          </div>
+          <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
+            <span class="block text-2xl font-black text-emerald-400">2x Anugerah</span>
+            <span class="text-xs text-slate-400">Rakan Muda Kebangsaan</span>
+          </div>
+          <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
+            <span class="block text-2xl font-black text-sky-400">112+</span>
+            <span class="text-xs text-slate-400">Peserta Dikendalikan</span>
+          </div>
+          <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
+            <span class="block text-2xl font-black text-rose-400">100% Sah</span>
+            <span class="text-xs text-slate-400">Diluluskan Pengurusan</span>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- BIODATA & PROFIL CALON -->
-  <section id="profil" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-xs font-bold uppercase tracking-widest text-purple-800 mb-2">Maklumat Rasmi</h2>
-      <h3 class="text-3xl font-bold font-display text-slate-900">Profil Pemohon & Institusi</h3>
-      <div class="w-16 h-1 bg-amber-400 mx-auto mt-4 rounded-full"></div>
-    </div>
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20 space-y-12 mb-20">
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Info Pelajar -->
-      <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-900 flex items-center justify-center text-xl mb-6">
-          <i class="fa-solid fa-id-card"></i>
-        </div>
-        <h4 class="font-bold text-lg text-slate-900 mb-3">Biodata Calon</h4>
-        <dl class="space-y-3 text-sm">
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Nama Penuh</dt>
-            <dd class="font-semibold text-slate-800">NUR FIKRIYAH BINTI ZULKIFLI</dd>
-          </div>
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Nombor Pendaftaran</dt>
-            <dd class="font-mono font-semibold text-slate-800">18DCS24F1025</dd>
-          </div>
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Jabatan Akademik</dt>
-            <dd class="font-semibold text-slate-800">Jabatan Reka Bentuk dan Komunikasi Visual (JRKV)</dd>
-          </div>
-        </dl>
-      </div>
-
-      <!-- Kumpulan Pengakap -->
-      <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl mb-6">
-          <i class="fa-solid fa-campground"></i>
-        </div>
-        <h4 class="font-bold text-lg text-slate-900 mb-3">Kumpulan & Pasukan</h4>
-        <dl class="space-y-3 text-sm">
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Kumpulan Latihan</dt>
-            <dd class="font-semibold text-slate-800">Kelanasiswa Malaysia (KSM)</dd>
-          </div>
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Institusi / Daerah</dt>
-            <dd class="font-semibold text-slate-800">Politeknik Tuanku Syed Sirajuddin, Pauh Putra, Arau</dd>
-          </div>
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Peranan Sekretariat</dt>
-            <dd class="font-semibold text-purple-900">Exco Pentadbiran SPKD (2024/2025)</dd>
-          </div>
-        </dl>
-      </div>
-
-      <!-- Matlamat Penilaian -->
-      <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl mb-6">
-          <i class="fa-solid fa-ribbon"></i>
-        </div>
-        <h4 class="font-bold text-lg text-slate-900 mb-3">Objektif Skim Lencana</h4>
-        <dl class="space-y-3 text-sm">
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Lencana Disasar</dt>
-            <dd class="font-semibold text-purple-900">Lencana Kepimpinan (Leadership Badge)</dd>
-          </div>
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Peringkat Sasaran</dt>
-            <dd class="font-semibold text-slate-800">Anugerah Baden-Powell (BP Award)</dd>
-          </div>
-          <div>
-            <dt class="text-xs text-slate-500 uppercase font-medium">Cogan Kata Kelana</dt>
-            <dd class="font-semibold text-amber-700 italic">"Berkhidmat" (Service)</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- TABEL & KAD RINGKASAN PENGLIBATAN (BERDASARKAN MUKASURAT 1 DOKUMEN) -->
-  <section id="ringkasan" class="py-16 bg-slate-100 border-y border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- SECTION 1: RINGKASAN REKOD PENGLIBATAN (TABLE VIEW) -->
+    <section id="ringkasan" class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80 overflow-hidden">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div class="px-6 py-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/60">
         <div>
-          <span class="text-xs font-bold uppercase tracking-widest text-purple-900">Ringkasan Rasmi Calon</span>
-          <h2 class="text-3xl font-display font-bold text-slate-900 mt-1">9 Kriteria Lengkap Lencana Kepimpinan</h2>
-          <p class="text-sm text-slate-600 mt-2">Disediakan berdasarkan borang pengesahan aktiviti penglibatan kelana.</p>
+          <span class="text-xs font-bold text-brand-700 tracking-wider uppercase">Jadual Ringkasan Laporan</span>
+          <h2 class="text-xl font-bold text-slate-900">Senarai 6 Aktiviti Melengkapkan Lencana Kepimpinan</h2>
         </div>
-        
-        <!-- Filter Tabs -->
-        <div class="mt-4 md:mt-0 flex flex-wrap gap-2 text-xs font-semibold" id="filter-container">
-          <button onclick="filterActivities('all')" class="filter-btn active px-3.5 py-2 rounded-lg bg-purple-900 text-white shadow">Semua (9)</button>
-          <button onclick="filterActivities('pentadbiran')" class="filter-btn px-3.5 py-2 rounded-lg bg-white text-slate-700 border hover:bg-slate-50">Tadbir & Organisasi</button>
-          <button onclick="filterActivities('kemahiran')" class="filter-btn px-3.5 py-2 rounded-lg bg-white text-slate-700 border hover:bg-slate-50">Kursus Kemahiran</button>
-          <button onclick="filterActivities('anugerah')" class="filter-btn px-3.5 py-2 rounded-lg bg-white text-slate-700 border hover:bg-slate-50">Anugerah & Jambori</button>
+        <div class="flex items-center gap-2 text-xs font-semibold">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800">
+            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+            Semua Modul Lengkap
+          </span>
         </div>
       </div>
 
-      <!-- Activity Grid Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="activity-grid">
-
-        <!-- Item 1 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="pentadbiran">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">1</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-purple-50 text-purple-800 border border-purple-200">2024 - 2025</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">Exco Pentadbiran SPKD PTSS</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Memegang mandat kepimpinan sebagai Exco Pentadbiran Sekretariat Pengakap Kelana Daerah (SPKD) Politeknik Tuanku Syed Sirajuddin bagi sesi pentadbiran tahun 2024/2025.
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-users-gear text-purple-700 mr-1"></i> Kepimpinan Utama</span>
-            <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check"></i> Disahkan</span>
-          </div>
-        </div>
-
-        <!-- Item 2 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="anugerah">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">2</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">21-27 Dis 2024</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">Menyertai 14th Malaysia Jamboree & 8th JUMS Peace Jamboree</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Penyertaan aktif peringkat antarabangsa/kebangsaan di Taman Tasik Milenium, Kuala Kubu Bharu, Selangor Darul Ehsan di bawah tema "Pengakap Untuk Keamanan".
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-tent text-amber-600 mr-1"></i> Sijil M/S 2</span>
-            <a href="#sijil-jambori" class="text-purple-700 hover:underline font-semibold">Lihat Sijil →</a>
-          </div>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="kemahiran">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">3</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-50 text-indigo-800 border border-indigo-200">Sesi 2: 2024/2025</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">Jawatankuasa Kursus Kemahiran Kelana (Sesi 2)</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Bertindak sebagai ahli jawatankuasa penganjur dalam membimbing dan melatih ahli-ahli junior kelanasiswa berkaitan kemahiran asas dan disiplin kepengakapan.
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-chalkboard-user text-indigo-600 mr-1"></i> Pengurusan Kemahiran</span>
-            <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check"></i> Disahkan</span>
-          </div>
-        </div>
-
-        <!-- Item 4 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="kemahiran">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">4</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-50 text-indigo-800 border border-indigo-200">Sesi 1: 2025/2026</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">Jawatankuasa Kursus Kemahiran Kelana (Sesi 1)</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Penerusan khidmat kepimpinan sebagai jawatankuasa bagi sesi berikutnya; mengendalikan logistik dan modul latihan amali luar kelanasiswa PTSS.
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-chalkboard-user text-indigo-600 mr-1"></i> Khidmat Berterusan</span>
-            <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check"></i> Disahkan</span>
-          </div>
-        </div>
-
-        <!-- Item 5 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="kemahiran">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">5</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-50 text-indigo-800 border border-indigo-200">Sesi 1: 2026/2027</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">Jawatankuasa Kursus Kemahiran Kelana (Sesi Lanjutan)</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Memastikan kesinambungan modul silibus kepengakapan kelanasiswa generasi baharu sebagai jurulatih pembantu dan urus setia kemahiran kemah.
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-chalkboard-user text-indigo-600 mr-1"></i> Jurulatih Pembantu</span>
-            <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check"></i> Disahkan</span>
-          </div>
-        </div>
-
-        <!-- Item 6 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="pentadbiran">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">6</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">31 Jul - 2 Ogos 2026</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">Program Pengurusan Organisasi Peringkat Negeri</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Anjuran Jabatan Belia dan Sukan Negeri Perlis (JBSN) bertempat di ClubRock, Gua Kelam, Perlis. Pendedahan mendalam tadbir urus NGO belia profesional.
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-certificate text-blue-600 mr-1"></i> Sijil JBSN M/S 3</span>
-            <a href="#sijil-organisasi" class="text-purple-700 hover:underline font-semibold">Lihat Sijil →</a>
-          </div>
-        </div>
-
-        <!-- Item 7 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="kemahiran">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">7</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-rose-50 text-rose-800 border border-rose-200">19 Sept 2026</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">JK Kursus Pertolongan Cemas & Amali CPR (JPAM)</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Berperanan sebagai Jawatankuasa Pengurusan Tempat bagi kursus amali rawatan balutan luka dan CPR di Pusat Islam PTSS dengan kerjasama Pertahanan Awam.
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-file-invoice text-rose-600 mr-1"></i> Kertas Kerja M/S 14-24</span>
-            <a href="#kertas-kerja-2" class="text-purple-700 hover:underline font-semibold">Lihat Detail →</a>
-          </div>
-        </div>
-
-        <!-- Item 8 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="anugerah">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">8</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">Tahun 2025</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">Anugerah Remaja Perdana Rakan Muda - GANGSA</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Pengiktirafan rasmi The Duke of Edinburgh's International Award Peringkat Gangsa oleh Kementerian Belia dan Sukan Malaysia (KBS).
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-medal text-amber-700 mr-1"></i> Sijil KBS M/S 15</span>
-            <a href="#sijil-rakan-muda" class="text-purple-700 hover:underline font-semibold">Lihat Sijil →</a>
-          </div>
-        </div>
-
-        <!-- Item 9 -->
-        <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between" data-category="anugerah">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-900 font-bold flex items-center justify-center text-sm">9</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-200 text-slate-800 border border-slate-300">Tahun 2026</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mb-2">Anugerah Remaja Perdana Rakan Muda - PERAK</h4>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Peningkatan pencapaian ke Peringkat Perak (Silver Award) merangkumi khidmat masyarakat berpanjangan, ekspedisi lasak dan kemahiran fizikal.
-            </p>
-          </div>
-          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-medium"><i class="fa-solid fa-medal text-slate-500 mr-1"></i> Rekod Buku Log</span>
-            <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check"></i> Berjaya Dicapai</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- DOKUMENTASI TERPERINCI KERTAS KERJA & PROGRAM -->
-  <section id="kertas-kerja" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-xs font-bold uppercase tracking-widest text-purple-900 mb-2">Bukti Operasi & Jawatankuasa</h2>
-      <h3 class="text-3xl font-bold font-display text-slate-900">Program & Kertas Kerja Yang Disertai</h3>
-      <div class="w-16 h-1 bg-amber-400 mx-auto mt-4 rounded-full"></div>
-    </div>
-
-    <div class="space-y-16">
-
-      <!-- PROGRAM 1: EKSPEDISI BUKIT TOK DUN -->
-      <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-        <div class="bg-gradient-to-r from-emerald-900 to-teal-900 text-white p-6 sm:p-8">
-          <div class="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-700/80 text-emerald-100 border border-emerald-500/40">PROGRAM EKSPEDISI 2025</span>
-              <h4 class="text-2xl font-bold font-display mt-2">Program Ekspedisi Mendaki & Rekreasi Alam</h4>
-              <p class="text-sm text-emerald-200 mt-1">Bukit Tok Dun, Arau, Perlis • 11 Oktober 2025</p>
-            </div>
-            <div class="text-right">
-              <span class="inline-block px-4 py-2 rounded-xl bg-white/10 backdrop-blur-md text-amber-300 font-mono text-sm border border-white/20">
-                Status: DILULUSKAN (Dr. Isyati)
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <!-- Butiran Program -->
-          <div class="lg:col-span-7 space-y-4">
-            <h5 class="text-sm font-bold text-slate-900 uppercase tracking-wider text-purple-900">Peranan Calon:</h5>
-            <div class="p-4 bg-purple-50 rounded-2xl border border-purple-100 flex items-start space-x-3">
-              <i class="fa-solid fa-shield-heart text-purple-800 text-xl mt-1"></i>
-              <div>
-                <p class="font-bold text-purple-950 text-sm">Ahli Jawatankuasa Keselamatan & Kebajikan</p>
-                <p class="text-xs text-slate-600 mt-0.5">Disahkan dalam Lampiran 2 Kertas Kerja bersama 2 rakan jawatankuasa lain bagi mengawal selia keselamatan 76 orang peserta (20 SPKD & 56 Kelanasiswa).</p>
-              </div>
-            </div>
-
-            <h5 class="text-sm font-bold text-slate-900 uppercase tracking-wider mt-4">Objektif & Impak Kepimpinan:</h5>
-            <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside">
-              <li>Membina ketahanan fizikal, mental serta navigasi luar bilik kuliah.</li>
-              <li>Menyemai kesedaran pemeliharaan alam sekitar & pengurusan risiko pendakian.</li>
-              <li>Menyokong Matlamat Pembangunan Mampan SDG 3, 4, 13 & 15.</li>
-            </ul>
-
-            <!-- Pegawai Pengesah -->
-            <div class="pt-4 border-t border-slate-100 grid grid-cols-2 gap-3 text-xs">
-              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                <span class="text-slate-400 block text-[10px]">PENGARAH PROGRAM</span>
-                <span class="font-bold text-slate-800">Nur Shazliana Izreen</span>
-              </div>
-              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                <span class="text-slate-400 block text-[10px]">PENASIHAT SPKD</span>
-                <span class="font-bold text-slate-800">Pn. Farihan Elyana</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tentatif & Semakan Peserta -->
-          <div class="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-200">
-            <h5 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">Tentatif Program (11 Okt 2025)</h5>
-            <div class="space-y-2.5 text-xs">
-              <div class="flex items-center justify-between py-1 border-b border-slate-200/60">
-                <span class="font-mono text-slate-500">07:00 - 08:00</span>
-                <span class="text-slate-800 font-medium">Berkumpul & Bertolak ke Bukit Tok Dun</span>
-              </div>
-              <div class="flex items-center justify-between py-1 border-b border-slate-200/60">
-                <span class="font-mono text-slate-500">09:00 - 11:00</span>
-                <span class="text-slate-800 font-medium">Mula Mendaki Bukit Tok Dun</span>
-              </div>
-              <div class="flex items-center justify-between py-1 border-b border-slate-200/60">
-                <span class="font-mono text-slate-500">11:00 - 13:00</span>
-                <span class="text-slate-800 font-medium">Tiba di Puncak, Rehat & Makan</span>
-              </div>
-              <div class="flex items-center justify-between py-1 border-b border-slate-200/60">
-                <span class="font-mono text-slate-500">13:00 - 14:00</span>
-                <span class="text-slate-800 font-medium">Turun ke Kaki Bukit</span>
-              </div>
-              <div class="flex items-center justify-between py-1">
-                <span class="font-mono text-slate-500">14:30</span>
-                <span class="text-slate-800 font-medium">Pulang ke PTSS & Bersurai</span>
-              </div>
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-slate-200 text-xs">
-              <span class="text-slate-500 block mb-1">Rujukan Dokumen:</span>
-              <p class="font-mono text-[11px] text-purple-900 bg-purple-50 p-2 rounded-lg border border-purple-200">
-                Lampiran 3: Bil. 15 (Nur Fikriyah - 18DCS24F1025)
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROGRAM 2: KURSUS PERTOLONGAN CEMAS (JPAM) -->
-      <div id="kertas-kerja-2" class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-        <div class="bg-gradient-to-r from-red-950 via-rose-900 to-purple-950 text-white p-6 sm:p-8">
-          <div class="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-700/80 text-rose-100 border border-rose-500/40">KURSUS KEMAHIRAN & KESELAMATAN 2026</span>
-              <h4 class="text-2xl font-bold font-display mt-2">Kursus Pertolongan Cemas & Simulasi CPR</h4>
-              <p class="text-sm text-rose-200 mt-1">Pusat Islam PTSS • 19 September 2026 • Bersama Pegawai JPAM</p>
-            </div>
-            <div class="text-right">
-              <span class="inline-block px-4 py-2 rounded-xl bg-white/10 backdrop-blur-md text-amber-300 font-mono text-sm border border-white/20">
-                Status: DILULUSKAN (Ts. Khairul Anuar)
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <!-- Butiran Program -->
-          <div class="lg:col-span-7 space-y-4">
-            <h5 class="text-sm font-bold text-slate-900 uppercase tracking-wider text-rose-900">Tanggungjawab Kepimpinan Calon:</h5>
-            <div class="p-4 bg-rose-50 rounded-2xl border border-rose-100 flex items-start space-x-3">
-              <i class="fa-solid fa-map-location-dot text-rose-700 text-xl mt-1"></i>
-              <div>
-                <p class="font-bold text-rose-950 text-sm">JK Pengurusan Tempat</p>
-                <p class="text-xs text-slate-600 mt-0.5">Bertanggungjawab menyediakan ruang amali, peralatan latihan manikin, susun atur stesen balutan kecemasan dan memastikan kelancaran sesi bersama pelatih JPAM.</p>
-              </div>
-            </div>
-
-            <h5 class="text-sm font-bold text-slate-900 uppercase tracking-wider mt-4">Modul Pembelajaran Utama:</h5>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <i class="fa-solid fa-kit-medical text-rose-600 text-lg mb-1 block"></i>
-                <span class="font-bold text-slate-800 block">Modul 1</span>
-                <span class="text-slate-600">Asas kecederaan, jenis luka & pendarahan.</span>
-              </div>
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <i class="fa-solid fa-bandage text-rose-600 text-lg mb-1 block"></i>
-                <span class="font-bold text-slate-800 block">Modul 2</span>
-                <span class="text-slate-600">Teknik amali balutan anduh & splint.</span>
-              </div>
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <i class="fa-solid fa-heart-pulse text-rose-600 text-lg mb-1 block"></i>
-                <span class="font-bold text-slate-800 block">Modul 3</span>
-                <span class="text-slate-600">Demonstrasi amali CPR dengan manikin.</span>
-              </div>
-            </div>
-
-            <!-- Pegawai Pengesah -->
-            <div class="pt-4 border-t border-slate-100 grid grid-cols-3 gap-2 text-xs">
-              <div class="bg-slate-50 p-2 rounded-lg border border-slate-200">
-                <span class="text-slate-400 block text-[9px]">DISEDIAKAN</span>
-                <span class="font-bold text-slate-800 truncate block">Pn. Farihan Elyana</span>
-              </div>
-              <div class="bg-slate-50 p-2 rounded-lg border border-slate-200">
-                <span class="text-slate-400 block text-[9px]">DISOKONG</span>
-                <span class="font-bold text-slate-800 truncate block">Tn. Hj. Johanis</span>
-              </div>
-              <div class="bg-slate-50 p-2 rounded-lg border border-slate-200">
-                <span class="text-slate-400 block text-[9px]">DILULUSKAN</span>
-                <span class="font-bold text-slate-800 truncate block">Ts. Khairul Anuar</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pecahan Peserta Kursus -->
-          <div class="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-200">
-            <h5 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-4">Pecahan Penyertaan (41 Orang)</h5>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-100/75 text-slate-600 uppercase text-xs tracking-wider border-b border-slate-200">
+              <th class="py-3.5 px-4 font-semibold w-16 text-center">Bil.</th>
+              <th class="py-3.5 px-4 font-semibold">Keterangan Aktiviti / Peranan</th>
+              <th class="py-3.5 px-4 font-semibold w-28 text-center">Tahun</th>
+              <th class="py-3.5 px-4 font-semibold w-40">Penganjur / Peringkat</th>
+              <th class="py-3.5 px-4 font-semibold w-32 text-center no-print">Tindakan</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-sm">
             
+            <!-- Row 1 -->
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 text-center font-bold text-slate-500">1.</td>
+              <td class="py-4 px-4">
+                <div class="font-bold text-slate-900">Menghadiri Program Pengurusan Organisasi Peringkat Negeri Perlis</div>
+                <div class="text-xs text-slate-500 mt-0.5">Program intensif kepimpinan di ClubRock, Gua Kelam</div>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">2026</span>
+              </td>
+              <td class="py-4 px-4 text-xs font-medium text-slate-600">
+                Jabatan Belia dan Sukan Negeri Perlis (JBSN)
+              </td>
+              <td class="py-4 px-4 text-center no-print">
+                <button onclick="openModal('modal-jbsn')" class="text-xs font-semibold text-brand-700 hover:text-brand-900 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg border border-brand-200 transition-colors">
+                  <i class="fa-solid fa-file-certificate mr-1"></i> Sijil
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 2 -->
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 text-center font-bold text-slate-500">2.</td>
+              <td class="py-4 px-4">
+                <div class="font-bold text-slate-900">Menerima Anugerah Remaja Perdana Rakan Muda (ARPRM) - Peringkat Perak</div>
+                <div class="text-xs text-slate-500 mt-0.5">Pengiktirafan The Duke of Edinburgh's International Award</div>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-slate-100 text-slate-700 border border-slate-300">2026</span>
+              </td>
+              <td class="py-4 px-4 text-xs font-medium text-slate-600">
+                Kementerian Belia dan Sukan Malaysia (KBS)
+              </td>
+              <td class="py-4 px-4 text-center no-print">
+                <button onclick="openModal('modal-silver')" class="text-xs font-semibold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg border border-slate-300 transition-colors">
+                  <i class="fa-solid fa-medal mr-1 text-slate-400"></i> Rekod
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 3 -->
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 text-center font-bold text-slate-500">3.</td>
+              <td class="py-4 px-4">
+                <div class="font-bold text-slate-900">Menerima Anugerah Remaja Perdana Rakan Muda (ARPRM) - Peringkat Gangsa</div>
+                <div class="text-xs text-slate-500 mt-0.5">Disahkan oleh Ketua Pengarah JBSN / Pengerusi Badan Berkuasa Anugerah</div>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-amber-50 text-amber-700 border border-amber-200">2025</span>
+              </td>
+              <td class="py-4 px-4 text-xs font-medium text-slate-600">
+                Kementerian Belia dan Sukan Malaysia (KBS)
+              </td>
+              <td class="py-4 px-4 text-center no-print">
+                <button onclick="openModal('modal-bronze')" class="text-xs font-semibold text-amber-800 hover:text-amber-950 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 rounded-lg border border-amber-200 transition-colors">
+                  <i class="fa-solid fa-award mr-1 text-amber-600"></i> Sijil
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 4 -->
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 text-center font-bold text-slate-500">4.</td>
+              <td class="py-4 px-4">
+                <div class="font-bold text-slate-900">Exco Pentadbiran Sekretariat Pengakap Kelana Daerah (SPKD)</div>
+                <div class="text-xs text-slate-500 mt-0.5">Watikah Pelantikan Sesi I 2024/2025 hingga Sesi II 2024/2025</div>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-purple-50 text-purple-700 border border-purple-200">2024/25</span>
+              </td>
+              <td class="py-4 px-4 text-xs font-medium text-slate-600">
+                Politeknik Tuanku Syed Sirajuddin (PTSS)
+              </td>
+              <td class="py-4 px-4 text-center no-print">
+                <button onclick="openModal('modal-watikah')" class="text-xs font-semibold text-purple-700 hover:text-purple-900 bg-purple-50 hover:bg-purple-100 px-3 py-1.5 rounded-lg border border-purple-200 transition-colors">
+                  <i class="fa-solid fa-scroll mr-1"></i> Watikah
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 5 -->
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 text-center font-bold text-slate-500">5.</td>
+              <td class="py-4 px-4">
+                <div class="font-bold text-slate-900">Jawatankuasa Kursus Pertolongan Cemas Pengakap Kelana</div>
+                <div class="text-xs text-slate-500 mt-0.5">Peranan: Jawatankuasa Pengurusan Tempat (Kolaborasi JPAM & SDG 3)</div>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">2026</span>
+              </td>
+              <td class="py-4 px-4 text-xs font-medium text-slate-600">
+                KLKM PTSS & JPAM (19 Sept 2026)
+              </td>
+              <td class="py-4 px-4 text-center no-print">
+                <a href="#projek-cemas" class="text-xs font-semibold text-sky-700 hover:text-sky-900 bg-sky-50 hover:bg-sky-100 px-3 py-1.5 rounded-lg border border-sky-200 transition-colors">
+                  <i class="fa-solid fa-notes-medical mr-1"></i> Kertas Kerja
+                </a>
+              </td>
+            </tr>
+
+            <!-- Row 6 -->
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 text-center font-bold text-slate-500">6.</td>
+              <td class="py-4 px-4">
+                <div class="font-bold text-slate-900">Jawatankuasa Program Ekspedisi Mendaki & Rekreasi Alam Bukit Tok Dun</div>
+                <div class="text-xs text-slate-500 mt-0.5">Peranan: Jawatankuasa Keselamatan & Kebajikan (SDG 3, 4, 13, 15)</div>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-amber-50 text-amber-700 border border-amber-200">2025</span>
+              </td>
+              <td class="py-4 px-4 text-xs font-medium text-slate-600">
+                SPKD KLKM PTSS (11 Okt 2025)
+              </td>
+              <td class="py-4 px-4 text-center no-print">
+                <a href="#projek-mendaki" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors">
+                  <i class="fa-solid fa-mountain mr-1"></i> Kertas Kerja
+                </a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="px-6 py-4 bg-slate-50 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between border-t border-slate-100">
+        <span>* Berdasarkan Fail Dokumen Rasmi Permohonan Pengesahan Lencana Kepimpinan Pengakap Kelana.</span>
+        <span class="font-medium text-slate-700">Politeknik Tuanku Syed Sirajuddin</span>
+      </div>
+
+    </section>
+
+    <!-- SECTION 2: SIJIL PENGIKTIRAFAN & WATIKAH RASMI (GALLERY / MODAL PREVIEWS) -->
+    <section id="pencapaian" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 pb-4">
+        <div>
+          <span class="text-xs font-bold text-brand-700 tracking-wider uppercase">Sijil & Dokumen Mandatori</span>
+          <h2 class="text-2xl font-bold text-slate-900 font-serif">Koleksi Bukti & Sijil Pelantikan</h2>
+        </div>
+        <p class="text-xs text-slate-500">Klik kad untuk melihat paparan transkrip sijil rasmi yang disahkan.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Card 1: Sijil JBSN Pengurusan Organisasi -->
+        <div onclick="openModal('modal-jbsn')" class="group cursor-pointer bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-brand-800">Peringkat Negeri</span>
+              <span class="text-xs text-slate-400 font-medium">31 Jul - 2 Ogos 2026</span>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-brand-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-hotel"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg group-hover:text-brand-700 transition-colors">Program Pengurusan Organisasi 2026</h3>
+            <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+              Dianjurkan oleh Jabatan Belia & Sukan Negeri Perlis (JBSN) bertempat di ClubRock, Gua Kelam Perlis.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-brand-700">
+            <span>Disahkan oleh Pengarah JBSN</span>
+            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Card 2: ARPRM Gangsa & Perak -->
+        <div onclick="openModal('modal-bronze')" class="group cursor-pointer bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl hover:border-amber-500 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900">Kebangsaan / Antarabangsa</span>
+              <span class="text-xs text-slate-400 font-medium">Tahun 2025 & 2026</span>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-700 transition-colors">Anugerah Remaja Perdana Rakan Muda</h3>
+            <p class="text-xs text-slate-600 mt-2">
+              Pengiktirafan Tahap Gangsa (2025) & Tahap Perak (2026) The Duke of Edinburgh's International Award Malaysia.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-amber-800">
+            <span>KBS Malaysia & DofE</span>
+            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Card 3: Watikah Exco Pentadbiran SPKD -->
+        <div onclick="openModal('modal-watikah')" class="group cursor-pointer bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl hover:border-purple-500 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-900">Watikah PTSS</span>
+              <span class="text-xs text-slate-400 font-medium">Sesi 2024/2025</span>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg group-hover:text-purple-700 transition-colors">Exco Pentadbiran Kelanasiswa PTSS</h3>
+            <p class="text-xs text-slate-600 mt-2">
+              Sekretariat Pengakap Kelana Daerah (SPKD) Kelanasiswa Malaysia Politeknik Tuanku Syed Sirajuddin.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-purple-800">
+            <span>Pesuruhjaya Pengakap Daerah PTSS</span>
+            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: KERTAS KERJA & PROJEK KEPIMPINAN LENGKAP -->
+    <section id="projek" class="space-y-10">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 pb-4">
+        <div>
+          <span class="text-xs font-bold text-brand-700 tracking-wider uppercase">Dokumentasi Terperinci</span>
+          <h2 class="text-2xl font-bold text-slate-900 font-serif">Kertas Kerja & Pelaksanaan Program</h2>
+        </div>
+        <p class="text-xs text-slate-500">Mengesahkan peranan jawatankuasa aktif pemohon dalam program rasmi PTSS.</p>
+      </div>
+
+      <!-- PROJEK 1: KURSUS PERTOLONGAN CEMAS 2026 -->
+      <div id="projek-cemas" class="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-r from-sky-900 via-sky-800 to-slate-900 text-white p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/30 text-sky-200 text-xs font-bold">
+              <i class="fa-solid fa-kit-medical"></i>
+              Aktiviti Bil. 5 • Tahun 2026
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold font-serif">Kursus Pertolongan Cemas Pengakap Kelana II</h3>
+            <p class="text-sky-200 text-xs sm:text-sm max-w-2xl">
+              Anjuran Kelanasiswa Malaysia PTSS bersama Jabatan Pertahanan Awam Malaysia (JPAM) bagi melengkapkan Lencana Perkhidmatan & Kepimpinan.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-white/10 p-4 rounded-xl border border-white/15">
+            <div>
+              <span class="block text-[10px] uppercase text-sky-200 tracking-wider font-semibold">Peranan Pemohon</span>
+              <span class="text-base font-bold text-white flex items-center gap-1.5">
+                <i class="fa-solid fa-clipboard-check text-amber-400"></i>
+                JK Pengurusan Tempat
+              </span>
+            </div>
+            <div class="sm:border-l sm:border-white/20 sm:pl-4">
+              <span class="block text-[10px] uppercase text-sky-200 tracking-wider font-semibold">Status Kelulusan</span>
+              <span class="text-xs font-bold text-emerald-300 flex items-center gap-1">
+                <i class="fa-solid fa-signature"></i> Diluluskan Pengarah PTSS
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body Details -->
+        <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <div class="lg:col-span-2 space-y-6">
+            
+            <!-- Metadata Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="text-slate-400 block mb-1">Tarikh</span>
+                <span class="font-bold text-slate-800">19 Sept 2026 (Sabtu)</span>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="text-slate-400 block mb-1">Waktu</span>
+                <span class="font-bold text-slate-800">8.00 pg - 12.00 tgh</span>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="text-slate-400 block mb-1">Lokasi</span>
+                <span class="font-bold text-slate-800">Pusat Islam PTSS</span>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="text-slate-400 block mb-1">Penyertaan</span>
+                <span class="font-bold text-slate-800">41 Peserta (26 Sem 2 + 15 SPKD)</span>
+              </div>
+            </div>
+
+            <!-- Objektif & SDG -->
             <div class="space-y-3">
-              <div>
-                <div class="flex justify-between text-xs font-semibold mb-1">
-                  <span>Pelajar Kelana Semester 2</span>
-                  <span>26 Orang</span>
-                </div>
-                <div class="w-full bg-slate-200 rounded-full h-2.5">
-                  <div class="bg-purple-800 h-2.5 rounded-full" style="width: 63%"></div>
-                </div>
-              </div>
-
-              <div>
-                <div class="flex justify-between text-xs font-semibold mb-1">
-                  <span>Sekretariat Kelanasiswa (SPKD)</span>
-                  <span>15 Orang</span>
-                </div>
-                <div class="w-full bg-slate-200 rounded-full h-2.5">
-                  <div class="bg-rose-600 h-2.5 rounded-full" style="width: 37%"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-6 p-4 bg-white rounded-xl border border-slate-200 text-xs space-y-1">
-              <p class="font-semibold text-slate-900"><i class="fa-solid fa-stamp text-purple-900 mr-1"></i> Penjajaran Sukatan Skim Kelana:</p>
-              <p class="text-slate-600 leading-relaxed">
-                Menyokong keperluan Lencana Perkhidmatan & Lencana Kepimpinan di samping matlamat <strong>SDG 3: Good Health and Well-Being</strong>.
+              <h4 class="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-bullseye text-sky-600"></i> Objektif Kursus & Pematuhan SDG 3
+              </h4>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Kursus berfokuskan 3 kemahiran utama: <strong>Asas kecederaan & pertolongan cemas</strong>, <strong>Teknik balutan kecederaan</strong>, dan <strong>Cardiopulmonary Resuscitation (CPR)</strong> dengan bimbingan pegawai JPAM untuk melahirkan ahli bersiap siaga di bawah cogan kata <em>"Berkhidmat"</em>.
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- DOKUMEN SIJIL PENGHARGAAN & ANUGERAH KEBANGSAAN -->
-  <section id="pencapaian" class="py-20 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-xs font-bold uppercase tracking-widest text-amber-400 mb-2">Pengiktirafan Rasmi</h2>
-        <h3 class="text-3xl font-bold font-display text-white">Sijil Penghargaan & Anugerah Kebangsaan</h3>
-        <p class="text-slate-400 text-sm mt-3">Disahkan oleh Persekutuan Pengakap Malaysia dan Kementerian Belia & Sukan Malaysia.</p>
-        <div class="w-16 h-1 bg-amber-400 mx-auto mt-4 rounded-full"></div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-        <!-- SIJIL 1: JAMBORI 2024 -->
-        <div id="sijil-jambori" class="bg-gradient-to-b from-slate-800 to-slate-800/90 rounded-3xl p-6 sm:p-8 border border-white/10 shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between text-xs text-amber-400 mb-4 font-semibold uppercase tracking-wider">
-              <span>Sijil Penghargaan</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300">PPM</span>
-            </div>
-            
-            <div class="text-center my-6 py-6 border-y border-white/10">
-              <p class="text-xs text-slate-400 uppercase tracking-widest">Dianugerahkan Kepada:</p>
-              <h4 class="font-display font-bold text-lg text-white mt-1">NUR FIKRIYAH BINTI ZULKIFLI</h4>
-              <p class="text-xs text-amber-300 font-medium mt-2">14th Malaysia Jamboree & 8th JUMS Peace Jamboree</p>
+              
+              <div class="flex items-center gap-2 pt-1">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+                  <i class="fa-solid fa-heart-pulse"></i> SDG 3: Good Health and Well-Being
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
+                  <i class="fa-solid fa-handshake"></i> Kolaborasi Agensi Kerajaan (JPAM)
+                </span>
+              </div>
             </div>
 
-            <div class="space-y-2 text-xs text-slate-300">
-              <p><strong class="text-slate-400">Tarikh:</strong> 21 hingga 27 Disember 2024</p>
-              <p><strong class="text-slate-400">Tempat:</strong> Taman Tasik Milenium, Kuala Kubu Bharu, Selangor</p>
-              <p><strong class="text-slate-400">Tandatangan:</strong> Mej. Jen. Dato Prof. Dr. Mohd Zin bin Bidin (B) - <em>Ketua Pengakap Negara</em></p>
+            <!-- Tentatif Acara -->
+            <div>
+              <h4 class="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-clock text-sky-600"></i> Tentatif Program
+              </h4>
+              <div class="border border-slate-200 rounded-xl overflow-hidden divide-y divide-slate-100 text-xs">
+                <div class="p-2.5 flex justify-between bg-slate-50 font-semibold text-slate-700">
+                  <span>8.00 - 8.30 pg</span>
+                  <span class="text-slate-600">Pendaftaran, Taklimat Keselamatan & Ucapan Alu-Aluan</span>
+                </div>
+                <div class="p-2.5 flex justify-between">
+                  <span class="font-medium text-slate-500">8.30 - 9.15 pg</span>
+                  <span class="text-slate-700 font-semibold">Modul 1: Asas Kecederaan dan Pertolongan Cemas</span>
+                </div>
+                <div class="p-2.5 flex justify-between bg-slate-50/50">
+                  <span class="font-medium text-slate-500">9.15 - 10.15 pg</span>
+                  <span class="text-slate-700 font-semibold">Modul 2: Teknik Balutan Kecederaan (Demonstrasi & Amali)</span>
+                </div>
+                <div class="p-2.5 flex justify-between text-amber-700 bg-amber-50/50">
+                  <span class="font-medium">10.15 - 10.30 pg</span>
+                  <span>Rehat</span>
+                </div>
+                <div class="p-2.5 flex justify-between">
+                  <span class="font-medium text-slate-500">10.30 - 11.45 pg</span>
+                  <span class="text-slate-700 font-semibold">Modul 3: Pengenalan CPR & Amali Menggunakan Manikin</span>
+                </div>
+                <div class="p-2.5 flex justify-between bg-slate-50">
+                  <span class="font-medium text-slate-500">11.45 - 12.00 tgh</span>
+                  <span class="text-slate-700">Rumusan, Sesi Q&A, Penilaian & Penutup</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-            <span class="text-emerald-400"><i class="fa-solid fa-check-double mr-1"></i> Disahkan Tulen</span>
-            <span class="text-slate-400">M/S 2 PDF</span>
-          </div>
-        </div>
-
-        <!-- SIJIL 2: JBSN PERLIS 2026 -->
-        <div id="sijil-organisasi" class="bg-gradient-to-b from-slate-800 to-slate-800/90 rounded-3xl p-6 sm:p-8 border border-white/10 shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between text-xs text-blue-400 mb-4 font-semibold uppercase tracking-wider">
-              <span>Sijil Penyertaan</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-blue-400/20 text-blue-300">JBSN PERLIS</span>
-            </div>
-            
-            <div class="text-center my-6 py-6 border-y border-white/10">
-              <p class="text-xs text-slate-400 uppercase tracking-widest">Disahkan Bahawa:</p>
-              <h4 class="font-display font-bold text-lg text-white mt-1">NUR FIKRIYAH BINTI ZULKIFLI</h4>
-              <p class="text-xs text-blue-300 font-medium mt-2">Program Pengurusan Organisasi Peringkat Negeri Perlis</p>
-            </div>
-
-            <div class="space-y-2 text-xs text-slate-300">
-              <p><strong class="text-slate-400">Tarikh:</strong> 31 Julai 2026 - 2 Ogos 2026</p>
-              <p><strong class="text-slate-400">Tempat:</strong> ClubRock, Gua Kelam, Perlis</p>
-              <p><strong class="text-slate-400">Pengarah JBSN:</strong> Mohammad Suhaimi bin Md Saad</p>
-            </div>
           </div>
 
-          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-            <span class="text-blue-400"><i class="fa-solid fa-check-double mr-1"></i> Disahkan Tulen</span>
-            <span class="text-slate-400">M/S 3 PDF</span>
-          </div>
-        </div>
-
-        <!-- SIJIL 3: RAKAN MUDA GANGSA & PERAK -->
-        <div id="sijil-rakan-muda" class="bg-gradient-to-b from-slate-800 to-slate-800/90 rounded-3xl p-6 sm:p-8 border border-amber-500/30 shadow-xl flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute -right-12 -top-12 w-28 h-28 bg-amber-500/10 rounded-full blur-xl pointer-events-none"></div>
-
-          <div>
-            <div class="flex items-center justify-between text-xs text-amber-400 mb-4 font-semibold uppercase tracking-wider">
-              <span>Pengiktirafan Antarabangsa</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300">KBS / DofE</span>
+          <!-- Carta Organisasi Kursus Cemas -->
+          <div class="bg-slate-50/80 rounded-xl p-5 border border-slate-200/80 flex flex-col justify-between">
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2 mb-4">
+                Jawatankuasa Pelaksana
+              </h4>
+              <ul class="space-y-3 text-xs">
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Penaung I:</span>
+                  <span class="font-semibold text-slate-800 text-right">Ts. Khairul Anuar bin Ishak<br><span class="text-[10px] text-slate-400 font-normal">(Pengarah PTSS)</span></span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Penaung II:</span>
+                  <span class="font-semibold text-slate-800 text-right">Dr. Isyati binti Suparman</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Penasihat:</span>
+                  <span class="font-semibold text-slate-800 text-right">Tn. Hj Johanis bin Mohd Jamil</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Pengarah Program:</span>
+                  <span class="font-semibold text-slate-800 text-right">Pn. Farihan Elyana binti Zahari</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Setiausaha:</span>
+                  <span class="font-semibold text-slate-800 text-right">Hj Nasrul Affendy bin Mat Nasir</span>
+                </li>
+                <li class="pt-2 border-t border-slate-200 flex items-start justify-between bg-sky-100/70 p-2 rounded-lg">
+                  <span class="font-bold text-sky-900">JK Pengurusan Tempat:</span>
+                  <span class="font-bold text-sky-950 text-right">NUR FIKRIYAH BINTI ZULKIFLI</span>
+                </li>
+              </ul>
             </div>
-            
-            <div class="text-center my-6 py-6 border-y border-white/10">
-              <p class="text-xs text-slate-400 uppercase tracking-widest">Diiktiraf Menerima:</p>
-              <h4 class="font-display font-bold text-xl text-amber-300 mt-1">ANUGERAH GANGSA & PERAK</h4>
-              <p class="text-xs text-slate-300 font-medium mt-2">Anugerah Remaja Perdana Rakan Muda</p>
-              <span class="text-[10px] text-slate-400 block mt-1">The Duke of Edinburgh's International Award</span>
-            </div>
 
-            <div class="space-y-2 text-xs text-slate-300">
-              <p><strong class="text-slate-400">Tahun Penerimaan:</strong> 2025 (Gangsa) & 2026 (Perak)</p>
-              <p><strong class="text-slate-400">Badan Berkuasa:</strong> Pengerusi Badan Berkuasa Anugerah Kebangsaan (KBS)</p>
-              <p><strong class="text-slate-400">Pemberi Kuasa:</strong> Azura binti Abidin (Ketua Pengarah JBSN)</p>
+            <div class="mt-4 pt-3 border-t border-slate-200 text-[11px] text-slate-500">
+              <i class="fa-solid fa-circle-info text-sky-600 mr-1"></i> Diluluskan rasmi pada 10 September 2026 tanpa implikasi kewangan.
             </div>
           </div>
 
-          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-            <span class="text-amber-400"><i class="fa-solid fa-medal mr-1"></i> Bertaraf Kebangsaan</span>
-            <span class="text-slate-400">M/S 15 PDF</span>
-          </div>
         </div>
 
       </div>
-    </div>
-  </section>
 
-  <!-- STATUS SEMAKAN & PENGESAHAN LOG BUKU (LOGBOOK AUDIT) -->
-  <section id="logbook" class="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm">
-      
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-200">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-widest text-purple-900">Skim Latihan Kelana</span>
-          <h3 class="text-2xl font-bold font-display text-slate-900 mt-1">Status Perakuan Lencana Kepimpinan</h3>
-          <p class="text-xs text-slate-600 mt-1">Pengesahan pemenuhan syarat dan kelayakan penganugerahan lencana.</p>
-        </div>
-
-        <div class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-300 text-sm font-bold shadow-sm">
-          <i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i>
-          <span>SYARAT DIPENUHI (100%)</span>
-        </div>
-      </div>
-
-      <!-- Checklist Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+      <!-- PROJEK 2: EKSPEDISI MENDAKI BUKIT TOK DUN 2025 -->
+      <div id="projek-mendaki" class="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden">
         
-        <div class="flex items-start space-x-3 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-          <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
-          <span class="text-xs text-slate-700">Jawatan Exco Pentadbiran SPKD bagi tempoh minimum 1 sesi penuh dipenuhi.</span>
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-slate-900 text-white p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/30 text-emerald-200 text-xs font-bold">
+              <i class="fa-solid fa-person-hiking"></i>
+              Aktiviti Bil. 6 • Tahun 2025
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold font-serif">Program Ekspedisi Mendaki & Rekreasi Alam</h3>
+            <p class="text-emerald-200 text-xs sm:text-sm max-w-2xl">
+              Eksplorasi fizikal dan sahsiah kepimpinan di Bukit Tok Dun, Arau, Perlis oleh SPKD Kelanasiswa PTSS.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-white/10 p-4 rounded-xl border border-white/15">
+            <div>
+              <span class="block text-[10px] uppercase text-emerald-200 tracking-wider font-semibold">Peranan Pemohon</span>
+              <span class="text-base font-bold text-white flex items-center gap-1.5">
+                <i class="fa-solid fa-shield-cat text-amber-400"></i>
+                JK Keselamatan & Kebajikan
+              </span>
+            </div>
+            <div class="sm:border-l sm:border-white/20 sm:pl-4">
+              <span class="block text-[10px] uppercase text-emerald-200 tracking-wider font-semibold">Kelulusan Akademik</span>
+              <span class="text-xs font-bold text-emerald-300 flex items-center gap-1">
+                <i class="fa-solid fa-signature"></i> Diluluskan TPA PTSS
+              </span>
+            </div>
+          </div>
         </div>
 
-        <div class="flex items-start space-x-3 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-          <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
-          <span class="text-xs text-slate-700">Penyertaan aktiviti perkhemahan/jambori berprestij (14th Malaysia Jamboree).</span>
-        </div>
+        <!-- Body Details -->
+        <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <div class="lg:col-span-2 space-y-6">
+            
+            <!-- Metadata Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="text-slate-400 block mb-1">Tarikh</span>
+                <span class="font-bold text-slate-800">11 Oktober 2025 (Sabtu)</span>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="text-slate-400 block mb-1">Masa</span>
+                <span class="font-bold text-slate-800">7.00 pg - 2.30 ptg</span>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="text-slate-400 block mb-1">Lokasi</span>
+                <span class="font-bold text-slate-800">Bukit Tok Dun, Arau</span>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="text-slate-400 block mb-1">Jumlah Peserta</span>
+                <span class="font-bold text-slate-800">71 Peserta Berdaftar</span>
+              </div>
+            </div>
 
-        <div class="flex items-start space-x-3 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-          <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
-          <span class="text-xs text-slate-700">Pengalaman jawatankuasa penganjuran Kursus Kemahiran Kelana (3 siri).</span>
-        </div>
+            <!-- Objektif & SDG Global Goals -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-tree text-emerald-600"></i> Nilai Pendidikan & Kelestarian Alam
+              </h4>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Pendedahan langsung tentang ilmu asas rekreasi, panduan navigasi, mitigasi risiko ketika mendaki, serta persediaan bagi mencapai penanugerahan <strong>Baden Powell Award (BPA)</strong>. Program ini turut menyokong 4 Matlamat Pembangunan Mampan (SDG):
+              </p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs pt-1">
+                <div class="bg-red-50 text-red-700 border border-red-200 p-2 rounded-lg font-semibold flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-red-600 text-white flex items-center justify-center text-[10px]">3</span>
+                  <span>Kesihatan Baik</span>
+                </div>
+                <div class="bg-red-50 text-red-700 border border-red-200 p-2 rounded-lg font-semibold flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-red-800 text-white flex items-center justify-center text-[10px]">4</span>
+                  <span>Pendidikan Berkualiti</span>
+                </div>
+                <div class="bg-green-50 text-green-700 border border-green-200 p-2 rounded-lg font-semibold flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-green-700 text-white flex items-center justify-center text-[10px]">13</span>
+                  <span>Tindakan Iklim</span>
+                </div>
+                <div class="bg-emerald-50 text-emerald-700 border border-emerald-200 p-2 rounded-lg font-semibold flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-emerald-800 text-white flex items-center justify-center text-[10px]">15</span>
+                  <span>Ekosistem Darat</span>
+                </div>
+              </div>
+            </div>
 
-        <div class="flex items-start space-x-3 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-          <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
-          <span class="text-xs text-slate-700">Latihan tadbir urus dan organisasi belia diperakui Jabatan Belia dan Sukan.</span>
-        </div>
+            <!-- Tentatif Acara -->
+            <div>
+              <h4 class="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-route text-emerald-600"></i> Tentatif Ekspedisi
+              </h4>
+              <div class="border border-slate-200 rounded-xl overflow-hidden divide-y divide-slate-100 text-xs">
+                <div class="p-2.5 flex justify-between bg-slate-50 font-semibold text-slate-700">
+                  <span>7.00 - 8.00 pg</span>
+                  <span>Berkumpul di parkir bas PTSS & bertolak ke Bukit Tok Dun</span>
+                </div>
+                <div class="p-2.5 flex justify-between">
+                  <span class="font-medium text-slate-500">8.00 - 8.30 pg</span>
+                  <span class="text-slate-700">Tiba di tapak kaki bukit & taklimat laluan</span>
+                </div>
+                <div class="p-2.5 flex justify-between bg-slate-50/50">
+                  <span class="font-medium text-slate-500">9.00 - 11.00 pg</span>
+                  <span class="text-emerald-800 font-bold">Mula ekspedisi mendaki bukit tok dun</span>
+                </div>
+                <div class="p-2.5 flex justify-between text-amber-800 bg-amber-50/50">
+                  <span class="font-medium">11.00 pg - 1.00 tgh</span>
+                  <span class="font-semibold">Tiba di puncak, aktiviti rekreasi & makan tengah hari</span>
+                </div>
+                <div class="p-2.5 flex justify-between">
+                  <span class="font-medium text-slate-500">1.00 - 2.00 ptg</span>
+                  <span class="text-slate-700">Pergerakan turun berpasukan ke kaki bukit</span>
+                </div>
+                <div class="p-2.5 flex justify-between bg-slate-50">
+                  <span class="font-medium text-slate-500">2.30 ptg</span>
+                  <span class="text-slate-700">Bertolak pulang ke kampus PTSS & bersurai</span>
+                </div>
+              </div>
+            </div>
 
-        <div class="flex items-start space-x-3 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-          <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
-          <span class="text-xs text-slate-700">Jawatankuasa program keselamatan, ekspedisi dan pertolongan cemas (JPAM).</span>
-        </div>
+          </div>
 
-        <div class="flex items-start space-x-3 p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-          <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
-          <span class="text-xs text-slate-700">Pentauliahan Anugerah Remaja Perdana Rakan Muda (Gangsa & Perak).</span>
+          <!-- Carta Organisasi Kursus Mendaki -->
+          <div class="bg-slate-50/80 rounded-xl p-5 border border-slate-200/80 flex flex-col justify-between">
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2 mb-4">
+                Jawatankuasa Pelaksana
+              </h4>
+              <ul class="space-y-3 text-xs">
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Penaung I:</span>
+                  <span class="font-semibold text-slate-800 text-right">Dr. Isyati binti Suparman<br><span class="text-[10px] text-slate-400 font-normal">(Timbalan Pengarah Akademik)</span></span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Penaung II:</span>
+                  <span class="font-semibold text-slate-800 text-right">Hj Johanis bin Mohd Jamil</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Penasihat:</span>
+                  <span class="font-semibold text-slate-800 text-right">Pn. Farihan Elyana binti Zahari</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">Pengarah Program:</span>
+                  <span class="font-semibold text-slate-800 text-right">Nur Shazliana Izreen binti Amiruddin</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">JK Makanan:</span>
+                  <span class="font-semibold text-slate-800 text-right">Nur Ain Natasya / Nur Atikah</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="text-slate-500">JK Aktiviti:</span>
+                  <span class="font-semibold text-slate-800 text-right">Nur Yusnina / Nur Alia Husna</span>
+                </li>
+                <li class="pt-2 border-t border-slate-200 flex flex-col gap-1 bg-emerald-100/70 p-2.5 rounded-lg">
+                  <span class="font-bold text-emerald-950">JK Keselamatan & Kebajikan:</span>
+                  <span class="font-bold text-emerald-900">• NUR FIKRIYAH BINTI ZULKIFLI</span>
+                  <span class="text-emerald-800 text-[11px]">• Nur Risha Damia • Siti Nur Zalikha</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-200 text-[11px] text-slate-500">
+              <i class="fa-solid fa-stamp text-emerald-600 mr-1"></i> Disokong Ketua Jabatan Sukan & Warisan dan diluluskan TPA PTSS pada 2 Okt 2025.
+            </div>
+          </div>
+
         </div>
 
       </div>
 
-      <!-- Action Footer -->
-      <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+    </section>
+
+    <!-- SECTION 4: DIREKTORI INTERAKTIF SENARAI PESERTA & JABATAN -->
+    <section id="peserta" class="bg-white rounded-2xl border border-slate-200/80 shadow-xl shadow-slate-200/50 p-6 sm:p-8 space-y-6">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-5">
         <div>
-          <span>Buku Log Elektronik disediakan untuk semakan Pemimpin & Pesuruhjaya Pengakap Kelana.</span>
+          <span class="text-xs font-bold text-brand-700 tracking-wider uppercase">Pangkalan Data Rekod Program</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 font-serif">Direktori Peserta Yang Dikendalikan</h2>
+          <p class="text-xs text-slate-500 mt-1">Gunakan carian untuk menapis peserta bagi kedua-dua program kepimpinan.</p>
         </div>
-        <button onclick="window.print()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold transition flex items-center space-x-2">
-          <i class="fa-solid fa-print"></i>
-          <span>Cetak / Eksport PDF</span>
+
+        <!-- Filter Tab -->
+        <div class="inline-flex p-1 bg-slate-100 rounded-xl no-print">
+          <button id="tab-mendaki" onclick="switchTable('mendaki')" class="px-4 py-2 text-xs font-bold rounded-lg bg-white text-slate-900 shadow-sm transition-all">
+            Ekspedisi Bukit Tok Dun (71)
+          </button>
+          <button id="tab-cemas" onclick="switchTable('cemas')" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 rounded-lg transition-all">
+            Pertolongan Cemas (41)
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Statistics Bar -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="relative w-full sm:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            onkeyup="filterTable()" 
+            placeholder="Cari nama, no. pendaftaran, atau jabatan..." 
+            class="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition-all"
+          >
+        </div>
+
+        <div class="flex items-center gap-2 text-xs text-slate-500 w-full sm:w-auto justify-end">
+          <span>Memaparkan <span id="visibleCount" class="font-bold text-slate-900">71</span> rekod</span>
+          <span class="text-slate-300">|</span>
+          <span class="inline-flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">
+            <i class="fa-solid fa-users"></i> PTSS Pelbagai Jabatan
+          </span>
+        </div>
+      </div>
+
+      <!-- Table Wrapper with fixed scroll -->
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <div class="max-h-96 overflow-y-auto custom-scrollbar">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead class="sticky top-0 bg-slate-100 text-slate-700 uppercase font-bold border-b border-slate-200 z-10">
+              <tr>
+                <th class="py-3 px-4 w-14 text-center">Bil.</th>
+                <th class="py-3 px-4 w-36">No. Pendaftaran</th>
+                <th class="py-3 px-4">Nama Peserta</th>
+                <th class="py-3 px-4 w-28 text-center" id="th-extra">Status/Kelas</th>
+                <th class="py-3 px-4 w-24 text-center">Jabatan</th>
+              </tr>
+            </thead>
+            <tbody id="participantTableBody" class="divide-y divide-slate-100">
+              <!-- Content rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2 pt-2">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-slate-700">Petunjuk Jabatan:</span>
+          <span class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded">JPH: Pelancongan & Hospitaliti</span>
+          <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded">JP: Perdagangan</span>
+          <span class="bg-purple-50 text-purple-700 px-2 py-0.5 rounded">JTMK: Teknologi Maklumat</span>
+          <span class="bg-rose-50 text-rose-700 px-2 py-0.5 rounded">JRKV: Rekabentuk</span>
+        </div>
+        <span class="italic">Sumber: Lampiran Kertas Kerja SPKD PTSS</span>
+      </div>
+
+    </section>
+
+    <!-- SECTION 5: PENGESAHAN DOKUMEN & FOOTER -->
+    <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 sm:p-10 shadow-xl">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-amber-400 tracking-wider uppercase block mb-1">Perakuan Pengakap Kelana</span>
+        <h3 class="text-xl sm:text-2xl font-bold font-serif mb-3">Melengkapkan Syarat Lencana Kepimpinan</h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+          Adalah disahkan bahawa calon <strong>NUR FIKRIYAH BINTI ZULKIFLI (No. KP: 060428-09-0014)</strong> telah melunaskan kesemua 6 komponen kriteria kepimpinan beruniform, penganjuran program rasmi bertaraf negeri & kebangsaan, dan pematuhan modul kelanasiswa selaras dengan kehendak Persekutuan Pengakap Malaysia.
+        </p>
+        <div class="flex items-center gap-4 text-xs text-slate-400 border-t border-slate-700 pt-4">
+          <div>
+            <span class="block text-slate-200 font-bold">PTSS Arau</span>
+            <span>Pauh Putra, Perlis</span>
+          </div>
+          <div class="border-l border-slate-700 pl-4">
+            <span class="block text-slate-200 font-bold">Status Perakuan</span>
+            <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle-check"></i> Siap Disemak</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DIALOGS FOR CERTIFICATES -->
+
+  <!-- Modal 1: Sijil JBSN Pengurusan Organisasi -->
+  <div id="modal-jbsn" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
+      <div class="bg-emerald-900 text-white px-6 py-4 flex items-center justify-between">
+        <h3 class="text-base font-bold flex items-center gap-2">
+          <i class="fa-solid fa-certificate text-amber-400"></i>
+          Sijil Penyertaan Rasmi JBSN Perlis
+        </h3>
+        <button onclick="closeModal('modal-jbsn')" class="text-white/80 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-purple-950 text-white border-t border-white/10 py-12 text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
       
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-lg bg-amber-400 text-purple-950 flex items-center justify-center font-black text-lg">
-          <i class="fa-solid fa-award"></i>
-        </div>
-        <div>
-          <p class="font-bold text-white text-sm">Sekretariat Pengakap Kelana Daerah (SPKD)</p>
-          <p class="text-slate-400">Politeknik Tuanku Syed Sirajuddin, Pauh Putra, Arau, Perlis</p>
+      <!-- Certificate Visual Simulation -->
+      <div class="p-8 bg-amber-50/30 flex justify-center">
+        <div class="bg-white w-full max-w-lg p-8 rounded-lg shadow-inner cert-border text-center space-y-4 relative">
+          <div class="text-[11px] uppercase tracking-widest text-slate-500 font-bold">
+            Kementerian Belia dan Sukan<br>
+            <span class="text-slate-800 text-xs">Jabatan Belia dan Sukan Negeri Perlis</span>
+          </div>
+          <div class="text-2xl font-serif text-brand-800 font-black tracking-wider uppercase pt-2">
+            Sijil Penyertaan
+          </div>
+          <p class="text-xs text-slate-600">Adalah ini di sahkan bahawa</p>
+          <h4 class="text-lg font-bold text-slate-900 border-b border-amber-300 pb-1 font-serif">
+            NUR FIKRIYAH BINTI ZULKIFLI
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            telah menyertai program anjuran Jabatan Belia & Sukan Negeri Perlis
+          </p>
+          <div class="bg-emerald-50 border border-emerald-200 py-2 px-3 rounded-lg">
+            <span class="block font-black text-emerald-900 text-sm">PROGRAM PENGURUSAN ORGANISASI 2026</span>
+            <span class="text-[10px] text-emerald-700 uppercase font-semibold">Peringkat Negeri Perlis</span>
+          </div>
+          <div class="grid grid-cols-2 text-[11px] text-slate-600 pt-2 text-left">
+            <div><strong>Pada:</strong> 31 Julai 2026 - 2 Ogos 2026</div>
+            <div><strong>Bertempat di:</strong> ClubRock, Gua Kelam Perlis</div>
+          </div>
+          <div class="pt-6 border-t border-slate-200 flex justify-between items-end text-left">
+            <div>
+              <span class="text-[10px] text-slate-400 block">Ditandatangani oleh:</span>
+              <span class="text-xs font-bold text-slate-800">MOHAMMAD SUHAIMI BIN MD SAAD</span>
+              <span class="block text-[10px] text-slate-500">Pengarah JBSN Perlis</span>
+            </div>
+            <div class="text-[10px] font-bold text-brand-800 bg-brand-50 px-2 py-1 rounded border border-brand-200">
+              MALAYSIA MADANI
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="text-center sm:text-right text-slate-400">
-        <p>E-Portfolio Lencana Kepimpinan • Calon: <strong>Nur Fikriyah binti Zulkifli</strong></p>
-        <p class="mt-1">Pentauliahan Skim Kelanasiswa Malaysia • "Sekali Berpengakap, Terus Berpengakap"</p>
+      <div class="bg-slate-100 px-6 py-3 flex justify-end">
+        <button onclick="closeModal('modal-jbsn')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
+          Tutup Paparan
+        </button>
       </div>
-
     </div>
-  </footer>
+  </div>
 
-  <!-- SCRIPT UNTUK INTERAKTIVITI -->
+  <!-- Modal 2: Sijil Anugerah Remaja Perdana Rakan Muda (Gangsa & Perak) -->
+  <div id="modal-bronze" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
+      <div class="bg-amber-900 text-white px-6 py-4 flex items-center justify-between">
+        <h3 class="text-base font-bold flex items-center gap-2">
+          <i class="fa-solid fa-award text-amber-300"></i>
+          Anugerah Remaja Perdana Rakan Muda (ARPRM)
+        </h3>
+        <button onclick="closeModal('modal-bronze')" class="text-white/80 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      
+      <div class="p-8 bg-amber-50/20 flex justify-center">
+        <div class="bg-white w-full max-w-lg p-8 rounded-lg shadow-inner cert-border text-center space-y-4">
+          <div class="flex items-center justify-center gap-2 text-xs font-bold text-slate-800 uppercase">
+            <span class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-[10px] font-black">KBS</span>
+            <span>Kementerian Belia dan Sukan Malaysia</span>
+          </div>
+          <p class="text-xs text-slate-600 mt-2">Dengan ini mengiktiraf bahawa</p>
+          <h4 class="text-lg font-bold text-slate-900 border-b border-amber-300 pb-1 font-serif">
+            NUR FIKRIYAH BINTI ZULKIFLI
+          </h4>
+          <p class="text-xs text-slate-600">telah berjaya diiktiraf</p>
+          <div class="bg-gradient-to-r from-amber-100 via-amber-200 to-amber-100 border border-amber-300 py-3 px-4 rounded-xl">
+            <span class="block text-xs uppercase font-semibold text-amber-900">Peringkat Pencapaian</span>
+            <span class="block text-xl font-black text-amber-950 tracking-wider">ANUGERAH GANGSA (2025) & PERAK (2026)</span>
+            <span class="text-[11px] text-amber-800 font-medium">The Duke of Edinburgh's International Award Malaysia</span>
+          </div>
+          <div class="pt-6 border-t border-slate-200 flex justify-between items-end text-left">
+            <div>
+              <span class="text-[10px] text-slate-400 block">Pengesahan Pihak Berkuasa:</span>
+              <span class="text-xs font-bold text-slate-800">AZURA BINTI ABIDIN</span>
+              <span class="block text-[10px] text-slate-500">Ketua Pengarah JBSN / Pengerusi ARPRM Malaysia</span>
+            </div>
+            <div class="text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-1 rounded">
+              RAKAN MUDA
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-100 px-6 py-3 flex justify-end">
+        <button onclick="closeModal('modal-bronze')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
+          Tutup Paparan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Rekod Perak Info -->
+  <div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
+      <div class="bg-slate-800 text-white px-6 py-4 flex items-center justify-between">
+        <h3 class="text-base font-bold flex items-center gap-2">
+          <i class="fa-solid fa-medal text-slate-300"></i>
+          Peringkat Perak ARPRM 2026
+        </h3>
+        <button onclick="closeModal('modal-silver')" class="text-white/80 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-6 text-sm text-slate-600 space-y-4">
+        <p>
+          Calon <strong>Nur Fikriyah binti Zulkifli</strong> telah menaik taraf pencapaian Rakan Muda daripada Anugerah Gangsa (2025) ke <strong>Anugerah Perak (2026)</strong>.
+        </p>
+        <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 space-y-2 text-xs">
+          <div class="flex justify-between">
+            <span class="text-slate-500">Status Pencapaian:</span>
+            <span class="font-bold text-slate-800">Tahap Perak (Silver Award)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Tahun:</span>
+            <span class="font-bold text-slate-800">2026</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Komponen Utama:</span>
+            <span class="font-bold text-slate-800">Khidmat Masyarakat, Kemahiran, Rekreasi</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-slate-50 px-6 py-3 flex justify-end">
+        <button onclick="closeModal('modal-silver')" class="px-4 py-2 bg-slate-800 text-white text-xs font-semibold rounded-lg">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Watikah Pelantikan SPKD -->
+  <div id="modal-watikah" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
+      <div class="bg-purple-950 text-white px-6 py-4 flex items-center justify-between">
+        <h3 class="text-base font-bold flex items-center gap-2">
+          <i class="fa-solid fa-scroll text-amber-300"></i>
+          Watikah Pelantikan Rasmi PTSS
+        </h3>
+        <button onclick="closeModal('modal-watikah')" class="text-white/80 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      
+      <div class="p-8 bg-purple-50/20 flex justify-center">
+        <div class="bg-white w-full max-w-lg p-8 rounded-lg shadow-inner cert-border text-center space-y-4">
+          <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">
+            Politeknik Malaysia<br>
+            <span class="text-slate-900 font-black">Tuanku Syed Sirajuddin</span>
+          </div>
+          <h4 class="text-2xl font-serif text-purple-900 font-black tracking-wide uppercase pt-2">
+            Watikah Pelantikan
+          </h4>
+          <p class="text-xs text-slate-600">Adalah dengan ini dilantik</p>
+          <div>
+            <h4 class="text-lg font-bold text-slate-900 font-serif">NUR FIKRIYAH BINTI ZULKIFLI</h4>
+            <span class="text-xs font-mono text-slate-500">No. KP: 060428-09-0014</span>
+          </div>
+          <p class="text-xs text-slate-600">Sebagai</p>
+          <div class="bg-purple-100/70 border border-purple-300 py-2 px-4 rounded-xl">
+            <span class="block text-base font-black text-purple-950 tracking-wider">EXCO PENTADBIRAN</span>
+            <span class="text-[11px] text-purple-800 font-medium">Sekretariat Pengakap Kelana Daerah (SPKD), Kelanasiswa Malaysia</span>
+          </div>
+          <p class="text-xs text-slate-600">
+            mulai <strong>Sesi I 2024/2025</strong> hingga <strong>Sesi II 2024/2025</strong>
+          </p>
+          <div class="pt-6 border-t border-slate-200 flex justify-between items-end text-left">
+            <div>
+              <span class="text-xs font-bold text-slate-800">FARIHAN ELYANA BINTI ZAHARI</span>
+              <span class="block text-[10px] text-slate-500">Pesuruhjaya Pengakap Daerah Kelanasiswa Malaysia PTSS</span>
+            </div>
+            <div class="text-[10px] font-bold text-purple-900 bg-purple-100 px-2 py-1 rounded">
+              PENGAKAP KELANA
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-100 px-6 py-3 flex justify-end">
+        <button onclick="closeModal('modal-watikah')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
+          Tutup Paparan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT DATA AND INTERACTION LOGIC -->
   <script>
-    // Mobile navigation toggle
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
+    // Data Peserta Ekspedisi Mendaki (71 orang daripada dokumen Lampiran 3)
+    const pesertaMendaki = [
+      { bil: 1, noPend: "18DHR23F2011", nama: "UMMU SYAFIAH ALIAH BINTI MOHD ZAMANI", extra: "Peserta", dept: "JPH" },
+      { bil: 2, noPend: "18DSK23F2029", nama: "NURUL HAZIQAH BINTI AZEMI", extra: "Peserta", dept: "JP" },
+      { bil: 3, noPend: "18DSK24F1031", nama: "NUR SHAZLIANA IZREEN BINTI AMIRUDDIN", extra: "Pengarah Program", dept: "JP" },
+      { bil: 4, noPend: "18DIT23F2002", nama: "NUR AIN NATASHA BINTI OSMAN", extra: "JK Makanan", dept: "JTMK" },
+      { bil: 5, noPend: "18DUP24F1018", nama: "NUR ATIKAH BINTI AZMI", extra: "JK Makanan", dept: "JPH" },
+      { bil: 6, noPend: "18DUP24F1076", nama: "MUHAMMAD MIRDZA HAIKAL BIN ABDUL WAHAB", extra: "Peserta", dept: "JPH" },
+      { bil: 7, noPend: "18DIT23F2004", nama: "NUR YUSNINA BINTI IBRAHIM", extra: "JK Aktiviti", dept: "JTMK" },
+      { bil: 8, noPend: "18DAT24F1057", nama: "NUR ALIA HUSNA BINTI SHAMSULSONNY", extra: "JK Aktiviti", dept: "JP" },
+      { bil: 9, noPend: "18DEV24F1059", nama: "SITI NUR ZULAIKHA BINTI ZAINAL", extra: "JK Keselamatan", dept: "JPH" },
+      { bil: 10, noPend: "18DCS24F1036", nama: "NUR AMIRA SYAKIRA BINTI MOHAMMAD NAIM", extra: "Peserta", dept: "JRKV" },
+      { bil: 11, noPend: "18DCS24F1014", nama: "AINA ZULAIKHA BINTI MAHAZIR", extra: "Peserta", dept: "JRKV" },
+      { bil: 12, noPend: "18DUP24F1006", nama: "NUR ALYA NAJWA BINTI ABDUL RAHIM", extra: "Peserta", dept: "JPH" },
+      { bil: 13, noPend: "18DAT24F1033", nama: "NUR RISHA DAMIA BINTI MUHAMAD RIDZUAN", extra: "JK Keselamatan", dept: "JP" },
+      { bil: 14, noPend: "18DIT23F2010", nama: "FATIN HADIRAH BINTI MD HASHIM", extra: "Peserta", dept: "JTMK" },
+      { bil: 15, noPend: "18DCS24F1025", nama: "NUR FIKRIYAH BINTI ZULKIFLI (CALON)", extra: "JK Keselamatan", dept: "JRKV" },
+      { bil: 16, noPend: "18DEP24F2001", nama: "AISYAH SAFIAH BINTI BADRUL HISHAM", extra: "Peserta", dept: "JKE" },
+      { bil: 17, noPend: "18DUP24F2003", nama: "SITI ZULAIKHA BINTI ABDULLAH", extra: "Peserta", dept: "JPH" },
+      { bil: 18, noPend: "18DHR24F2028", nama: "ALIYAH MAISARAH BINTI SHAMSUDIN", extra: "Peserta", dept: "JPH" },
+      { bil: 19, noPend: "18DPM24F2052", nama: "ROSHNI A/P SHANMUGAM", extra: "Peserta", dept: "JP" },
+      { bil: 20, noPend: "18DSK24F2012", nama: "NORQASRINA ALYSSA BINTI ALIMIN", extra: "Peserta", dept: "JP" },
+      { bil: 21, noPend: "18DUP24F2018", nama: "NUR RAUDHATUL HUSNA BINTI RUSLAN", extra: "Peserta", dept: "JPH" },
+      { bil: 22, noPend: "18DUP24F2013", nama: "NUR AUNI BALQIS BINTI NOR SUZIRMAN", extra: "Peserta", dept: "JPH" },
+      { bil: 23, noPend: "18DPM24F1993", nama: "NURUL SHAZWALIZA BINTI MOHD SHAZLAN", extra: "Peserta", dept: "JP" },
+      { bil: 24, noPend: "18DPM24F2042", nama: "NURULAIN BINTI ZAINOL", extra: "Peserta", dept: "JP" },
+      { bil: 25, noPend: "18DUP24F2010", nama: "MYA ADRIANA BINTI ABDULLAH", extra: "Peserta", dept: "JPH" },
+      { bil: 26, noPend: "18DSK24F2010", nama: "NUR IZZATI BINTI ZAKRI", extra: "Peserta", dept: "JP" },
+      { bil: 27, noPend: "18DSK24F2043", nama: "NORHIDAYAH BINTI GHADAFI", extra: "Peserta", dept: "JP" },
+      { bil: 28, noPend: "18DHF24F2007", nama: "NUR ALIA BINTI ABDUL MUTALIB", extra: "Peserta", dept: "JPH" },
+      { bil: 29, noPend: "18DPM24F2021", nama: "NURAZMINA BINTI MOHD NAZIR", extra: "Peserta", dept: "JP" },
+      { bil: 30, noPend: "18DSK24F2018", nama: "ZULHAILA BINTI JELANI", extra: "Peserta", dept: "JP" },
+      { bil: 31, noPend: "18DHF24F2043", nama: "NURUL AQILAH BINTI MOHD ZAINUDDIN", extra: "Peserta", dept: "JPH" },
+      { bil: 32, noPend: "18DUP24F2017", nama: "AIMI HAZIRAH BINTI AZHARI", extra: "Peserta", dept: "JPH" },
+      { bil: 33, noPend: "18DUP24F2055", nama: "NURUL EZLIANA BINTI AHMAD SHUKRI", extra: "Peserta", dept: "JPH" },
+      { bil: 34, noPend: "18DIT24F2005", nama: "NOR SYAHIRAH BINTI RONZI", extra: "Peserta", dept: "JTMK" },
+      { bil: 35, noPend: "18DHR24F2002", nama: "NUR AIN BINTI AHMAD ZAMZURI", extra: "Peserta", dept: "JPH" },
+      { bil: 36, noPend: "18DEV25F1012", nama: "AMIER FARHAN BIN AHMAD RAZIN", extra: "Peserta", dept: "JPH" },
+      { bil: 37, noPend: "18DHF25F1001", nama: "AIMAN HAZEEQ BIN SAIFULAZLI", extra: "Peserta", dept: "JPH" },
+      { bil: 38, noPend: "18DHF25F1005", nama: "NURALISA ATIQAH BINTI NASHIKIN", extra: "Peserta", dept: "JPH" },
+      { bil: 39, noPend: "18DHF25F1015", nama: "MOHD AKMAL ARIF BIN MOHD HEZRI", extra: "Peserta", dept: "JPH" },
+      { bil: 40, noPend: "18DHF25F1023", nama: "NURFATIHAH BINTI AMRAL", extra: "Peserta", dept: "JPH" },
+      { bil: 41, noPend: "18DHF25F1039", nama: "NUR DHIYA IRDINA BINTI MOHD SAIFUL HAZA", extra: "Peserta", dept: "JPH" },
+      { bil: 42, noPend: "18DHF25F1022", nama: "NUR ALIA ADRIANA BINTI MOHD EARY", extra: "Peserta", dept: "JPH" },
+      { bil: 43, noPend: "18DHF25F1010", nama: "MUHAMMAD ZULKARNAIN BIN ZULKFLI", extra: "Peserta", dept: "JPH" },
+      { bil: 44, noPend: "18DHR25F1029", nama: "XANDRA NURSYAZREEN BINTI USAINY", extra: "Peserta", dept: "JPH" },
+      { bil: 45, noPend: "18DIT25F1022", nama: "CHAVALIN PRICHACON A/P SOMPHON", extra: "Peserta", dept: "JTMK" },
+      { bil: 46, noPend: "18DIT25F1172", nama: "SYAMIMIE ALIA BINTI HALIM", extra: "Peserta", dept: "JTMK" },
+      { bil: 47, noPend: "18DIT25F1121", nama: "FAARIS HAKEEM BIN FIDAUS", extra: "Peserta", dept: "JTMK" },
+      { bil: 48, noPend: "18DIT25F1027", nama: "NURUL FARHANA AMIRA BINTI ZULKIFLI", extra: "Peserta", dept: "JTMK" },
+      { bil: 49, noPend: "18DIT25F1044", nama: "PUTERI SOFEA ADILA BINTI MOHD HIDEER", extra: "Peserta", dept: "JTMK" },
+      { bil: 50, noPend: "18DIT25F1119", nama: "AIMI UMAIRAH BINTI AMAN", extra: "Peserta", dept: "JTMK" },
+      { bil: 51, noPend: "18DIT25F1211", nama: "NURUL AINA ASHIKIN BINTI ABDUL RAZAK", extra: "Peserta", dept: "JTMK" },
+      { bil: 52, noPend: "18DIT25F1045", nama: "NUR DHANIYAH BATRISYIA BINTI MD HISHAM", extra: "Peserta", dept: "JTMK" },
+      { bil: 53, noPend: "18DKE25F1001", nama: "MUHAMAD IQRAM ZIKRY BIN KHAIRIL HAZREEN", extra: "Peserta", dept: "JKE" },
+      { bil: 54, noPend: "18DKM251012", nama: "MUHAMMAD ZAKIRIN SYAHMI BIN NURUL HISHAM", extra: "Peserta", dept: "JKM" },
+      { bil: 55, noPend: "18DKM25F1001", nama: "ALIA SORAYA AZLIN BINTI MOHD ZAIROL", extra: "Peserta", dept: "JKM" },
+      { bil: 56, noPend: "18DKM25F1015", nama: "SYAKIRAH BINTI SHAHRIL", extra: "Peserta", dept: "JKM" },
+      { bil: 57, noPend: "18DPM25F1002", nama: "NUR ATIKAH BINTI AZIZAN", extra: "Peserta", dept: "JKM" },
+      { bil: 58, noPend: "18DPM25F1024", nama: "HAFIZAH AISYAH BINTI MAHMUELEE TORLAEMA", extra: "Peserta", dept: "JP" },
+      { bil: 59, noPend: "18DPM25F1030", nama: "NURIZZATI HUMAIRA BINTI NAIRIZAL", extra: "Peserta", dept: "JP" },
+      { bil: 60, noPend: "18DPM25F1042", nama: "NUR ANISS ADIEYBA BINTI KAMAROZAMAN", extra: "Peserta", dept: "JP" },
+      { bil: 61, noPend: "18DPM25F1023", nama: "NURUL SYAMIMI BINTI MOHD ROSLI", extra: "Peserta", dept: "JP" },
+      { bil: 62, noPend: "18DPM25F1029", nama: "NUR QAMARINA BINTI JASMIJEAM", extra: "Peserta", dept: "JP" },
+      { bil: 63, noPend: "18DSK25F1008", nama: "NURUL NAJIHAH BINTI ZULKHAIRI", extra: "Peserta", dept: "JP" },
+      { bil: 64, noPend: "18DSK25F1022", nama: "NURUL FATIN LIYANA BINTI NURULFANDI", extra: "Peserta", dept: "JP" },
+      { bil: 65, noPend: "18DSK25F1003", nama: "ANISA UMAYRAH BINTI KHAFILAH NUR", extra: "Peserta", dept: "JP" },
+      { bil: 66, noPend: "18DSK25F1037", nama: "NUR QISTINA NABILA BINTI KHAIRRULLSHAKIRIN", extra: "Peserta", dept: "JP" },
+      { bil: 67, noPend: "18DSK25F1033", nama: "ROS AMIRAH BATRISYIA BINTI ROZAIDI", extra: "Peserta", dept: "JP" },
+      { bil: 68, noPend: "18DSK25F1041", nama: "IZZATUL SHALIHAH BINTI IDRUS", extra: "Peserta", dept: "JP" },
+      { bil: 69, noPend: "18DTK25F1011", nama: "ALLISSA QISTINA BINTI MAZUKI", extra: "Peserta", dept: "JKE" },
+      { bil: 70, noPend: "18DTK25F1013", nama: "ADRIE MYREZZA BIN ZULKIFLEE", extra: "Peserta", dept: "JKE" },
+      { bil: 71, noPend: "18DUP25F1007", nama: "MEISA CHOMNARIN A/P AICEK", extra: "Peserta", dept: "JPH" }
+    ];
 
-    mobileBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+    // Data Peserta Kursus Pertolongan Cemas (41 orang: 26 Sem 2 + 15 SPKD)
+    const pesertaCemas = [
+      { bil: 1, noPend: "18DEV25F2004", nama: "MUHAMMAD IRFAN BIN MAZLAN", extra: "DEV2A", dept: "JPH" },
+      { bil: 2, noPend: "18DHF25F2007", nama: "MOHAMAD DANISH AZAIM BIN SAHIDAN", extra: "DHF2B", dept: "JPH" },
+      { bil: 3, noPend: "18DHF25F2014", nama: "AHMAD MUSTHOFA BIN CHE AZNAN", extra: "DHF2B", dept: "JPH" },
+      { bil: 4, noPend: "18DHF25F2027", nama: "MUHAMMAD NURFITRI ADWA BIN JAMURI", extra: "DHF2B", dept: "JPH" },
+      { bil: 5, noPend: "18DHF25F2050", nama: "MUHAMMAD ARIF BIN ZAMRI", extra: "DHF2B", dept: "JPH" },
+      { bil: 6, noPend: "18DHR25F2006", nama: "NURLIYANA AFIEQAH BINTI AHMAD ZAINI", extra: "DHF2B", dept: "JPH" },
+      { bil: 7, noPend: "18DHR25F2009", nama: "NUR MARSYA QISTINA BINTI MOHAMAD FAZLI", extra: "DHR2A", dept: "JPH" },
+      { bil: 8, noPend: "18DHR25F2015", nama: "SHARVIN A/L GUNALAN", extra: "DHR2A", dept: "JPH" },
+      { bil: 9, noPend: "18DHR25F2019", nama: "NURUL AZELA BINTI HAMID", extra: "DHR2A", dept: "JPH" },
+      { bil: 10, noPend: "18DUP25F2004", nama: "TAMIL TENDRAL A/L KURINCHIKKUMARAN", extra: "DUP2A", dept: "JPH" },
+      { bil: 11, noPend: "18DUP25F2009", nama: "AZWA NAZIHAH BINTI IDRIS", extra: "DUP2A", dept: "JPH" },
+      { bil: 12, noPend: "18DUP25F2010", nama: "PUTERI NURAINA SYAZA BINTI MEGAT SHAHRUL", extra: "DUP2A", dept: "JPH" },
+      { bil: 13, noPend: "18DUP25F2019", nama: "MUHAMMAD DANISH BIN MOHD NAIM", extra: "DUP2A", dept: "JPH" },
+      { bil: 14, noPend: "18DUP25F2020", nama: "ARISA DAMIA QAISARA BT ABDUL LATIF", extra: "DUP2A", dept: "JPH" },
+      { bil: 15, noPend: "18DUP25F2021", nama: "SITI AISYAH BINTI KHALIL", extra: "DUP2A", dept: "JPH" },
+      { bil: 16, noPend: "18DUP25F2027", nama: "NORAFIQAH AYUNI BINTI NORAZROL", extra: "DUP2A", dept: "JPH" },
+      { bil: 17, noPend: "18DUP25F2032", nama: "MUHAMMAD AIMAN HAKIM BIN MUSA", extra: "DUP2A", dept: "JPH" },
+      { bil: 18, noPend: "18DUP25F2036", nama: "NUR ATIKAH BINTI SAHIDAN", extra: "DUP2A", dept: "JPH" },
+      { bil: 19, noPend: "18DUP25F2042", nama: "PRAVIN A/L BALAMURUGAN", extra: "DUP2A", dept: "JPH" },
+      { bil: 20, noPend: "18DPM25F2012", nama: "AHMAD AIREEL HAQIMI BIN AHMAD EZREEN", extra: "DPM2A", dept: "JP" },
+      { bil: 21, noPend: "18DPM25F2018", nama: "MUHAMMAD NUR ARIF BIN SABRI", extra: "DPM2A", dept: "JP" },
+      { bil: 22, noPend: "18DPM25F2038", nama: "MOHAMED FIRDAUS BIN O OMAR FAROOK", extra: "DPM2A", dept: "JP" },
+      { bil: 23, noPend: "18DPM25F2041", nama: "DANIA HAIFA BINTI ASWAT", extra: "DPM2B", dept: "JP" },
+      { bil: 24, noPend: "18DSK25F2001", nama: "SITI NUR BAHIYAH BINTI MOHD NAZIR", extra: "DSK2B", dept: "JP" },
+      { bil: 25, noPend: "18DSK25F2002", nama: "NIA QYAIRUNISA BINTI MUHAMAD ZAINI", extra: "DSK2A", dept: "JP" },
+      { bil: 26, noPend: "18DSK25F2004", nama: "NUR ELLISYA BINTI OMAR", extra: "DSK2A", dept: "JP" },
+      { bil: 27, noPend: "18DSK25F2006", nama: "FARHANA BINTI MOHD NOOR", extra: "DSK2A", dept: "JP" },
+      { bil: 28, noPend: "18DSK25F2015", nama: "NUR ADILLA BINTI ROSLAN", extra: "DSK2B", dept: "JP" },
+      { bil: 29, noPend: "18DSK25F2016", nama: "NUR ATIKAH AYUNI BINTI HASHIM", extra: "DSK2A", dept: "JP" },
+      // Kumpulan SPKD (Sekretariat Kelanasiswa)
+      { bil: 30, noPend: "18DEV25F1012", nama: "AMEIR FARHAN BIN AHMAD RAZIN", extra: "DEV3A (SPKD)", dept: "JPH" },
+      { bil: 31, noPend: "18DHF25F1001", nama: "AIMAN HAZEEQ BIN SAIFULAZLI", extra: "DHF3A (SPKD)", dept: "JPH" },
+      { bil: 32, noPend: "18DHR25F1010", nama: "MUHAMMAD ZULKARNAIN BIN ZULKIFLI", extra: "DHR3A (SPKD)", dept: "JPH" },
+      { bil: 33, noPend: "18DHR25F1029", nama: "ANDRA NURSYAZREEN BINTI USAINY", extra: "DHR3A (SPKD)", dept: "JPH" },
+      { bil: 34, noPend: "18DIT25F1022", nama: "CHAVALIN PRICHACON A/P SOMPHON", extra: "DIT3A (SPKD)", dept: "JTMK" },
+      { bil: 35, noPend: "18DKE25F1001", nama: "MUHAMAD IQRAM ZIKRY BIN KHAIRIL HAZREEN", extra: "DKE3A (SPKD)", dept: "JKE" },
+      { bil: 36, noPend: "18DKM25F1012", nama: "MUHAMMAD ZAKIRIN SYAHMI BIN NURUL HISHAM", extra: "DKM3A (SPKD)", dept: "JKM" },
+      { bil: 37, noPend: "18DIT25F1027", nama: "NURUL FARHANA AMIRA BINTI ZULKIFLI", extra: "DIT3B (SPKD)", dept: "JTMK" },
+      { bil: 38, noPend: "18DIT25F1044", nama: "PUTRI SOFEA ADILA BINTI MOHD HIDEER", extra: "DIT3B (SPKD)", dept: "JTMK" },
+      { bil: 39, noPend: "18DIT25F1119", nama: "AIMI UMAIRAH BINTI AMAN", extra: "DIT3D (SPKD)", dept: "JTMK" },
+      { bil: 40, noPend: "18DPM25F1030", nama: "NURIZZATI HUMAIRA BINTI NAIRIZAL", extra: "DPM3A (SPKD)", dept: "JP" },
+      { bil: 41, noPend: "18DPM25F104",  nama: "NUR ANISS ADIEYBA BINTI KAMROZAMAN", extra: "DPM3A (SPKD)", dept: "JP" }
+    ];
 
-    // Activity Filter Function
-    function filterActivities(category) {
-      const cards = document.querySelectorAll('.activity-card');
-      const buttons = document.querySelectorAll('.filter-btn');
+    let currentTableData = pesertaMendaki;
+    let activeProgram = 'mendaki';
 
-      // Update button styling
-      buttons.forEach(btn => {
-        btn.classList.remove('active', 'bg-purple-900', 'text-white');
-        btn.classList.add('bg-white', 'text-slate-700');
-      });
-      event.target.classList.add('active', 'bg-purple-900', 'text-white');
-      event.target.classList.remove('bg-white', 'text-slate-700');
+    function renderTable(data) {
+      const tbody = document.getElementById('participantTableBody');
+      const countLabel = document.getElementById('visibleCount');
+      tbody.innerHTML = '';
 
-      // Filter cards
-      cards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+      if (data.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="py-8 text-center text-slate-400">
+              <i class="fa-solid fa-users-slash text-2xl mb-2 block"></i>
+              Tiada rekod peserta yang sepadan dengan carian.
+            </td>
+          </tr>
+        `;
+        countLabel.textContent = '0';
+        return;
+      }
+
+      countLabel.textContent = data.length;
+
+      data.forEach(item => {
+        const isCalon = item.nama.includes("NUR FIKRIYAH");
+        const row = document.createElement('tr');
+        row.className = isCalon 
+          ? "bg-amber-50/80 font-bold text-amber-950 border-l-4 border-amber-500" 
+          : "hover:bg-slate-50/80 transition-colors";
+
+        row.innerHTML = `
+          <td class="py-2.5 px-4 text-center font-mono ${isCalon ? 'text-amber-900 font-black' : 'text-slate-400'}">${item.bil}</td>
+          <td class="py-2.5 px-4 font-mono font-medium ${isCalon ? 'text-amber-900' : 'text-slate-600'}">${item.noPend}</td>
+          <td class="py-2.5 px-4">
+            <span class="${isCalon ? 'text-brand-800 font-extrabold flex items-center gap-1.5' : 'text-slate-800 font-medium'}">
+              ${isCalon ? '<i class="fa-solid fa-star text-amber-500 text-xs"></i>' : ''}
+              ${item.nama}
+            </span>
+          </td>
+          <td class="py-2.5 px-4 text-center">
+            <span class="inline-block px-2 py-0.5 rounded text-[11px] ${isCalon ? 'bg-amber-200 text-amber-900 font-bold' : 'bg-slate-100 text-slate-600 font-normal'}">
+              ${item.extra}
+            </span>
+          </td>
+          <td class="py-2.5 px-4 text-center">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${getDeptBadge(item.dept)}">
+              ${item.dept}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(row);
       });
     }
+
+    function getDeptBadge(dept) {
+      switch(dept) {
+        case 'JPH': return 'bg-blue-100 text-blue-800';
+        case 'JP': return 'bg-amber-100 text-amber-800';
+        case 'JTMK': return 'bg-purple-100 text-purple-800';
+        case 'JRKV': return 'bg-pink-100 text-pink-800';
+        case 'JKE': return 'bg-emerald-100 text-emerald-800';
+        case 'JKM': return 'bg-sky-100 text-sky-800';
+        default: return 'bg-slate-100 text-slate-800';
+      }
+    }
+
+    function switchTable(type) {
+      activeProgram = type;
+      const tabMendaki = document.getElementById('tab-mendaki');
+      const tabCemas = document.getElementById('tab-cemas');
+      const searchInput = document.getElementById('searchInput');
+      searchInput.value = '';
+
+      if (type === 'mendaki') {
+        currentTableData = pesertaMendaki;
+        tabMendaki.className = "px-4 py-2 text-xs font-bold rounded-lg bg-white text-slate-900 shadow-sm transition-all";
+        tabCemas.className = "px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 rounded-lg transition-all";
+        document.getElementById('th-extra').textContent = "Jawatan/Peranan";
+      } else {
+        currentTableData = pesertaCemas;
+        tabCemas.className = "px-4 py-2 text-xs font-bold rounded-lg bg-white text-slate-900 shadow-sm transition-all";
+        tabMendaki.className = "px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 rounded-lg transition-all";
+        document.getElementById('th-extra').textContent = "Kelas / Unit";
+      }
+
+      renderTable(currentTableData);
+    }
+
+    function filterTable() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const filtered = currentTableData.filter(item => 
+        item.nama.toLowerCase().includes(query) ||
+        item.noPend.toLowerCase().includes(query) ||
+        item.dept.toLowerCase().includes(query) ||
+        item.extra.toLowerCase().includes(query)
+      );
+      renderTable(filtered);
+    }
+
+    // Modal Control Logic
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    // Toast message function
+    function showToast(msg, icon = 'fa-circle-check') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastMsg.textContent = msg;
+      toastIcon.className = `fa-solid ${icon} text-emerald-400`;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+
+    function copyCurrentURL() {
+      const dummy = document.createElement('input');
+      document.body.appendChild(dummy);
+      dummy.value = window.location.href;
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+      showToast('Pautan portfolio telah disalin ke papan klip!');
+    }
+
+    // Initialize on window load
+    window.onload = function() {
+      renderTable(pesertaMendaki);
+    };
   </script>
 </body>
 </html>
