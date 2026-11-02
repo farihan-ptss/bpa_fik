@@ -1264,6 +1264,61 @@
         }
       });
     });
+
+    <!-- Modal Sijil APM -->
+<div id="certificateModal"
+     class="fixed inset-0 z-50 hidden items-center justify-center
+            bg-black/80 p-4"
+     onclick="if(event.target === this) closeCertificateModal()">
+
+  <div class="relative w-full max-w-4xl max-h-[90vh]
+              bg-white rounded-xl shadow-2xl overflow-hidden">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between
+                p-4 border-b border-stone-200">
+
+      <h2 class="font-bold text-stone-900">
+        Salinan Sijil APM
+      </h2>
+
+      <button
+        onclick="closeCertificateModal()"
+        class="text-stone-500 hover:text-red-600 text-2xl"
+        aria-label="Tutup sijil">
+        &times;
+      </button>
+
+    </div>
+
+    <!-- Paparan sijil -->
+    <div class="p-3 overflow-auto max-h-[75vh]">
+
+      <img
+        src="sijil_apm.png"
+        alt="Salinan Sijil APM"
+        class="block w-full h-auto mx-auto object-contain">
+
+    </div>
+
+  </div>
+
+</div>
+     function openCertificateModal(type) {
+    if (type === 'apm') {
+      const modal = document.getElementById('certificateModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeCertificateModal() {
+    const modal = document.getElementById('certificateModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
   </script>
 </body>
 </html>
