@@ -1097,42 +1097,12 @@
       } else if (type === 'bomba') {
         title.innerText = "Salinan Perakuan: Pengurusan Risiko & Simulasi Bencana (BOMBA)";
         container.innerHTML = `
-          <div class="border-2 border-slate-800 p-6 sm:p-8 bg-white text-slate-800 space-y-4 shadow-sm relative">
-            <div class="flex justify-between items-center border-b pb-4 border-slate-200">
-              <div class="text-left">
-                <span class="text-xs uppercase tracking-widest font-black text-red-700">Jabatan Bomba dan Penyelamat Malaysia</span>
-                <h3 class="text-xs font-bold text-slate-500">FIRE AND RESCUE DEPARTMENT OF MALAYSIA</h3>
-              </div>
-              <div class="w-14 h-14 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-2xl font-bold">
-                <i class="fa-solid fa-fire-extinguisher"></i>
-              </div>
-            </div>
-
-            <div class="py-4">
-              <h4 class="text-2xl font-serif font-black text-slate-900 tracking-wider uppercase">Sijil Penyertaan</h4>
-              <p class="text-xs text-slate-500 mt-1">Dengan ini diperakui bahawa</p>
-              <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-2 font-serif underline decoration-red-500 underline-offset-4">NUR FIKRIYAH BINTI ZULKIFLI</h2>
-              <p class="text-xs font-bold text-slate-600 mt-1">No. K/P: 060428-09-0014</p>
-              <p class="text-xs text-slate-600 mt-2 font-medium">Telah menghadiri dengan jayanya sesi:</p>
-              <p class="text-base sm:text-lg font-black text-red-800 tracking-wide mt-1 uppercase bg-red-50 py-1.5 rounded border border-red-200">PENGURUSAN RISIKO DAN SIMULASI BENCANA</p>
-              
-              <div class="mt-4 text-xs text-slate-600 space-y-1">
-                <p><strong>Tarikh:</strong> 03 JUN 2025</p>
-                <p><strong>Bertempat di:</strong> POLITEKNIK PORT DICKSON</p>
-                <p class="text-[11px] text-slate-400">No. Rujukan: PPD/MPMPJ2025 (RSB)/060</p>
-              </div>
-            </div>
-
-            <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-700 gap-4">
-              <div class="text-center sm:text-left">
-                <p class="font-bold text-slate-800">MUHAMAD FAIDZUL BIN PANGAT</p>
-                <p class="text-slate-500 text-[11px]">Pegawai Bomba Kanan II (Balai Bomba & Penyelamat Telok Kemang)</p>
-              </div>
-              <div class="inline-flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 font-bold text-[11px]">
-                <i class="fa-solid fa-stamp"></i> Perakuan Sah Bomba
-              </div>
-            </div>
-          </div>
+          <img
+            src="sijil_bomba.png"
+            alt="Salinan Sijil Pengurusan Risiko dan Bencana"
+            class="block max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-lg shadow-md bg-white"
+            onerror="this.outerHTML='<p class=\\'text-center text-red-700 bg-white p-6 rounded-lg\\'>Imej sijil_bomba.png tidak dijumpai. Pastikan fail imej berada dalam folder yang sama dengan fail HTML.</p>'"
+          />
         `;
       }
 
