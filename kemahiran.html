@@ -567,250 +567,7 @@
       </div>
     </section>
 
-    <!-- BAHAGIAN FLIPBOOK LAPORAN KEMAHIRAN INTERAKTIF -->
-    <section id="flipbook-section" class="scroll-mt-24 space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b border-slate-200 gap-2">
-        <div>
-          <span class="text-xs uppercase font-extrabold tracking-wider text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md">Interaktif e-Buku</span>
-          <h2 class="text-2xl font-bold font-display text-slate-900 mt-2">Flipbook Laporan Kemahiran Kelana</h2>
-          <p class="text-xs text-slate-500">Selak helaian e-Buku Log mengikut halaman dan topik aktiviti kepengakapan.</p>
-        </div>
-        <div class="flex items-center gap-2">
-          <span id="flipbookCounter" class="text-xs font-bold bg-purple-100 text-purple-800 px-3 py-1.5 rounded-xl border border-purple-200">
-            Halaman 1 / 8
-          </span>
-        </div>
-      </div>
-
-      <!-- Container Flipbook Card -->
-      <div class="bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 p-4 sm:p-8 rounded-3xl shadow-xl text-white">
-        
-        <!-- Header Flipbook Tools -->
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-book-bookmark text-amber-300"></i>
-            <span class="text-xs font-bold tracking-wider uppercase text-slate-300">Paparan Helaian e-Logbook</span>
-          </div>
-
-          <!-- Select Jump To Page -->
-          <div class="flex items-center gap-2">
-            <label for="pageSelector" class="text-xs text-slate-300">Pilih Topik:</label>
-            <select id="pageSelector" onchange="jumpToPage(parseInt(this.value))" class="bg-white/10 text-white text-xs border border-white/20 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-amber-300">
-              <option value="0" class="text-slate-800">1. Muka Hadapan & Profil Calon</option>
-              <option value="1" class="text-slate-800">2. Jadual 12 Malam Perkhemahan</option>
-              <option value="2" class="text-slate-800">3. Projek Perintis (Menara Segi Tiga)</option>
-              <option value="3" class="text-slate-800">4. Kuartermaster & Kawad Kaki</option>
-              <option value="4" class="text-slate-800">5. Orienteering & Penganggaran</option>
-              <option value="5" class="text-slate-800">6. Ikhtiar Hidup & Backwoods Cooking</option>
-              <option value="6" class="text-slate-800">7. Kejohanan MaIPRO 2024 & 2025</option>
-              <option value="7" class="text-slate-800">8. Kursus Kemahiran & Pengakuan</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- The Flipbook Paper Area -->
-        <div class="relative bg-white text-slate-800 rounded-2xl min-h-[460px] p-6 sm:p-10 shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between" id="flipbookCanvas">
-          
-          <!-- Helaian 1: Cover & Profil -->
-          <div class="flip-page block space-y-6" data-index="0">
-            <div class="text-center border-b-2 border-purple-900/20 pb-6">
-              <span class="text-[11px] font-bold uppercase tracking-widest text-purple-700 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">Buku Log Rasmi</span>
-              <h3 class="text-2xl sm:text-3xl font-black font-display text-purple-950 mt-3">LENCANA KEMAHIRAN KELANA</h3>
-              <p class="text-xs text-slate-500 font-semibold mt-1">Persekutuan Pengakap Malaysia • Krew Kelanasiswa PTSS</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-2">
-              <div class="bg-purple-50/60 p-4 rounded-xl border border-purple-100 space-y-2">
-                <span class="font-bold text-purple-900 block text-sm">Maklumat Calon:</span>
-                <p><strong class="text-slate-700">Nama:</strong> Nur Fikriyah binti Zulkifli</p>
-                <p><strong class="text-slate-700">No. Matrik:</strong> 18DCS24F1025</p>
-                <p><strong class="text-slate-700">Institusi:</strong> Politeknik Tuanku Syed Sirajuddin</p>
-                <p><strong class="text-slate-700">Sektor:</strong> Kelanasiswa Malaysia</p>
-              </div>
-              <div class="bg-emerald-50/60 p-4 rounded-xl border border-emerald-100 space-y-2">
-                <span class="font-bold text-emerald-900 block text-sm">Status Penilaian:</span>
-                <p><strong class="text-slate-700">Kelayakan Berkhemah:</strong> 12 Malam (Lulus)</p>
-                <p><strong class="text-slate-700">Modul Kemahiran:</strong> 6 Bahagian Selesai</p>
-                <p><strong class="text-slate-700">Ekspedisi Kebangsaan:</strong> MaIPRO 2024 & MaIPRO 2025</p>
-                <p><strong class="text-slate-700">Anugerah Khas:</strong> Johan Keseluruhan MaIPRO 2025</p>
-              </div>
-            </div>
-            <p class="text-center text-[11px] text-slate-400 italic">Klik butang "Halaman Seterusnya" di bawah untuk mula membaca kandungan logbook.</p>
-          </div>
-
-          <!-- Helaian 2: Rekod 12 Malam -->
-          <div class="flip-page hidden space-y-4" data-index="1">
-            <div class="border-b pb-3">
-              <span class="text-[10px] font-bold uppercase text-purple-700">Helaian 02 • Rekod Perkhemahan</span>
-              <h3 class="text-lg font-bold text-slate-900">Rekod Bermalam Calon (12 Malam Terkumpul)</h3>
-            </div>
-            <div class="space-y-2.5 text-xs">
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
-                <div>
-                  <span class="font-bold text-slate-900 block">1. MaIPRO 2024 (PSA Shah Alam)</span>
-                  <span class="text-slate-500">11 – 14 Oktober 2024 (4 Hari 3 Malam)</span>
-                </div>
-                <span class="bg-purple-100 text-purple-900 font-bold px-2.5 py-1 rounded-md text-[11px]">3 Malam</span>
-              </div>
-              <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 flex justify-between items-center">
-                <div>
-                  <span class="font-bold text-slate-900 block">2. MaIPRO 2025 (PTSS & Port Dickson)</span>
-                  <span class="text-slate-500">30 Mei – 4 Jun 2025 (6 Hari 5 Malam) • Juara Keseluruhan</span>
-                </div>
-                <span class="bg-amber-200 text-amber-900 font-bold px-2.5 py-1 rounded-md text-[11px]">5 Malam</span>
-              </div>
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
-                <div>
-                  <span class="font-bold text-slate-900 block">3. Kursus Kemahiran Kelana Sesi 2: 2025/2026</span>
-                  <span class="text-slate-500">27 – 29 Mac 2026 (Pusat Islam PTSS)</span>
-                </div>
-                <span class="bg-purple-100 text-purple-900 font-bold px-2.5 py-1 rounded-md text-[11px]">2 Malam</span>
-              </div>
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
-                <div>
-                  <span class="font-bold text-slate-900 block">4. Kursus Kemahiran Kelana Sesi 1: 2026/2027</span>
-                  <span class="text-slate-500">18 – 20 September 2026 (Pusat Islam PTSS)</span>
-                </div>
-                <span class="bg-purple-100 text-purple-900 font-bold px-2.5 py-1 rounded-md text-[11px]">2 Malam</span>
-              </div>
-            </div>
-            <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs text-emerald-800 font-semibold flex items-center justify-between">
-              <span>Jumlah Disahkan Diiktiraf:</span>
-              <span class="text-sm font-black">12 Malam (Melebihi Syarat Wajib 10 Malam)</span>
-            </div>
-          </div>
-
-          <!-- Helaian 3: Projek Perintis -->
-          <div class="flip-page hidden space-y-4" data-index="2">
-            <div class="border-b pb-3">
-              <span class="text-[10px] font-bold uppercase text-amber-600">Helaian 03 • Modul Kemahiran 01</span>
-              <h3 class="text-lg font-bold text-slate-900">Pembinaan Projek Perintis (Menara Segi Tiga)</h3>
-            </div>
-            <div class="text-xs space-y-3 leading-relaxed text-slate-700">
-              <p><strong>Laporan Pelaksanaan:</strong> Aktiviti dijalankan secara berkumpulan bertempat di dewan serbaguna PTSS. Setiap kumpulan dibekalkan bahan buluh dan tali untuk membina menara berbentuk segi tiga. Ahli kumpulan berbincang untuk menentukan reka bentuk, mengagihkan tugas ikatan tapak, silang gunting serta menegakkan struktur secara serentak.</p>
-              <div class="p-3 bg-purple-50 rounded-xl border border-purple-100">
-                <span class="font-bold text-purple-900 block mb-1">Refleksi Calon:</span>
-                <p class="italic">"Aktiviti pembinaan menara segi tiga memberikan pengalaman berharga dalam mengaplikasikan kemahiran kerja berpasukan. Perancangan yang teliti, pembahagian tugas dan kekuatan ikatan amat penting untuk menghasilkan struktur yang stabil dan kukuh."</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Helaian 4: Kuartermaster & Kawad -->
-          <div class="flip-page hidden space-y-4" data-index="3">
-            <div class="border-b pb-3">
-              <span class="text-[10px] font-bold uppercase text-indigo-600">Helaian 04 • Modul Kemahiran 02 & 03</span>
-              <h3 class="text-lg font-bold text-slate-900">Pengurusan Kuartermaster & Kawad Kaki / Tongkat</h3>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-700">
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-                <span class="font-bold text-indigo-900 block">Kuartermaster:</span>
-                <p class="line-clamp-4">Pengurusan penyusunan stor kabin pengakap PTSS mengikut kategori alatan tajam, kanvas khemah dan tali bagi memastikan peralatan sentiasa teratur, bersih dan sedia diguna.</p>
-                <p class="italic text-[11px] text-slate-500">"Memupuk sikap teliti, bertanggungjawab dan berdisiplin menjaga inventori."</p>
-              </div>
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-                <span class="font-bold text-red-900 block">Kawad Kaki & Tongkat:</span>
-                <p class="line-clamp-4">Latihan tatacara kawad asas dan pergerakan kawad tongkat pengakap secara berperingkat bagi melatih ketepatan, keseragaman langkah serta kepatuhan kepada arahan jurukawad.</p>
-                <p class="italic text-[11px] text-slate-500">"Membina keyakinan diri, postur kemas dan koordinasi tinggi dalam platun."</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Helaian 5: Orienteering & Penganggaran -->
-          <div class="flip-page hidden space-y-4" data-index="4">
-            <div class="border-b pb-3">
-              <span class="text-[10px] font-bold uppercase text-emerald-600">Helaian 05 • Modul Kemahiran 04 & 06</span>
-              <h3 class="text-lg font-bold text-slate-900">Orienteering Peta PTSS & Penganggaran Jarak</h3>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-700">
-              <div class="p-3 bg-emerald-50/50 rounded-xl border border-emerald-100 space-y-2">
-                <span class="font-bold text-emerald-900 block">Orienteering (Peta PTSS 1:10,000):</span>
-                <p>Navigasi kompas Silva merentasi kawasan pentadbiran, asrama dan padang sukan PTSS untuk mencari titik kawalan (*checkpoints*) berpandukan bearing azimut tepat.</p>
-              </div>
-              <div class="p-3 bg-cyan-50/50 rounded-xl border border-cyan-100 space-y-2">
-                <span class="font-bold text-cyan-900 block">Penganggaran (Estimation):</span>
-                <p>Menganggar jarak padang, ketinggian pokok serta masa perjalanan menggunakan kaedah geometri nisbah pembaris tanpa bergantung kepada instrumen digital.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Helaian 6: Ikhtiar Hidup -->
-          <div class="flip-page hidden space-y-4" data-index="5">
-            <div class="border-b pb-3">
-              <span class="text-[10px] font-bold uppercase text-orange-600">Helaian 06 • Modul Kemahiran 05</span>
-              <h3 class="text-lg font-bold text-slate-900">Ikhtiar Hidup & Backwoods Cooking</h3>
-            </div>
-            <div class="text-xs space-y-3 leading-relaxed text-slate-700">
-              <p><strong>Laporan Pelaksanaan:</strong> Peserta diberi cabaran menyalakan api kayu/bata dan menyediakan hidangan makanan rimba. Antara menu yang dipraktikkan adalah melilit doh roti pada ranting kayu serta memanggang ubi dan hidangan di atas lapisan daun hutan beralaskan bara arang panas secara terkawal.</p>
-              <div class="p-3 bg-orange-50 rounded-xl border border-orange-100">
-                <span class="font-bold text-orange-900 block mb-1">Refleksi Calon:</span>
-                <p class="italic">"Aktiviti ikhtiar hidup memberikan pengalaman bermakna dalam membina ketahanan mental dan kreativiti menggunakan sumber semula jadi. Ia menyedarkan saya tentang kepentingan persediaan dan berdikari ketika situasi mencabar."</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Helaian 7: MaIPRO 2024 & 2025 -->
-          <div class="flip-page hidden space-y-4" data-index="6">
-            <div class="border-b pb-3">
-              <span class="text-[10px] font-bold uppercase text-amber-600">Helaian 07 • Kejohanan Kebangsaan</span>
-              <h3 class="text-lg font-bold text-slate-900">Malaysian Polytechnic Rivers Challenge (MaIPRO)</h3>
-            </div>
-            <div class="space-y-3 text-xs text-slate-700">
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span class="font-bold text-purple-900 block">MaIPRO 2024 (PSA Shah Alam):</span>
-                <p class="text-slate-600 mt-1">Menyertai 8 modul utama: Glamping, Diorama, Pertolongan Cemas, Kebakaran, Orienteering, Masakan Rimba, Kebudayaan Borneo & Khidmat Komuniti.</p>
-              </div>
-              <div class="p-3 bg-amber-50 rounded-xl border border-amber-300">
-                <span class="font-bold text-amber-900 block">MaIPRO 2025 (PTSS & Port Dickson) • JUARA KESELURUHAN:</span>
-                <p class="text-slate-700 mt-1">Fokus modul kelestarian marin <em>The Ocean Challenge Badge</em> (YUNGA). Kontinjen PTSS merangkul gelaran <strong>Juara Keseluruhan</strong>, <strong>Campsite Terbaik</strong> & <strong>The Ocean is Life</strong>.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Helaian 8: Pengesahan & Penutup -->
-          <div class="flip-page hidden space-y-4" data-index="7">
-            <div class="border-b pb-3">
-              <span class="text-[10px] font-bold uppercase text-purple-700">Helaian 08 • Perakuan Calon</span>
-              <h3 class="text-lg font-bold text-slate-900">Perakuan & Pengesahan Buku Log</h3>
-            </div>
-            <div class="p-4 bg-purple-50 rounded-2xl border border-purple-100 text-xs text-slate-700 space-y-2">
-              <p class="italic">"Saya, <strong>Nur Fikriyah binti Zulkifli</strong> (18DCS24F1025) mengakui bahawa laporan ini adalah hasil kerja sendiri serta disediakan mengikut nasihat pemimpin Kelanasiswa Politeknik Tuanku Syed Sirajuddin."</p>
-            </div>
-            <div class="grid grid-cols-2 gap-4 text-xs pt-2 text-center">
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span class="font-bold text-slate-900 block">Disediakan Oleh:</span>
-                <span class="font-mono text-purple-900 font-bold block mt-2">NUR FIKRIYAH BINTI ZULKIFLI</span>
-                <span class="text-slate-500 text-[10px]">18DCS24F1025</span>
-              </div>
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span class="font-bold text-slate-900 block">Disahkan Oleh:</span>
-                <span class="font-bold text-emerald-800 block mt-2">PEMIMPIN KELANASISWA</span>
-                <span class="text-slate-500 text-[10px]">Krew Kelana PTSS</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Flipbook Controller Bottom Bar -->
-        <div class="flex items-center justify-between mt-6 pt-4 border-t border-white/10">
-          <button id="prevBtn" onclick="prevPage()" class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs font-bold rounded-xl transition disabled:opacity-30 disabled:cursor-not-allowed">
-            <i class="fa-solid fa-chevron-left"></i>
-            <span>Sebelumnya</span>
-          </button>
-
-          <div class="flex items-center gap-1.5" id="dotsContainer">
-            <!-- Dynamic Dots -->
-          </div>
-
-          <button id="nextBtn" onclick="nextPage()" class="inline-flex items-center gap-2 px-4 py-2 bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs font-bold rounded-xl transition disabled:opacity-30 disabled:cursor-not-allowed shadow-md">
-            <span>Seterusnya</span>
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 3. BAHAGIAN PROGRAM EKSPEDISI & KURSUS UTAMA -->
+        <!-- 3. BAHAGIAN PROGRAM EKSPEDISI & KURSUS UTAMA -->
     <section id="ekspedisi-program" class="scroll-mt-24 space-y-10">
       <div class="pb-4 border-b border-slate-200">
         <span class="text-xs uppercase font-extrabold tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md">Bahagian 2</span>
@@ -1114,6 +871,39 @@
       </div>
     </section>
 
+          <!-- Flipbook Interaktif Dokumen Asal Laporan Kemahiran -->
+      <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6 overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-stone-200 gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2.5 py-1 rounded">
+              DOKUMEN ASAL DIGITAL
+            </span>
+            <h3 class="text-lg font-bold text-stone-900 mt-1 flex items-center">
+              <i class="fa-solid fa-book-open-reader text-scout-red mr-2"></i> E-Flipbook Laporan Penuh Lencana Kemahiran
+            </h3>
+          </div>
+          <a href="https://heyzine.com/flip-book/4c241de54c.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold px-3 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-lg transition border border-stone-300 w-fit">
+            <i class="fa-solid fa-arrow-up-right-from-square mr-1.5 text-scout-red"></i> Buka Di Tab Baru
+          </a>
+        </div>
+
+        <!-- Bekas Responsif Iframe Flipbook -->
+        
+<div class="relative w-full max-w-4xl mx-auto rounded-lg overflow-hidden
+            border border-stone-200 shadow-inner bg-stone-900"
+     style="height: 700px;">
+
+  <iframe
+     <iframe allowfullscreen allow="autoplay; fullscreen; 
+    clipboard-write" scrolling="no" style="width: 100%; height: 100%; border: 1px solid lightgray;" 
+    src="https://heyzine.com/flip-book/4c241de54c.html"></iframe>
+
+</div>
+
+        <p class="text-stone-400 text-[11px] mt-2 text-center italic">
+          <i class="fa-solid fa-circle-info mr-1"></i> Anda boleh menyelak halaman buku secara langsung pada paparan di atas atau tekan butang skrin penuh di bahagian bawah flipbook.
+        </p>
+      </div>
     <!-- 5. BAHAGIAN PENGAKUAN & PENGESAHAN RASMI -->
     <section id="pengesahan" class="scroll-mt-24 pt-6 border-t-2 border-slate-200">
       <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm space-y-8">
