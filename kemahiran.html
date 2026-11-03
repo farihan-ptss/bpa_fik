@@ -163,7 +163,7 @@
               <span class="text-[11px] text-slate-300 uppercase tracking-wider font-semibold">Malam Khemah (Min: 10)</span>
             </div>
             <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center">
-              <span class="block text-2xl sm:text-3xl font-black text-emerald-300">6</span>
+              <span class="block text-2xl sm:text-3xl font-black text-emerald-300">7</span>
               <span class="text-[11px] text-slate-300 uppercase tracking-wider font-semibold">Modul Kemahiran</span>
             </div>
             <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center">
@@ -185,9 +185,13 @@
             </div>
 
             <div class="flex items-center gap-4 border-b border-slate-100 pb-4 mb-4">
-              <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-purple-800 to-indigo-900 text-white flex items-center justify-center text-3xl font-display font-bold shadow-md">
-                NF
-              </div>
+              <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md">
+                    <img
+                      src="profil.jpeg"
+                      alt="Profil Nur Fikriyah binti Zulkifli"
+                      class="w-full h-full object-cover"
+                    >
+                  </div>
               <div>
                 <h2 class="font-bold text-base text-slate-900 leading-tight">Nur Fikriyah binti Zulkifli</h2>
                 <div class="inline-block font-mono text-xs bg-purple-50 text-purple-900 font-bold px-2 py-0.5 rounded mt-1 border border-purple-200">
@@ -735,141 +739,7 @@
       </div>
     </section>
 
-    <!-- 4. GALERI BUKTI BERGAMBAR & PENAPIS (INTERACTIVE) -->
-    <section id="galeri-aktiviti" class="scroll-mt-24 space-y-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between pb-4 border-b border-slate-200 gap-3">
-        <div>
-          <span class="text-xs uppercase font-extrabold tracking-wider text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md">Lampiran Bergambar</span>
-          <h2 class="text-2xl font-bold font-display text-slate-900 mt-2">Galeri Evidens & Lampiran Foto</h2>
-          <p class="text-xs text-slate-500">Koleksi foto aktiviti amali di kampus PTSS, MaIPRO Shah Alam dan Port Dickson.</p>
-        </div>
-
-        <!-- Filter Buttons -->
-        <div class="flex flex-wrap gap-2 text-xs font-semibold no-print">
-          <button onclick="filterGallery('all')" class="gallery-btn active px-3 py-1.5 rounded-lg bg-scout-purple text-white shadow-sm transition">Semua</button>
-          <button onclick="filterGallery('pioneering')" class="gallery-btn px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Perintis & Kawad</button>
-          <button onclick="filterGallery('navigasi')" class="gallery-btn px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Orienteering & Peta</button>
-          <button onclick="filterGallery('ikhtiar')" class="gallery-btn px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Ikhtiar Hidup</button>
-          <button onclick="filterGallery('maipro')" class="gallery-btn px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition">MaIPRO Ekspedisi</button>
-        </div>
-      </div>
-
-      <!-- Photo Cards Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="galleryContainer">
-
-        <!-- Foto 1: Perintis Menara Buluh -->
-        <div class="gallery-item pioneering bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm group cursor-pointer" onclick="viewImage('Pembinaan Menara Segi Tiga (Pioneering)', 'Sesi menyusun dan mengikat buluh membentuk rangka menara segi tiga di dewan serbaguna PTSS.')">
-          <div class="h-48 bg-gradient-to-tr from-purple-900 via-slate-800 to-emerald-900 flex flex-col items-center justify-center p-4 text-center text-white relative overflow-hidden">
-            <i class="fa-solid fa-shapes text-5xl text-amber-300 group-hover:scale-110 transition-transform"></i>
-            <span class="absolute bottom-2 left-3 text-[10px] bg-black/60 px-2 py-0.5 rounded font-mono">PTSS Dewan</span>
-          </div>
-          <div class="p-3.5">
-            <span class="text-[10px] font-bold text-amber-600 uppercase">Projek Perintis</span>
-            <h4 class="text-xs font-bold text-slate-900 mt-0.5">Binaan Menara Segi Tiga</h4>
-            <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Peserta bekerjasama mengikat buluh menggunakan ikatan seraya dan silang tungku.</p>
-          </div>
-        </div>
-
-        <!-- Foto 2: Kuartermaster -->
-        <div class="gallery-item pioneering bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm group cursor-pointer" onclick="viewImage('Pengurusan Kuartermaster & Kanvas', 'Pemeriksaan fabrik kanvas, flysheet dan penyusunan kabin peralatan stor.')">
-          <div class="h-48 bg-gradient-to-tr from-indigo-950 via-slate-800 to-purple-900 flex flex-col items-center justify-center p-4 text-center text-white relative overflow-hidden">
-            <i class="fa-solid fa-boxes-stacked text-5xl text-indigo-300 group-hover:scale-110 transition-transform"></i>
-            <span class="absolute bottom-2 left-3 text-[10px] bg-black/60 px-2 py-0.5 rounded font-mono">Stor Kabin</span>
-          </div>
-          <div class="p-3.5">
-            <span class="text-[10px] font-bold text-indigo-600 uppercase">Kuartermaster</span>
-            <h4 class="text-xs font-bold text-slate-900 mt-0.5">Pemeriksaan Kanvas & Logistik</h4>
-            <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Memeriksa keadaan tali, pasak dan bentangan kanvas flysheet sebelum ekspedisi.</p>
-          </div>
-        </div>
-
-        <!-- Foto 3: Orienteering & Peta PTSS -->
-        <div class="gallery-item navigasi bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm group cursor-pointer" onclick="viewImage('Peta Kampus PTSS & Kompas Orienteering', 'Membaca peta rasmi PTSS berskala 1:10,000 dan menentukan bearing azimut dengan kompas.')">
-          <div class="h-48 bg-gradient-to-tr from-emerald-950 via-slate-800 to-teal-900 flex flex-col items-center justify-center p-4 text-center text-white relative overflow-hidden">
-            <i class="fa-solid fa-map-location-dot text-5xl text-emerald-300 group-hover:scale-110 transition-transform"></i>
-            <span class="absolute bottom-2 left-3 text-[10px] bg-black/60 px-2 py-0.5 rounded font-mono">Peta PTSS (1:10,000)</span>
-          </div>
-          <div class="p-3.5">
-            <span class="text-[10px] font-bold text-emerald-600 uppercase">Orienteering</span>
-            <h4 class="text-xs font-bold text-slate-900 mt-0.5">Navigasi Kompas & Peta Grid</h4>
-            <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Peserta bergerak merentasi asrama, kafeteria dan gelanggang sukan mencari checkpoint.</p>
-          </div>
-        </div>
-
-        <!-- Foto 4: Penganggaran Jarak -->
-        <div class="gallery-item navigasi bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm group cursor-pointer" onclick="viewImage('Penganggaran Jarak & Ketinggian', 'Menggunakan pembaris dan kaedah geometri menganggar ketinggian bangunan dan pokok di padang.')">
-          <div class="h-48 bg-gradient-to-tr from-cyan-950 via-slate-800 to-blue-900 flex flex-col items-center justify-center p-4 text-center text-white relative overflow-hidden">
-            <i class="fa-solid fa-ruler-combined text-5xl text-cyan-300 group-hover:scale-110 transition-transform"></i>
-            <span class="absolute bottom-2 left-3 text-[10px] bg-black/60 px-2 py-0.5 rounded font-mono">Padang PTSS</span>
-          </div>
-          <div class="p-3.5">
-            <span class="text-[10px] font-bold text-cyan-600 uppercase">Penganggaran</span>
-            <h4 class="text-xs font-bold text-slate-900 mt-0.5">Anggaran Ketinggian & Jarak</h4>
-            <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Membuat perbandingan anggaran visual dengan ukuran sebenar bagi mengira ralat.</p>
-          </div>
-        </div>
-
-        <!-- Foto 5: Ikhtiar Hidup Masakan -->
-        <div class="gallery-item ikhtiar bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm group cursor-pointer" onclick="viewImage('Ikhtiar Hidup & Backwoods Cooking', 'Menyediakan masakan rimba doh lilit pada kayu dan memanggang di atas daun hutan beralas bara api.')">
-          <div class="h-48 bg-gradient-to-tr from-amber-950 via-orange-900 to-slate-900 flex flex-col items-center justify-center p-4 text-center text-white relative overflow-hidden">
-        <!-- DUA KURSUS KEMAHIRAN (SESI 2 & SESI 1) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-          <!-- KURSUS SESI 2: 2025/2026 -->
-          <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md">Khidmat Urus Setia</span>
-              <span class="text-xs text-slate-500 font-mono">27-29 Mac 2026</span>
-            </div>
-            <h3 class="text-base font-bold text-slate-900">Kursus Kemahiran Kelana Sesi 2: 2025/2026</h3>
-            <p class="text-xs text-slate-500">Pusat Islam PTSS • 3 Hari 2 Malam • 25 Peserta</p>
-
-            <div class="text-xs space-y-2">
-              <span class="font-bold text-slate-800 block">Tugas & Tanggungjawab Calon:</span>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="bg-slate-100 px-2.5 py-1 rounded-lg">Pendaftaran Peserta</span>
-                <span class="bg-slate-100 px-2.5 py-1 rounded-lg">Pengurusan Aktiviti</span>
-                <span class="bg-slate-100 px-2.5 py-1 rounded-lg">Penyediaan Makan Minum Urus Setia</span>
-              </div>
-            </div>
-
-            <div class="pt-2 border-t border-slate-100">
-              <span class="text-[11px] font-bold uppercase text-purple-900 block mb-1">Refleksi:</span>
-              <p class="text-xs text-slate-600 italic bg-slate-50 p-3 rounded-xl border border-slate-100">
-                "Mengurus pendaftaran dan sajian makan minum mengajar saya tentang disiplin masa, ketelitian logistik dan komunikasi berkesan dalam jawatankuasa."
-              </p>
-            </div>
-          </div>
-
-          <!-- KURSUS SESI 1: 2026/2027 -->
-          <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Juri & Fasilitator</span>
-              <span class="text-xs text-slate-500 font-mono">18-20 Sept 2026</span>
-            </div>
-            <h3 class="text-base font-bold text-slate-900">Kursus Kemahiran Kelana Sesi 1: 2026/2027</h3>
-            <p class="text-xs text-slate-500">Pusat Islam PTSS • 3 Hari 2 Malam • 60 Peserta</p>
-
-            <div class="text-xs space-y-2">
-              <span class="font-bold text-slate-800 block">Tugas & Tanggungjawab Calon:</span>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="bg-slate-100 px-2.5 py-1 rounded-lg">1. JK Fotografi & Dokumentasi</span>
-                <span class="bg-slate-100 px-2.5 py-1 rounded-lg">2. Juri Model Projek Perintis</span>
-                <span class="bg-slate-100 px-2.5 py-1 rounded-lg">3. JK Slot Pertolongan Cemas</span>
-              </div>
-            </div>
-
-            <div class="pt-2 border-t border-slate-100">
-              <span class="text-[11px] font-bold uppercase text-purple-900 block mb-1">Refleksi:</span>
-              <p class="text-xs text-slate-600 italic bg-slate-50 p-3 rounded-xl border border-slate-100">
-                "Tugas sebagai juri model projek perintis mengajar saya menilai secara adil dan objektif, manakala slot pertolongan cemas mengukuhkan kemahiran bantuan awal saya."
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
+    
 
           <!-- Flipbook Interaktif Dokumen Asal Laporan Kemahiran -->
       <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6 overflow-hidden">
